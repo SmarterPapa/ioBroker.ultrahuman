@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "news": {
+      "0.1.2": {
+        "en": "Cleaned up devDependencies, added ioBroker keyword",
+        "de": "DevDependencies aufgeräumt, ioBroker Keyword hinzugefügt",
+        "ru": "Очищены devDependencies, добавлено ключевое слово ioBroker",
+        "pt": "DevDependencies limpos, palavra-chave ioBroker adicionada",
+        "nl": "DevDependencies opgeschoond, ioBroker keyword toegevoegd",
+        "fr": "DevDependencies nettoyées, mot-clé ioBroker ajouté",
+        "it": "DevDependencies pulite, keyword ioBroker aggiunta",
+        "es": "DevDependencies limpiadas, palabra clave ioBroker añadida",
+        "pl": "Wyczyszczono devDependencies, dodano słowo kluczowe ioBroker",
+        "uk": "Очищено devDependencies, додано ключове слово ioBroker",
+        "zh-cn": "清理devDependencies，添加ioBroker关键字"
+      },
       "0.1.1": {
         "en": "Fixed responsive design, added i18n, updated dependencies",
         "de": "Responsive Design korrigiert, i18n hinzugefügt, Abhängigkeiten aktualisiert",

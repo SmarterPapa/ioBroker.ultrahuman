@@ -93,6 +93,11 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ## Changelog
 
+### 0.1.2 (2026-03-11)
+* Cleaned up devDependencies (removed packages included in @iobroker/testing)
+* Added "ioBroker" keyword to package.json
+* Added .commitinfo to .gitignore
+
 ### 0.1.1 (2026-03-11)
 * Fixed responsive design for Admin UI
 * Added i18n translation files
