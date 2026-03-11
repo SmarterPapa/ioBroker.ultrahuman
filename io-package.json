@@ -53,6 +53,7 @@
     "main": "build/main.js",
     "icon": "ultrahuman.png",
     "enabled": true,
+    "install": true,
     "extIcon": "https://raw.githubusercontent.com/SmarterPapa/ioBroker.ultrahuman/main/admin/ultrahuman.png",
     "readme": "https://github.com/SmarterPapa/ioBroker.ultrahuman/blob/main/README.md",
     "loglevel": "info",
