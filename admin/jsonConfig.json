@@ -9,6 +9,24 @@
         "de": "Authentifizierung"
       },
       "items": {
+        "_introHeader": {
+          "type": "header",
+          "text": {
+            "en": "Connect your Ultrahuman Ring",
+            "de": "Verbinde deinen Ultrahuman Ring"
+          },
+          "size": 4,
+          "newLine": true
+        },
+        "_introText": {
+          "type": "staticText",
+          "newLine": true,
+          "style": { "marginBottom": "16px" },
+          "text": {
+            "en": "This adapter reads health data from your Ultrahuman Ring via the Partner API. You need API credentials from the **ultrahuman-dashboard** project or directly from Ultrahuman.",
+            "de": "Dieser Adapter liest Gesundheitsdaten von deinem Ultrahuman Ring über die Partner API. Du benötigst API-Zugangsdaten vom **ultrahuman-dashboard** Projekt oder direkt von Ultrahuman."
+          }
+        },
         "authMode": {
           "type": "select",
           "label": {
@@ -19,13 +37,13 @@
           "md": 6,
           "newLine": true,
           "options": [
-            { "label": { "en": "API Key (current)", "de": "API-Schlüssel (aktuell)" }, "value": "apikey" },
-            { "label": { "en": "OAuth 2.0 (recommended for sharing)", "de": "OAuth 2.0 (empfohlen zum Teilen)" }, "value": "oauth" }
+            { "label": { "en": "API Key (recommended)", "de": "API-Schlüssel (empfohlen)" }, "value": "apikey" },
+            { "label": { "en": "OAuth 2.0 (for developers)", "de": "OAuth 2.0 (für Entwickler)" }, "value": "oauth" }
           ],
           "default": "apikey",
           "help": {
-            "en": "API Key works with your existing partner credentials. OAuth 2.0 lets each user login with their own Ultrahuman account.",
-            "de": "API-Schlüssel funktioniert mit deinen bestehenden Partner-Zugangsdaten. OAuth 2.0 ermöglicht jedem Nutzer sich mit seinem eigenen Ultrahuman-Konto anzumelden."
+            "en": "Most users should use API Key mode. OAuth 2.0 is for advanced setups with custom Ultrahuman partner credentials.",
+            "de": "Die meisten Nutzer sollten den API-Schlüssel-Modus verwenden. OAuth 2.0 ist für fortgeschrittene Setups mit eigenen Ultrahuman Partner-Zugangsdaten."
           }
         },
         "_divider0": {
@@ -34,62 +52,91 @@
         },
         "_apikeyPanel": {
           "type": "panel",
-          "label": {
-            "en": "API Key Settings",
-            "de": "API-Schlüssel Einstellungen"
-          },
           "hidden": "data.authMode === 'oauth'",
           "items": {
+            "_apikeyHeader": {
+              "type": "header",
+              "text": {
+                "en": "API Key Settings",
+                "de": "API-Schlüssel Einstellungen"
+              },
+              "size": 5,
+              "newLine": true
+            },
+            "_howToGetCredentials": {
+              "type": "staticText",
+              "newLine": true,
+              "style": { "marginBottom": "16px" },
+              "text": {
+                "en": "**How to get your credentials:**\n\n1. Set up the [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) project (e.g. via Docker)\n2. From your `.env` file, copy `ULTRAHUMAN_API_KEY` and `ULTRAHUMAN_EMAIL`\n3. Make sure you have entered the **Access Code** in your Ultrahuman app (Profile → Settings → Partner ID)\n\nAlternatively, you can request API access directly from [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/).",
+                "de": "**So erhältst du deine Zugangsdaten:**\n\n1. Richte das [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) Projekt ein (z.B. via Docker)\n2. Kopiere aus deiner `.env` Datei `ULTRAHUMAN_API_KEY` und `ULTRAHUMAN_EMAIL`\n3. Stelle sicher, dass du den **Access Code** in deiner Ultrahuman-App eingegeben hast (Profil → Einstellungen → Partner ID)\n\nAlternativ kannst du API-Zugang direkt bei [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/) beantragen."
+              }
+            },
             "apiSecret": {
               "type": "text",
               "label": {
-                "en": "API Key",
-                "de": "API-Schlüssel"
+                "en": "API Key (ULTRAHUMAN_API_KEY)",
+                "de": "API-Schlüssel (ULTRAHUMAN_API_KEY)"
               },
               "sm": 12,
               "md": 6,
               "newLine": true,
               "placeholder": {
-                "en": "Your Ultrahuman API Key",
-                "de": "Dein Ultrahuman API-Schlüssel"
+                "en": "Paste your API key here",
+                "de": "Füge deinen API-Schlüssel hier ein"
               },
               "help": {
-                "en": "The authorization key for the Ultrahuman Partner API (ULTRAHUMAN_API_KEY)",
-                "de": "Der Autorisierungsschlüssel für die Ultrahuman Partner API (ULTRAHUMAN_API_KEY)"
+                "en": "The authorization key from your ultrahuman-dashboard .env file or from Ultrahuman directly",
+                "de": "Der Autorisierungsschlüssel aus deiner ultrahuman-dashboard .env Datei oder direkt von Ultrahuman"
               }
             },
             "userEmail": {
               "type": "text",
               "label": {
-                "en": "Ultrahuman Email",
-                "de": "Ultrahuman E-Mail"
+                "en": "Ultrahuman Email (ULTRAHUMAN_EMAIL)",
+                "de": "Ultrahuman E-Mail (ULTRAHUMAN_EMAIL)"
               },
               "sm": 12,
               "md": 6,
-              "placeholder": "user@example.com",
+              "placeholder": "your-email@example.com",
               "help": {
-                "en": "Your Ultrahuman account email (ULTRAHUMAN_EMAIL)",
-                "de": "Deine Ultrahuman-Konto E-Mail (ULTRAHUMAN_EMAIL)"
+                "en": "The email address linked to your Ultrahuman account",
+                "de": "Die E-Mail-Adresse, die mit deinem Ultrahuman-Konto verknüpft ist"
               }
             },
             "_accessCodeHint": {
               "type": "staticText",
               "newLine": true,
+              "style": { "marginTop": "16px", "padding": "12px", "backgroundColor": "rgba(255, 193, 7, 0.1)", "borderRadius": "8px", "borderLeft": "4px solid #ffc107" },
               "text": {
-                "en": "**Important:** Make sure you have entered the Ultrahuman Access Code in your Ultrahuman app under Profile → Settings → Partner ID.",
-                "de": "**Wichtig:** Stelle sicher, dass du den Ultrahuman Access Code in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben hast."
+                "en": "**Important:** The Access Code must be entered in your Ultrahuman app under **Profile → Settings → Partner ID**. Without this, the API cannot access your data. You received this code together with your API key.",
+                "de": "**Wichtig:** Der Access Code muss in deiner Ultrahuman-App unter **Profil → Einstellungen → Partner ID** eingegeben werden. Ohne diesen kann die API nicht auf deine Daten zugreifen. Du hast diesen Code zusammen mit deinem API-Schlüssel erhalten."
               }
             }
           }
         },
         "_oauthPanel": {
           "type": "panel",
-          "label": {
-            "en": "OAuth 2.0 Settings",
-            "de": "OAuth 2.0 Einstellungen"
-          },
           "hidden": "data.authMode !== 'oauth'",
           "items": {
+            "_oauthHeader": {
+              "type": "header",
+              "text": {
+                "en": "OAuth 2.0 Settings",
+                "de": "OAuth 2.0 Einstellungen"
+              },
+              "size": 5,
+              "newLine": true
+            },
+            "_oauthExplanation": {
+              "type": "staticText",
+              "newLine": true,
+              "style": { "marginBottom": "16px" },
+              "text": {
+                "en": "**OAuth 2.0 is for advanced users** who have registered as an Ultrahuman Partner and received their own Client ID and Client Secret.\n\nWith OAuth, each user can log in with their own Ultrahuman account – no shared API key needed.\n\nTo become a partner, apply at [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/).",
+                "de": "**OAuth 2.0 ist für fortgeschrittene Nutzer**, die sich als Ultrahuman Partner registriert und eigene Client ID und Client Secret erhalten haben.\n\nMit OAuth kann sich jeder Nutzer mit seinem eigenen Ultrahuman-Konto anmelden – kein geteilter API-Schlüssel nötig.\n\nUm Partner zu werden, bewirb dich bei [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/)."
+              }
+            },
             "clientId": {
               "type": "text",
               "label": {
@@ -130,8 +177,8 @@
               "max": 65535,
               "default": 8890,
               "help": {
-                "en": "Local port for the OAuth callback server (default: 8890)",
-                "de": "Lokaler Port für den OAuth-Callback-Server (Standard: 8890)"
+                "en": "Local port for the OAuth callback server (default: 8890). Make sure this port is not blocked by a firewall.",
+                "de": "Lokaler Port für den OAuth-Callback-Server (Standard: 8890). Stelle sicher, dass dieser Port nicht von einer Firewall blockiert wird."
               }
             },
             "_loginButton": {
@@ -150,16 +197,17 @@
               "openUrl": true,
               "jsonData": "{}",
               "help": {
-                "en": "Click to open the Ultrahuman login page in your browser. After authorization, you will be redirected back automatically.",
-                "de": "Klicke hier um die Ultrahuman-Anmeldeseite im Browser zu öffnen. Nach der Autorisierung wirst du automatisch weitergeleitet."
+                "en": "Opens the Ultrahuman login page. After authorization, you will be redirected back automatically.",
+                "de": "Öffnet die Ultrahuman-Anmeldeseite. Nach der Autorisierung wirst du automatisch weitergeleitet."
               }
             },
             "_tokenStatus": {
               "type": "staticText",
               "newLine": true,
+              "style": { "marginTop": "16px" },
               "text": {
-                "en": "Token status: Check the adapter log for authentication status.",
-                "de": "Token-Status: Prüfe das Adapter-Log für den Authentifizierungsstatus."
+                "en": "**Token status:** Check the adapter log for authentication status. Tokens are automatically refreshed when they expire.",
+                "de": "**Token-Status:** Prüfe das Adapter-Log für den Authentifizierungsstatus. Tokens werden automatisch erneuert, wenn sie ablaufen."
               }
             }
           }
@@ -173,6 +221,24 @@
         "de": "Einstellungen"
       },
       "items": {
+        "_settingsHeader": {
+          "type": "header",
+          "text": {
+            "en": "Polling Settings",
+            "de": "Abfrage-Einstellungen"
+          },
+          "size": 5,
+          "newLine": true
+        },
+        "_settingsExplanation": {
+          "type": "staticText",
+          "newLine": true,
+          "style": { "marginBottom": "16px" },
+          "text": {
+            "en": "The Ultrahuman Ring syncs data periodically to the cloud (not in real-time). Polling too frequently wastes resources and may trigger rate limits.",
+            "de": "Der Ultrahuman Ring synchronisiert Daten periodisch in die Cloud (nicht in Echtzeit). Zu häufiges Abfragen verschwendet Ressourcen und kann Rate-Limits auslösen."
+          }
+        },
         "pollingInterval": {
           "type": "number",
           "label": {
@@ -180,13 +246,48 @@
             "de": "Abfrageintervall (Minuten)"
           },
           "sm": 12,
-          "md": 6,
+          "md": 4,
           "min": 5,
           "max": 1440,
           "default": 30,
           "help": {
-            "en": "How often to fetch new data. Ring data syncs periodically, so 30 minutes is recommended.",
-            "de": "Wie oft neue Daten abgerufen werden. Da der Ring periodisch synchronisiert, werden 30 Minuten empfohlen."
+            "en": "How often to fetch new data from the API. Recommended: 30 minutes.",
+            "de": "Wie oft neue Daten von der API abgerufen werden. Empfohlen: 30 Minuten."
+          }
+        },
+        "_intervalHint": {
+          "type": "staticText",
+          "newLine": true,
+          "style": { "marginTop": "8px" },
+          "text": {
+            "en": "**Recommended:** 30 minutes | **Minimum:** 5 minutes | **Maximum:** 1440 minutes (24 hours)",
+            "de": "**Empfohlen:** 30 Minuten | **Minimum:** 5 Minuten | **Maximum:** 1440 Minuten (24 Stunden)"
+          }
+        }
+      }
+    },
+    "_aboutTab": {
+      "type": "panel",
+      "label": {
+        "en": "About",
+        "de": "Über"
+      },
+      "items": {
+        "_aboutHeader": {
+          "type": "header",
+          "text": {
+            "en": "About this Adapter",
+            "de": "Über diesen Adapter"
+          },
+          "size": 5,
+          "newLine": true
+        },
+        "_aboutText": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "**ioBroker.ultrahuman** reads health metrics from your Ultrahuman Ring and makes them available as ioBroker objects.\n\n**Available data:**\n- Sleep (efficiency, duration, stages, score, cycles)\n- Heart rate (resting, night, average, min/max, trend)\n- HRV (average, sleep, min/max, trend)\n- SpO2 (if supported by your ring)\n- Skin temperature\n- Activity (steps, active minutes, movement/recovery index, VO2 max)\n\n**Links:**\n- [GitHub Repository](https://github.com/SmarterPapa/ioBroker.ultrahuman)\n- [Ultrahuman Dashboard (API reference)](https://github.com/mt-krainski/ultrahuman-dashboard)\n- [Report an issue](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)\n\n**License:** MIT\n**Author:** SmarterPapa",
+            "de": "**ioBroker.ultrahuman** liest Gesundheitsdaten von deinem Ultrahuman Ring und stellt sie als ioBroker-Objekte zur Verfügung.\n\n**Verfügbare Daten:**\n- Schlaf (Effizienz, Dauer, Phasen, Score, Zyklen)\n- Herzfrequenz (Ruhe, Nacht, Durchschnitt, Min/Max, Trend)\n- HRV (Durchschnitt, Schlaf, Min/Max, Trend)\n- SpO2 (falls vom Ring unterstützt)\n- Hauttemperatur\n- Aktivität (Schritte, aktive Minuten, Bewegungs-/Recovery-Index, VO2 max)\n\n**Links:**\n- [GitHub Repository](https://github.com/SmarterPapa/ioBroker.ultrahuman)\n- [Ultrahuman Dashboard (API-Referenz)](https://github.com/mt-krainski/ultrahuman-dashboard)\n- [Problem melden](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)\n\n**Lizenz:** MIT\n**Autor:** SmarterPapa"
           }
         }
       }
