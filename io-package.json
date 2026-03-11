@@ -76,20 +76,12 @@
         "admin": ">=7.6.17"
       }
     ],
-    "messagebox": true,
-    "encryptedNative": ["apiSecret", "clientSecret", "accessToken", "refreshToken"],
-    "protectedNative": ["apiSecret", "clientSecret", "accessToken", "refreshToken"]
+    "encryptedNative": ["apiSecret"],
+    "protectedNative": ["apiSecret"]
   },
   "native": {
-    "authMode": "apikey",
     "apiSecret": "",
     "userEmail": "",
-    "clientId": "",
-    "clientSecret": "",
-    "oauthCallbackPort": 8890,
-    "accessToken": "",
-    "refreshToken": "",
-    "tokenExpiry": 0,
     "pollingInterval": 30
   },
   "objects": [],

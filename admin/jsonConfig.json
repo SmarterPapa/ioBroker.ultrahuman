@@ -41,43 +41,7 @@
             "de": "Dieser Adapter liest Gesundheitsdaten von deinem Ultrahuman Ring über die Partner API. Du benötigst API-Zugangsdaten direkt von Ultrahuman."
           }
         },
-        "authMode": {
-          "type": "select",
-          "label": {
-            "en": "Authentication mode",
-            "de": "Authentifizierungsmodus"
-          },
-          "sm": 12,
-          "md": 6,
-          "newLine": true,
-          "options": [
-            { "label": { "en": "API Key (recommended)", "de": "API-Schlüssel (empfohlen)" }, "value": "apikey" },
-            { "label": { "en": "OAuth 2.0 (for developers)", "de": "OAuth 2.0 (für Entwickler)" }, "value": "oauth" }
-          ],
-          "default": "apikey",
-          "help": {
-            "en": "Most users should use API Key mode. OAuth 2.0 is for advanced setups with custom Ultrahuman partner credentials.",
-            "de": "Die meisten Nutzer sollten den API-Schlüssel-Modus verwenden. OAuth 2.0 ist für fortgeschrittene Setups mit eigenen Ultrahuman Partner-Zugangsdaten."
-          }
-        },
-        "_divider0": {
-          "type": "divider",
-          "newLine": true
-        },
-        "_apikeyPanel": {
-          "type": "panel",
-          "hidden": "data.authMode === 'oauth'",
-          "items": {
-            "_apikeyHeader": {
-              "type": "header",
-              "text": {
-                "en": "API Key Settings",
-                "de": "API-Schlüssel Einstellungen"
-              },
-              "size": 5,
-              "newLine": true
-            },
-            "_howToHeader": {
+        "_howToHeader": {
               "type": "header",
               "text": {
                 "en": "How to get your credentials",
@@ -204,122 +168,13 @@
                 "de": "Die E-Mail-Adresse, die mit deinem Ultrahuman-Konto verknüpft ist. Wenn du dich mit Apple Privacy Relay angemeldet hast, endet diese auf @privaterelay.appleid.com. Du findest sie in der App unter Profil → Einstellungen (Zahnrad) → Konto (ganz oben)."
               }
             },
-            "_accessCodeHint": {
-              "type": "staticText",
-              "newLine": true,
-              "style": { "marginTop": "16px", "padding": "12px", "backgroundColor": "rgba(255, 193, 7, 0.1)", "borderRadius": "8px", "borderLeft": "4px solid #ffc107" },
-              "text": {
-                "en": "Important: The Access Code must be entered in your Ultrahuman app under Profile → Settings → Partner ID. Without this, the API cannot access your data.",
-                "de": "Wichtig: Der Access Code muss in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben werden. Ohne diesen kann die API nicht auf deine Daten zugreifen."
-              }
-            }
-          }
-        },
-        "_oauthPanel": {
-          "type": "panel",
-          "hidden": "data.authMode !== 'oauth'",
-          "items": {
-            "_oauthHeader": {
-              "type": "header",
-              "text": {
-                "en": "OAuth 2.0 Settings",
-                "de": "OAuth 2.0 Einstellungen"
-              },
-              "size": 5,
-              "newLine": true
-            },
-            "_oauthExplanation": {
-              "type": "staticText",
-              "newLine": true,
-              "style": { "marginBottom": "16px" },
-              "text": {
-                "en": "OAuth 2.0 is for advanced users who have registered as an Ultrahuman Partner and received their own Client ID and Client Secret. With OAuth, each user can log in with their own Ultrahuman account.",
-                "de": "OAuth 2.0 ist für fortgeschrittene Nutzer, die sich als Ultrahuman Partner registriert und eigene Client ID und Client Secret erhalten haben. Mit OAuth kann sich jeder Nutzer mit seinem eigenen Ultrahuman-Konto anmelden."
-              }
-            },
-            "_oauthPartnerLink": {
-              "type": "staticLink",
-              "label": {
-                "en": "Apply at Ultrahuman Partnerships",
-                "de": "Bei Ultrahuman Partnerships bewerben"
-              },
-              "href": "https://partnerships.ultrahuman.com/",
-              "newLine": true,
-              "style": { "marginBottom": "16px" }
-            },
-            "clientId": {
-              "type": "text",
-              "label": {
-                "en": "Client ID",
-                "de": "Client ID"
-              },
-              "sm": 12,
-              "md": 6,
-              "newLine": true,
-              "help": {
-                "en": "OAuth Client ID from Ultrahuman partner onboarding",
-                "de": "OAuth Client ID aus dem Ultrahuman Partner-Onboarding"
-              }
-            },
-            "clientSecret": {
-              "type": "text",
-              "label": {
-                "en": "Client Secret",
-                "de": "Client Secret"
-              },
-              "sm": 12,
-              "md": 6,
-              "help": {
-                "en": "OAuth Client Secret from Ultrahuman partner onboarding",
-                "de": "OAuth Client Secret aus dem Ultrahuman Partner-Onboarding"
-              }
-            },
-            "oauthCallbackPort": {
-              "type": "number",
-              "label": {
-                "en": "Callback Port",
-                "de": "Callback Port"
-              },
-              "sm": 12,
-              "md": 3,
-              "newLine": true,
-              "min": 1024,
-              "max": 65535,
-              "default": 8890,
-              "help": {
-                "en": "Local port for the OAuth callback server (default: 8890)",
-                "de": "Lokaler Port für den OAuth-Callback-Server (Standard: 8890)"
-              }
-            },
-            "_loginButton": {
-              "type": "sendTo",
-              "label": {
-                "en": "Login with Ultrahuman",
-                "de": "Mit Ultrahuman anmelden"
-              },
-              "sm": 12,
-              "md": 4,
-              "newLine": true,
-              "command": "startOAuth",
-              "variant": "contained",
-              "color": "primary",
-              "data": {},
-              "openUrl": true,
-              "jsonData": "{}",
-              "help": {
-                "en": "Opens the Ultrahuman login page",
-                "de": "Öffnet die Ultrahuman-Anmeldeseite"
-              }
-            },
-            "_tokenStatus": {
-              "type": "staticText",
-              "newLine": true,
-              "style": { "marginTop": "16px" },
-              "text": {
-                "en": "Token status: Check the adapter log for authentication status. Tokens are automatically refreshed when they expire.",
-                "de": "Token-Status: Prüfe das Adapter-Log für den Authentifizierungsstatus. Tokens werden automatisch erneuert, wenn sie ablaufen."
-              }
-            }
+        "_accessCodeHint": {
+          "type": "staticText",
+          "newLine": true,
+          "style": { "marginTop": "16px", "padding": "12px", "backgroundColor": "rgba(255, 193, 7, 0.1)", "borderRadius": "8px", "borderLeft": "4px solid #ffc107" },
+          "text": {
+            "en": "Important: The Access Code must be entered in your Ultrahuman app under Profile → Settings → Partner ID. Without this, the API cannot access your data.",
+            "de": "Wichtig: Der Access Code muss in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben werden. Ohne diesen kann die API nicht auf deine Daten zugreifen."
           }
         },
         "_dividerSupport1": {

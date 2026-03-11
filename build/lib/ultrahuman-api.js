@@ -75,19 +75,17 @@ function transformMetricData(raw) {
     }
     return result;
 }
-async function fetchMetrics(auth, date) {
-    const headers = auth.mode === "oauth"
-        ? { Authorization: `Bearer ${auth.accessToken}` }
-        : { Authorization: auth.apiSecret };
-    const params = { date: formatDate(date) };
-    if (auth.mode === "apikey") {
-        params.email = auth.userEmail;
-    }
+async function fetchMetrics(apiSecret, userEmail, date) {
     let response;
     try {
         response = await axios_1.default.get(ULTRAHUMAN_PARTNER_API, {
-            params,
-            headers,
+            params: {
+                date: formatDate(date),
+                email: userEmail,
+            },
+            headers: {
+                Authorization: apiSecret,
+            },
             timeout: REQUEST_TIMEOUT_MS,
         });
     }
@@ -95,9 +93,7 @@ async function fetchMetrics(auth, date) {
         if (err instanceof axios_1.AxiosError) {
             const status = err.response?.status;
             if (status === 401 || status === 403) {
-                throw new UltrahumanApiError(auth.mode === "oauth"
-                    ? "OAuth token invalid or expired"
-                    : "Authentication failed – check your API secret and email", status);
+                throw new UltrahumanApiError("Authentication failed – check your API secret and email", status);
             }
             if (status === 429) {
                 throw new UltrahumanApiError("Rate limited by Ultrahuman API – try increasing the polling interval", 429);

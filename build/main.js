@@ -33,40 +33,21 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-const crypto = __importStar(require("node:crypto"));
 const utils = __importStar(require("@iobroker/adapter-core"));
 const ultrahuman_api_1 = require("./lib/ultrahuman-api");
-const oauth_1 = require("./lib/oauth");
-const DEFAULT_CALLBACK_PORT = 8890;
 class Ultrahuman extends utils.Adapter {
     pollingTimer = undefined;
     constructor(options = {}) {
         super({ ...options, name: "ultrahuman" });
         this.on("ready", this.onReady.bind(this));
-        this.on("message", this.onMessage.bind(this));
         this.on("unload", this.onUnload.bind(this));
     }
     async onReady() {
         await this.createObjectTree();
-        const authMode = this.config.authMode || "apikey";
-        if (authMode === "apikey") {
-            if (!this.config.apiSecret || !this.config.userEmail) {
-                this.log.error("API secret and user email must be configured – open adapter settings");
-                this.setState("info.connection", false, true);
-                return;
-            }
-        }
-        else if (authMode === "oauth") {
-            if (!this.config.clientId || !this.config.clientSecret) {
-                this.log.error("OAuth Client ID and Client Secret must be configured – open adapter settings");
-                this.setState("info.connection", false, true);
-                return;
-            }
-            if (!this.config.accessToken) {
-                this.log.warn("Not authenticated yet – click 'Login with Ultrahuman' in adapter settings");
-                this.setState("info.connection", false, true);
-                return;
-            }
+        if (!this.config.apiSecret || !this.config.userEmail) {
+            this.log.error("API secret and user email must be configured – open adapter settings");
+            this.setState("info.connection", false, true);
+            return;
         }
         const intervalMin = Math.max(this.config.pollingInterval || 30, 5);
         await this.poll();
@@ -74,47 +55,6 @@ class Ultrahuman extends utils.Adapter {
             void this.poll();
         }, intervalMin * 60 * 1000);
         this.log.info(`Polling every ${intervalMin} minutes`);
-    }
-    async onMessage(obj) {
-        if (!obj?.command)
-            return;
-        if (obj.command === "startOAuth") {
-            await this.handleStartOAuth(obj);
-        }
-    }
-    async handleStartOAuth(obj) {
-        const { clientId, clientSecret } = this.config;
-        if (!clientId || !clientSecret) {
-            this.sendTo(obj.from, obj.command, {
-                error: "Client ID and Client Secret must be configured first",
-            }, obj.callback);
-            return;
-        }
-        const port = this.config.oauthCallbackPort || DEFAULT_CALLBACK_PORT;
-        const redirectUri = `http://localhost:${port}/callback`;
-        const state = crypto.randomBytes(16).toString("hex");
-        const authUrl = (0, oauth_1.buildAuthorizationUrl)(clientId, redirectUri, state);
-        this.log.info(`OAuth: Waiting for callback on port ${port}...`);
-        this.sendTo(obj.from, obj.command, { authUrl }, obj.callback);
-        try {
-            const { code, server } = await (0, oauth_1.startCallbackServer)(port, state);
-            server.close();
-            this.log.info("OAuth: Authorization code received, exchanging for tokens...");
-            const tokens = await (0, oauth_1.exchangeCodeForTokens)(code, clientId, clientSecret, redirectUri);
-            const instanceObj = `system.adapter.${this.namespace}`;
-            await this.extendForeignObjectAsync(instanceObj, {
-                native: {
-                    accessToken: tokens.accessToken,
-                    refreshToken: tokens.refreshToken,
-                    tokenExpiry: tokens.tokenExpiry,
-                },
-            });
-            this.log.info("OAuth: Successfully authenticated with Ultrahuman!");
-        }
-        catch (err) {
-            const msg = err instanceof Error ? err.message : String(err);
-            this.log.error(`OAuth flow failed: ${msg}`);
-        }
     }
     onUnload(callback) {
         try {
@@ -127,44 +67,6 @@ class Ultrahuman extends utils.Adapter {
         finally {
             callback();
         }
-    }
-    // ------------------------------------------------------------------
-    // Auth helpers
-    // ------------------------------------------------------------------
-    async getAuthConfig() {
-        const authMode = this.config.authMode || "apikey";
-        if (authMode === "apikey") {
-            return {
-                mode: "apikey",
-                apiSecret: this.config.apiSecret,
-                userEmail: this.config.userEmail,
-            };
-        }
-        let { accessToken, refreshToken, tokenExpiry } = this.config;
-        if ((0, oauth_1.isTokenExpired)(tokenExpiry)) {
-            this.log.info("OAuth: Access token expired, refreshing...");
-            try {
-                const tokens = await (0, oauth_1.refreshAccessToken)(refreshToken, this.config.clientId, this.config.clientSecret);
-                accessToken = tokens.accessToken;
-                refreshToken = tokens.refreshToken;
-                tokenExpiry = tokens.tokenExpiry;
-                const instanceObj = `system.adapter.${this.namespace}`;
-                await this.extendForeignObjectAsync(instanceObj, {
-                    native: {
-                        accessToken: tokens.accessToken,
-                        refreshToken: tokens.refreshToken,
-                        tokenExpiry: tokens.tokenExpiry,
-                    },
-                });
-                this.log.info("OAuth: Token refreshed successfully");
-            }
-            catch (err) {
-                const msg = err instanceof Error ? err.message : String(err);
-                this.log.error(`OAuth: Token refresh failed: ${msg}`);
-                return null;
-            }
-        }
-        return { mode: "oauth", accessToken };
     }
     // ------------------------------------------------------------------
     // Object tree
@@ -245,63 +147,20 @@ class Ultrahuman extends utils.Adapter {
     // Polling & data update
     // ------------------------------------------------------------------
     async poll() {
-        const auth = await this.getAuthConfig();
-        if (!auth) {
-            this.setState("info.connection", false, true);
-            return;
-        }
         const today = new Date();
         this.log.debug("Fetching metrics from Ultrahuman API...");
         let metrics;
         try {
-            metrics = await (0, ultrahuman_api_1.fetchMetrics)(auth, today);
+            metrics = await (0, ultrahuman_api_1.fetchMetrics)(this.config.apiSecret, this.config.userEmail, today);
         }
         catch (err) {
-            if (auth.mode === "oauth" &&
-                err instanceof ultrahuman_api_1.UltrahumanApiError &&
-                err.statusCode === 401) {
-                this.log.warn("OAuth: Token rejected (401), attempting refresh...");
-                const refreshedAuth = await this.forceTokenRefresh();
-                if (refreshedAuth) {
-                    try {
-                        metrics = await (0, ultrahuman_api_1.fetchMetrics)(refreshedAuth, today);
-                    }
-                    catch (retryErr) {
-                        await this.handleApiError(retryErr);
-                        return;
-                    }
-                }
-                else {
-                    await this.handleApiError(err);
-                    return;
-                }
-            }
-            else {
-                await this.handleApiError(err);
-                return;
-            }
+            await this.handleApiError(err);
+            return;
         }
         this.setState("info.connection", true, true);
         await this.updateStates(metrics);
         this.setState("info.lastUpdate", new Date().toISOString(), true);
         this.log.debug("States updated successfully");
-    }
-    async forceTokenRefresh() {
-        try {
-            const tokens = await (0, oauth_1.refreshAccessToken)(this.config.refreshToken, this.config.clientId, this.config.clientSecret);
-            await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
-                native: {
-                    accessToken: tokens.accessToken,
-                    refreshToken: tokens.refreshToken,
-                    tokenExpiry: tokens.tokenExpiry,
-                },
-            });
-            return { mode: "oauth", accessToken: tokens.accessToken };
-        }
-        catch (_err) {
-            this.log.error("OAuth: Token refresh failed – re-authentication required");
-            return null;
-        }
     }
     async updateStates(metrics) {
         const sleep = (0, ultrahuman_api_1.parseSleepData)(metrics);
