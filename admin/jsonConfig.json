@@ -23,8 +23,8 @@
           "newLine": true,
           "style": { "marginBottom": "16px" },
           "text": {
-            "en": "This adapter reads health data from your Ultrahuman Ring via the Partner API. You need API credentials from the **ultrahuman-dashboard** project or directly from Ultrahuman.",
-            "de": "Dieser Adapter liest Gesundheitsdaten von deinem Ultrahuman Ring über die Partner API. Du benötigst API-Zugangsdaten vom **ultrahuman-dashboard** Projekt oder direkt von Ultrahuman."
+            "en": "This adapter reads health data from your Ultrahuman Ring via the Partner API. You need API credentials directly from Ultrahuman.",
+            "de": "Dieser Adapter liest Gesundheitsdaten von deinem Ultrahuman Ring über die Partner API. Du benötigst API-Zugangsdaten direkt von Ultrahuman."
           }
         },
         "authMode": {
@@ -63,20 +63,99 @@
               "size": 5,
               "newLine": true
             },
-            "_howToGetCredentials": {
+            "_howToHeader": {
+              "type": "header",
+              "text": {
+                "en": "How to get your credentials",
+                "de": "So erhältst du deine Zugangsdaten"
+              },
+              "size": 6,
+              "newLine": true,
+              "style": { "marginTop": "8px" }
+            },
+            "_step1": {
               "type": "staticText",
               "newLine": true,
-              "style": { "marginBottom": "16px" },
               "text": {
-                "en": "**How to get your credentials:**\n\n1. Send an email to **feedback@ultrahuman.com** and request API access for personal use\n2. You will receive an **API Key** and an **Access Code**\n3. Enter the **Access Code** in your Ultrahuman app (Profile → Settings → Partner ID)\n4. Enter the **API Key** and your **Ultrahuman email** below",
-                "de": "**So erhältst du deine Zugangsdaten:**\n\n1. Schreibe eine E-Mail an **feedback@ultrahuman.com** und frage nach API-Zugang für persönliche Nutzung\n2. Du erhältst einen **API-Schlüssel** und einen **Access Code**\n3. Gib den **Access Code** in deiner Ultrahuman-App ein (Profil → Einstellungen → Partner ID)\n4. Trage den **API-Schlüssel** und deine **Ultrahuman E-Mail** unten ein"
+                "en": "1. Send an email to feedback@ultrahuman.com requesting API access",
+                "de": "1. Schreibe eine E-Mail an feedback@ultrahuman.com und frage nach API-Zugang"
               }
+            },
+            "_step2": {
+              "type": "staticText",
+              "newLine": true,
+              "text": {
+                "en": "2. You will receive an API Key and an Access Code",
+                "de": "2. Du erhältst einen API-Schlüssel und einen Access Code"
+              }
+            },
+            "_step3": {
+              "type": "staticText",
+              "newLine": true,
+              "text": {
+                "en": "3. Enter the Access Code in your Ultrahuman app (Profile → Settings → Partner ID)",
+                "de": "3. Gib den Access Code in deiner Ultrahuman-App ein (Profil → Einstellungen → Partner ID)"
+              }
+            },
+            "_step4": {
+              "type": "staticText",
+              "newLine": true,
+              "text": {
+                "en": "4. Enter the API Key and your Ultrahuman email below",
+                "de": "4. Trage den API-Schlüssel und deine Ultrahuman E-Mail unten ein"
+              }
+            },
+            "_emailTemplateHeader": {
+              "type": "header",
+              "text": {
+                "en": "Email template",
+                "de": "E-Mail Vorlage"
+              },
+              "size": 6,
+              "newLine": true,
+              "style": { "marginTop": "16px" }
+            },
+            "_emailTemplateHint": {
+              "type": "staticText",
+              "newLine": true,
+              "style": { "marginBottom": "8px" },
+              "text": {
+                "en": "Copy this text and send it to feedback@ultrahuman.com:",
+                "de": "Kopiere diesen Text und sende ihn an feedback@ultrahuman.com:"
+              }
+            },
+            "_emailTemplate": {
+              "type": "textSendTo",
+              "newLine": true,
+              "sm": 12,
+              "md": 10,
+              "copyToClipboard": true,
+              "container": "text",
+              "label": {
+                "en": "Email text (click to copy)",
+                "de": "E-Mail Text (klicken zum Kopieren)"
+              },
+              "default": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n- API Token\n- Access Code\n\nReason: I want to use the ioBroker adapter https://github.com/SmarterPapa/ioBroker.ultrahuman to integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards"
+            },
+            "_dividerFields": {
+              "type": "divider",
+              "newLine": true,
+              "style": { "marginTop": "16px", "marginBottom": "16px" }
+            },
+            "_fieldsHeader": {
+              "type": "header",
+              "text": {
+                "en": "Your credentials",
+                "de": "Deine Zugangsdaten"
+              },
+              "size": 6,
+              "newLine": true
             },
             "apiSecret": {
               "type": "text",
               "label": {
-                "en": "API Key (ULTRAHUMAN_API_KEY)",
-                "de": "API-Schlüssel (ULTRAHUMAN_API_KEY)"
+                "en": "API Key",
+                "de": "API-Schlüssel"
               },
               "sm": 12,
               "md": 6,
@@ -86,15 +165,15 @@
                 "de": "Füge deinen API-Schlüssel hier ein"
               },
               "help": {
-                "en": "The authorization key from your ultrahuman-dashboard .env file or from Ultrahuman directly",
-                "de": "Der Autorisierungsschlüssel aus deiner ultrahuman-dashboard .env Datei oder direkt von Ultrahuman"
+                "en": "The API key you received from Ultrahuman",
+                "de": "Der API-Schlüssel, den du von Ultrahuman erhalten hast"
               }
             },
             "userEmail": {
               "type": "text",
               "label": {
-                "en": "Ultrahuman Email (ULTRAHUMAN_EMAIL)",
-                "de": "Ultrahuman E-Mail (ULTRAHUMAN_EMAIL)"
+                "en": "Ultrahuman Email",
+                "de": "Ultrahuman E-Mail"
               },
               "sm": 12,
               "md": 6,
@@ -109,8 +188,8 @@
               "newLine": true,
               "style": { "marginTop": "16px", "padding": "12px", "backgroundColor": "rgba(255, 193, 7, 0.1)", "borderRadius": "8px", "borderLeft": "4px solid #ffc107" },
               "text": {
-                "en": "**Important:** The Access Code must be entered in your Ultrahuman app under **Profile → Settings → Partner ID**. Without this, the API cannot access your data. You received this code together with your API key.",
-                "de": "**Wichtig:** Der Access Code muss in deiner Ultrahuman-App unter **Profil → Einstellungen → Partner ID** eingegeben werden. Ohne diesen kann die API nicht auf deine Daten zugreifen. Du hast diesen Code zusammen mit deinem API-Schlüssel erhalten."
+                "en": "Important: The Access Code must be entered in your Ultrahuman app under Profile → Settings → Partner ID. Without this, the API cannot access your data.",
+                "de": "Wichtig: Der Access Code muss in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben werden. Ohne diesen kann die API nicht auf deine Daten zugreifen."
               }
             }
           }
@@ -133,9 +212,19 @@
               "newLine": true,
               "style": { "marginBottom": "16px" },
               "text": {
-                "en": "**OAuth 2.0 is for advanced users** who have registered as an Ultrahuman Partner and received their own Client ID and Client Secret.\n\nWith OAuth, each user can log in with their own Ultrahuman account – no shared API key needed.\n\nTo become a partner, apply at [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/).",
-                "de": "**OAuth 2.0 ist für fortgeschrittene Nutzer**, die sich als Ultrahuman Partner registriert und eigene Client ID und Client Secret erhalten haben.\n\nMit OAuth kann sich jeder Nutzer mit seinem eigenen Ultrahuman-Konto anmelden – kein geteilter API-Schlüssel nötig.\n\nUm Partner zu werden, bewirb dich bei [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/)."
+                "en": "OAuth 2.0 is for advanced users who have registered as an Ultrahuman Partner and received their own Client ID and Client Secret. With OAuth, each user can log in with their own Ultrahuman account.",
+                "de": "OAuth 2.0 ist für fortgeschrittene Nutzer, die sich als Ultrahuman Partner registriert und eigene Client ID und Client Secret erhalten haben. Mit OAuth kann sich jeder Nutzer mit seinem eigenen Ultrahuman-Konto anmelden."
               }
+            },
+            "_oauthPartnerLink": {
+              "type": "staticLink",
+              "label": {
+                "en": "Apply at Ultrahuman Partnerships",
+                "de": "Bei Ultrahuman Partnerships bewerben"
+              },
+              "href": "https://partnerships.ultrahuman.com/",
+              "newLine": true,
+              "style": { "marginBottom": "16px" }
             },
             "clientId": {
               "type": "text",
@@ -177,8 +266,8 @@
               "max": 65535,
               "default": 8890,
               "help": {
-                "en": "Local port for the OAuth callback server (default: 8890). Make sure this port is not blocked by a firewall.",
-                "de": "Lokaler Port für den OAuth-Callback-Server (Standard: 8890). Stelle sicher, dass dieser Port nicht von einer Firewall blockiert wird."
+                "en": "Local port for the OAuth callback server (default: 8890)",
+                "de": "Lokaler Port für den OAuth-Callback-Server (Standard: 8890)"
               }
             },
             "_loginButton": {
@@ -197,8 +286,8 @@
               "openUrl": true,
               "jsonData": "{}",
               "help": {
-                "en": "Opens the Ultrahuman login page. After authorization, you will be redirected back automatically.",
-                "de": "Öffnet die Ultrahuman-Anmeldeseite. Nach der Autorisierung wirst du automatisch weitergeleitet."
+                "en": "Opens the Ultrahuman login page",
+                "de": "Öffnet die Ultrahuman-Anmeldeseite"
               }
             },
             "_tokenStatus": {
@@ -206,8 +295,8 @@
               "newLine": true,
               "style": { "marginTop": "16px" },
               "text": {
-                "en": "**Token status:** Check the adapter log for authentication status. Tokens are automatically refreshed when they expire.",
-                "de": "**Token-Status:** Prüfe das Adapter-Log für den Authentifizierungsstatus. Tokens werden automatisch erneuert, wenn sie ablaufen."
+                "en": "Token status: Check the adapter log for authentication status. Tokens are automatically refreshed when they expire.",
+                "de": "Token-Status: Prüfe das Adapter-Log für den Authentifizierungsstatus. Tokens werden automatisch erneuert, wenn sie ablaufen."
               }
             }
           }
@@ -260,8 +349,8 @@
           "newLine": true,
           "style": { "marginTop": "8px" },
           "text": {
-            "en": "**Recommended:** 30 minutes | **Minimum:** 5 minutes | **Maximum:** 1440 minutes (24 hours)",
-            "de": "**Empfohlen:** 30 Minuten | **Minimum:** 5 Minuten | **Maximum:** 1440 Minuten (24 Stunden)"
+            "en": "Recommended: 30 min | Minimum: 5 min | Maximum: 1440 min (24h)",
+            "de": "Empfohlen: 30 Min | Minimum: 5 Min | Maximum: 1440 Min (24h)"
           }
         }
       }
@@ -273,11 +362,16 @@
         "de": "Über"
       },
       "items": {
+        "_logoLink": {
+          "type": "staticLink",
+          "href": "https://smarterpapa.de",
+          "newLine": true
+        },
         "_logoContainer": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
           "newLine": true,
-          "style": { "width": "120px", "height": "120px", "marginBottom": "16px" }
+          "style": { "width": "120px", "height": "120px", "marginBottom": "16px", "cursor": "pointer" }
         },
         "_aboutHeader": {
           "type": "header",
@@ -292,8 +386,8 @@
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**ioBroker.ultrahuman** reads health metrics from your Ultrahuman Ring and makes them available as ioBroker objects.",
-            "de": "**ioBroker.ultrahuman** liest Gesundheitsdaten von deinem Ultrahuman Ring und stellt sie als ioBroker-Objekte zur Verfügung."
+            "en": "ioBroker.ultrahuman reads health metrics from your Ultrahuman Ring and makes them available as ioBroker objects.",
+            "de": "ioBroker.ultrahuman liest Gesundheitsdaten von deinem Ultrahuman Ring und stellt sie als ioBroker-Objekte zur Verfügung."
           }
         },
         "_dataHeader": {
@@ -310,48 +404,48 @@
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**Sleep:** Efficiency, duration, stages (REM, deep, light), score, cycles",
-            "de": "**Schlaf:** Effizienz, Dauer, Phasen (REM, Tief, Leicht), Score, Zyklen"
+            "en": "Sleep – Efficiency, duration, stages (REM, deep, light), score, cycles",
+            "de": "Schlaf – Effizienz, Dauer, Phasen (REM, Tief, Leicht), Score, Zyklen"
           }
         },
         "_dataHeart": {
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**Heart rate:** Resting, night, average, min/max, trend",
-            "de": "**Herzfrequenz:** Ruhe, Nacht, Durchschnitt, Min/Max, Trend"
+            "en": "Heart rate – Resting, night, average, min/max, trend",
+            "de": "Herzfrequenz – Ruhe, Nacht, Durchschnitt, Min/Max, Trend"
           }
         },
         "_dataHrv": {
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**HRV:** Average, sleep, min/max, trend",
-            "de": "**HRV:** Durchschnitt, Schlaf, Min/Max, Trend"
+            "en": "HRV – Average, sleep, min/max, trend",
+            "de": "HRV – Durchschnitt, Schlaf, Min/Max, Trend"
           }
         },
         "_dataSpo2": {
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**SpO2:** If supported by your ring",
-            "de": "**SpO2:** Falls vom Ring unterstützt"
+            "en": "SpO2 – If supported by your ring",
+            "de": "SpO2 – Falls vom Ring unterstützt"
           }
         },
         "_dataTemp": {
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**Skin temperature**",
-            "de": "**Hauttemperatur**"
+            "en": "Skin temperature",
+            "de": "Hauttemperatur"
           }
         },
         "_dataActivity": {
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**Activity:** Steps, active minutes, movement/recovery index, VO2 max",
-            "de": "**Aktivität:** Schritte, aktive Minuten, Bewegungs-/Recovery-Index, VO2 max"
+            "en": "Activity – Steps, active minutes, movement/recovery index, VO2 max",
+            "de": "Aktivität – Schritte, aktive Minuten, Bewegungs-/Recovery-Index, VO2 max"
           }
         },
         "_dividerAbout": {
@@ -404,8 +498,8 @@
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**SmarterPapa** – Smart Home Tips & Inspirations",
-            "de": "**SmarterPapa** – Smart Home Tipps & Inspirationen"
+            "en": "SmarterPapa – Smart Home Tips & Inspirations",
+            "de": "SmarterPapa – Smart Home Tipps & Inspirationen"
           }
         },
         "_authorWebsite": {
@@ -419,8 +513,8 @@
           "newLine": true,
           "style": { "marginTop": "8px" },
           "text": {
-            "en": "**License:** MIT",
-            "de": "**Lizenz:** MIT"
+            "en": "License: MIT",
+            "de": "Lizenz: MIT"
           }
         },
         "_supportHeader": {
@@ -442,12 +536,6 @@
             "de": "Wenn dir dieser Adapter gefällt, kannst du mich gerne auf einen Kaffee einladen!"
           }
         },
-        "_kofiLogo": {
-          "type": "staticImage",
-          "src": "kofi-logo.png",
-          "newLine": true,
-          "style": { "width": "32px", "height": "32px", "marginRight": "8px", "verticalAlign": "middle", "display": "inline-block" }
-        },
         "_kofiLink": {
           "type": "staticLink",
           "label": {
@@ -455,9 +543,11 @@
             "de": "Unterstützen auf Ko-fi"
           },
           "href": "https://ko-fi.com/smarterpapa",
+          "newLine": true,
           "button": true,
           "variant": "contained",
-          "color": "primary"
+          "color": "primary",
+          "icon": "kofi-logo.png"
         }
       }
     }
