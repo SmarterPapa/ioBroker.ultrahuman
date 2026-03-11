@@ -108,34 +108,31 @@
             "_emailTemplateHeader": {
               "type": "header",
               "text": {
-                "en": "Email template",
-                "de": "E-Mail Vorlage"
+                "en": "Email template (copy and send to feedback@ultrahuman.com)",
+                "de": "E-Mail Vorlage (kopieren und an feedback@ultrahuman.com senden)"
               },
               "size": 6,
               "newLine": true,
               "style": { "marginTop": "16px" }
             },
-            "_emailTemplateHint": {
-              "type": "staticText",
-              "newLine": true,
-              "style": { "marginBottom": "8px" },
-              "text": {
-                "en": "Copy this text and send it to feedback@ultrahuman.com:",
-                "de": "Kopiere diesen Text und sende ihn an feedback@ultrahuman.com:"
-              }
-            },
-            "_emailTemplate": {
-              "type": "textSendTo",
+            "_emailTemplateText": {
+              "type": "text",
+              "label": {
+                "en": "Email text",
+                "de": "E-Mail Text"
+              },
               "newLine": true,
               "sm": 12,
               "md": 10,
+              "maxLength": 2000,
+              "multiline": true,
+              "rows": 10,
+              "default": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n- API Token\n- Access Code\n\nReason: I want to use the ioBroker adapter https://github.com/SmarterPapa/ioBroker.ultrahuman to integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards",
               "copyToClipboard": true,
-              "container": "text",
-              "label": {
-                "en": "Email text (click to copy)",
-                "de": "E-Mail Text (klicken zum Kopieren)"
-              },
-              "default": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n- API Token\n- Access Code\n\nReason: I want to use the ioBroker adapter https://github.com/SmarterPapa/ioBroker.ultrahuman to integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards"
+              "help": {
+                "en": "Select all text, copy it, and paste it into your email",
+                "de": "Markiere den gesamten Text, kopiere ihn und füge ihn in deine E-Mail ein"
+              }
             },
             "_dividerFields": {
               "type": "divider",
@@ -300,6 +297,31 @@
               }
             }
           }
+        },
+        "_dividerSupport1": {
+          "type": "divider",
+          "newLine": true,
+          "style": { "marginTop": "24px", "marginBottom": "16px" }
+        },
+        "_kofiContainer1": {
+          "type": "panel",
+          "newLine": true,
+          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
+          "items": {
+            "_kofiLogo1": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "28px", "height": "28px" }
+            },
+            "_kofiLink1": {
+              "type": "staticLink",
+              "label": {
+                "en": "Support this free adapter and buy me a coffee »",
+                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
+              },
+              "href": "https://ko-fi.com/smarterpapa"
+            }
+          }
         }
       }
     },
@@ -352,6 +374,224 @@
             "en": "Recommended: 30 min | Minimum: 5 min | Maximum: 1440 min (24h)",
             "de": "Empfohlen: 30 Min | Minimum: 5 Min | Maximum: 1440 Min (24h)"
           }
+        },
+        "_dividerSupport2": {
+          "type": "divider",
+          "newLine": true,
+          "style": { "marginTop": "24px", "marginBottom": "16px" }
+        },
+        "_kofiContainer2": {
+          "type": "panel",
+          "newLine": true,
+          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
+          "items": {
+            "_kofiLogo2": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "28px", "height": "28px" }
+            },
+            "_kofiLink2": {
+              "type": "staticLink",
+              "label": {
+                "en": "Support this free adapter and buy me a coffee »",
+                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
+              },
+              "href": "https://ko-fi.com/smarterpapa"
+            }
+          }
+        }
+      }
+    },
+    "_ideasTab": {
+      "type": "panel",
+      "label": {
+        "en": "Ideas",
+        "de": "Ideen"
+      },
+      "items": {
+        "_ideasHeader": {
+          "type": "header",
+          "text": {
+            "en": "Ideas for using your health data",
+            "de": "Ideen zur Nutzung deiner Gesundheitsdaten"
+          },
+          "size": 4,
+          "newLine": true
+        },
+        "_ideasIntro": {
+          "type": "staticText",
+          "newLine": true,
+          "style": { "marginBottom": "16px" },
+          "text": {
+            "en": "Here are some ideas for what you can do with your Ultrahuman data in ioBroker:",
+            "de": "Hier sind einige Ideen, was du mit deinen Ultrahuman-Daten im ioBroker machen kannst:"
+          }
+        },
+        "_visHeader": {
+          "type": "header",
+          "text": {
+            "en": "Visualizations",
+            "de": "Visualisierungen"
+          },
+          "size": 5,
+          "newLine": true
+        },
+        "_vis1": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Display sleep score and efficiency on a dashboard (VIS, Jarvis, iQontrol)",
+            "de": "• Schlaf-Score und Effizienz auf einem Dashboard anzeigen (VIS, Jarvis, iQontrol)"
+          }
+        },
+        "_vis2": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Create charts showing HRV and heart rate trends over time",
+            "de": "• Diagramme mit HRV- und Herzfrequenz-Trends über die Zeit erstellen"
+          }
+        },
+        "_vis3": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Show sleep stages (REM, deep, light) as a pie chart",
+            "de": "• Schlafphasen (REM, Tief, Leicht) als Tortendiagramm anzeigen"
+          }
+        },
+        "_vis4": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Display daily step count with progress bar towards your goal",
+            "de": "• Tägliche Schritte mit Fortschrittsbalken zum Ziel anzeigen"
+          }
+        },
+        "_autoHeader": {
+          "type": "header",
+          "text": {
+            "en": "Automations",
+            "de": "Automatisierungen"
+          },
+          "size": 5,
+          "newLine": true,
+          "style": { "marginTop": "16px" }
+        },
+        "_auto1": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Gentle wake-up light when sleep efficiency was low",
+            "de": "• Sanftes Aufwachlicht wenn die Schlafeffizienz niedrig war"
+          }
+        },
+        "_auto2": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Reminder to go to bed earlier if sleep score drops below threshold",
+            "de": "• Erinnerung früher ins Bett zu gehen wenn der Schlaf-Score unter einen Schwellwert fällt"
+          }
+        },
+        "_auto3": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Adjust room temperature based on skin temperature trends",
+            "de": "• Raumtemperatur basierend auf Hauttemperatur-Trends anpassen"
+          }
+        },
+        "_auto4": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Morning briefing via Alexa/Google with last night's sleep summary",
+            "de": "• Morgen-Briefing via Alexa/Google mit Zusammenfassung der letzten Nacht"
+          }
+        },
+        "_auto5": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Activate relaxation mode (dim lights, calm music) when HRV is low",
+            "de": "• Entspannungsmodus aktivieren (gedimmtes Licht, ruhige Musik) wenn HRV niedrig ist"
+          }
+        },
+        "_auto6": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Send push notification when daily step goal is reached",
+            "de": "• Push-Benachrichtigung senden wenn das tägliche Schrittziel erreicht ist"
+          }
+        },
+        "_notifyHeader": {
+          "type": "header",
+          "text": {
+            "en": "Notifications & Logging",
+            "de": "Benachrichtigungen & Protokollierung"
+          },
+          "size": 5,
+          "newLine": true,
+          "style": { "marginTop": "16px" }
+        },
+        "_notify1": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Log all health data to InfluxDB for long-term analysis",
+            "de": "• Alle Gesundheitsdaten in InfluxDB für Langzeitanalyse protokollieren"
+          }
+        },
+        "_notify2": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Weekly health report via Telegram or email",
+            "de": "• Wöchentlicher Gesundheitsbericht via Telegram oder E-Mail"
+          }
+        },
+        "_notify3": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Alert when resting heart rate is unusually high (possible illness)",
+            "de": "• Warnung wenn Ruhepuls ungewöhnlich hoch ist (mögliche Erkrankung)"
+          }
+        },
+        "_notify4": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "• Compare sleep data with weather or calendar events",
+            "de": "• Schlafdaten mit Wetter oder Kalendereinträgen vergleichen"
+          }
+        },
+        "_dividerSupport3": {
+          "type": "divider",
+          "newLine": true,
+          "style": { "marginTop": "24px", "marginBottom": "16px" }
+        },
+        "_kofiContainer3": {
+          "type": "panel",
+          "newLine": true,
+          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
+          "items": {
+            "_kofiLogo3": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "28px", "height": "28px" }
+            },
+            "_kofiLink3": {
+              "type": "staticLink",
+              "label": {
+                "en": "Support this free adapter and buy me a coffee »",
+                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
+              },
+              "href": "https://ko-fi.com/smarterpapa"
+            }
+          }
         }
       }
     },
@@ -362,16 +602,11 @@
         "de": "Über"
       },
       "items": {
-        "_logoLink": {
-          "type": "staticLink",
-          "href": "https://smarterpapa.de",
-          "newLine": true
-        },
         "_logoContainer": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
           "newLine": true,
-          "style": { "width": "120px", "height": "120px", "marginBottom": "16px", "cursor": "pointer" }
+          "style": { "width": "120px", "height": "120px", "marginBottom": "16px" }
         },
         "_aboutHeader": {
           "type": "header",
@@ -517,37 +752,30 @@
             "de": "Lizenz: MIT"
           }
         },
-        "_supportHeader": {
-          "type": "header",
-          "text": {
-            "en": "Support this project",
-            "de": "Unterstütze dieses Projekt"
-          },
-          "size": 5,
+        "_dividerSupport4": {
+          "type": "divider",
           "newLine": true,
-          "style": { "marginTop": "16px" }
+          "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_supportText": {
-          "type": "staticText",
+        "_kofiContainer4": {
+          "type": "panel",
           "newLine": true,
-          "style": { "marginBottom": "8px" },
-          "text": {
-            "en": "If you find this adapter useful, consider buying me a coffee!",
-            "de": "Wenn dir dieser Adapter gefällt, kannst du mich gerne auf einen Kaffee einladen!"
+          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
+          "items": {
+            "_kofiLogo4": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "28px", "height": "28px" }
+            },
+            "_kofiLink4": {
+              "type": "staticLink",
+              "label": {
+                "en": "Support this free adapter and buy me a coffee »",
+                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
+              },
+              "href": "https://ko-fi.com/smarterpapa"
+            }
           }
-        },
-        "_kofiLink": {
-          "type": "staticLink",
-          "label": {
-            "en": "Support on Ko-fi",
-            "de": "Unterstützen auf Ko-fi"
-          },
-          "href": "https://ko-fi.com/smarterpapa",
-          "newLine": true,
-          "button": true,
-          "variant": "contained",
-          "color": "primary",
-          "icon": "kofi-logo.png"
         }
       }
     }
