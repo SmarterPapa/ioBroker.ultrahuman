@@ -115,23 +115,33 @@
               "newLine": true,
               "style": { "marginTop": "16px" }
             },
-            "_emailTemplateText": {
-              "type": "text",
-              "label": {
-                "en": "Email text",
-                "de": "E-Mail Text"
-              },
+            "_emailBox": {
+              "type": "staticText",
               "newLine": true,
               "sm": 12,
               "md": 10,
-              "maxLength": 2000,
-              "multiline": true,
-              "rows": 10,
-              "default": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n- API Token\n- Access Code\n\nReason: I want to use the ioBroker adapter https://github.com/SmarterPapa/ioBroker.ultrahuman to integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards",
-              "copyToClipboard": true,
-              "help": {
-                "en": "Select all text, copy it, and paste it into your email",
-                "de": "Markiere den gesamten Text, kopiere ihn und füge ihn in deine E-Mail ein"
+              "style": { 
+                "padding": "16px", 
+                "backgroundColor": "#f5f5f5", 
+                "borderRadius": "8px", 
+                "border": "1px solid #ddd",
+                "fontFamily": "monospace",
+                "fontSize": "13px",
+                "whiteSpace": "pre-wrap",
+                "lineHeight": "1.6"
+              },
+              "text": {
+                "en": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n• API Token\n• Access Code\n\nReason: I want to use the ioBroker adapter\nhttps://github.com/SmarterPapa/ioBroker.ultrahuman\nto integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards",
+                "de": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n• API Token\n• Access Code\n\nReason: I want to use the ioBroker adapter\nhttps://github.com/SmarterPapa/ioBroker.ultrahuman\nto integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards"
+              }
+            },
+            "_emailHint": {
+              "type": "staticText",
+              "newLine": true,
+              "style": { "marginTop": "8px", "fontStyle": "italic", "color": "#666" },
+              "text": {
+                "en": "Select the text above, copy it (Ctrl+C / Cmd+C) and paste it into your email.",
+                "de": "Markiere den Text oben, kopiere ihn (Strg+C / Cmd+C) und füge ihn in deine E-Mail ein."
               }
             },
             "_dividerFields": {
@@ -303,25 +313,18 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiContainer1": {
-          "type": "panel",
+        "_kofiLink1": {
+          "type": "staticLink",
+          "label": {
+            "en": "☕ Support this free adapter – buy me a coffee!",
+            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+          },
+          "href": "https://ko-fi.com/smarterpapa",
           "newLine": true,
-          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
-          "items": {
-            "_kofiLogo1": {
-              "type": "staticImage",
-              "src": "kofi-logo.png",
-              "style": { "width": "28px", "height": "28px" }
-            },
-            "_kofiLink1": {
-              "type": "staticLink",
-              "label": {
-                "en": "Support this free adapter and buy me a coffee »",
-                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
-              },
-              "href": "https://ko-fi.com/smarterpapa"
-            }
-          }
+          "button": true,
+          "variant": "contained",
+          "color": "primary",
+          "icon": "favorite"
         }
       }
     },
@@ -380,25 +383,18 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiContainer2": {
-          "type": "panel",
+        "_kofiLink2": {
+          "type": "staticLink",
+          "label": {
+            "en": "☕ Support this free adapter – buy me a coffee!",
+            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+          },
+          "href": "https://ko-fi.com/smarterpapa",
           "newLine": true,
-          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
-          "items": {
-            "_kofiLogo2": {
-              "type": "staticImage",
-              "src": "kofi-logo.png",
-              "style": { "width": "28px", "height": "28px" }
-            },
-            "_kofiLink2": {
-              "type": "staticLink",
-              "label": {
-                "en": "Support this free adapter and buy me a coffee »",
-                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
-              },
-              "href": "https://ko-fi.com/smarterpapa"
-            }
-          }
+          "button": true,
+          "variant": "contained",
+          "color": "primary",
+          "icon": "favorite"
         }
       }
     },
@@ -573,25 +569,18 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiContainer3": {
-          "type": "panel",
+        "_kofiLink3": {
+          "type": "staticLink",
+          "label": {
+            "en": "☕ Support this free adapter – buy me a coffee!",
+            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+          },
+          "href": "https://ko-fi.com/smarterpapa",
           "newLine": true,
-          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
-          "items": {
-            "_kofiLogo3": {
-              "type": "staticImage",
-              "src": "kofi-logo.png",
-              "style": { "width": "28px", "height": "28px" }
-            },
-            "_kofiLink3": {
-              "type": "staticLink",
-              "label": {
-                "en": "Support this free adapter and buy me a coffee »",
-                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
-              },
-              "href": "https://ko-fi.com/smarterpapa"
-            }
-          }
+          "button": true,
+          "variant": "contained",
+          "color": "primary",
+          "icon": "favorite"
         }
       }
     },
@@ -757,25 +746,18 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiContainer4": {
-          "type": "panel",
+        "_kofiLink4": {
+          "type": "staticLink",
+          "label": {
+            "en": "☕ Support this free adapter – buy me a coffee!",
+            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+          },
+          "href": "https://ko-fi.com/smarterpapa",
           "newLine": true,
-          "style": { "display": "flex", "alignItems": "center", "gap": "12px" },
-          "items": {
-            "_kofiLogo4": {
-              "type": "staticImage",
-              "src": "kofi-logo.png",
-              "style": { "width": "28px", "height": "28px" }
-            },
-            "_kofiLink4": {
-              "type": "staticLink",
-              "label": {
-                "en": "Support this free adapter and buy me a coffee »",
-                "de": "Unterstütze den kostenlosen Adapter und lade mich auf einen Kaffee ein »"
-              },
-              "href": "https://ko-fi.com/smarterpapa"
-            }
-          }
+          "button": true,
+          "variant": "contained",
+          "color": "primary",
+          "icon": "favorite"
         }
       }
     }
