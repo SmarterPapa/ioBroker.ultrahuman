@@ -5,7 +5,8 @@ on:
     branches:
       - "main"
     tags:
-      - "v*"
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-**"
   pull_request: {}
 
 concurrency:
@@ -13,14 +14,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  unit-tests:
+  check-and-lint:
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint
+
+  adapter-tests:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -32,8 +48,8 @@ jobs:
       - run: npm run build
       - run: npm test
 
-  release:
-    needs: [unit-tests]
+  deploy:
+    needs: [check-and-lint, adapter-tests]
     if: |
       contains(github.event.head_commit.message, '[skip ci]') == false &&
       github.event_name == 'push' &&
