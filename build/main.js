@@ -1,0 +1,436 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+const crypto = __importStar(require("node:crypto"));
+const utils = __importStar(require("@iobroker/adapter-core"));
+const ultrahuman_api_1 = require("./lib/ultrahuman-api");
+const oauth_1 = require("./lib/oauth");
+const DEFAULT_CALLBACK_PORT = 8890;
+class Ultrahuman extends utils.Adapter {
+    pollingTimer = undefined;
+    constructor(options = {}) {
+        super({ ...options, name: "ultrahuman" });
+        this.on("ready", this.onReady.bind(this));
+        this.on("message", this.onMessage.bind(this));
+        this.on("unload", this.onUnload.bind(this));
+    }
+    async onReady() {
+        await this.createObjectTree();
+        const authMode = this.config.authMode || "apikey";
+        if (authMode === "apikey") {
+            if (!this.config.apiSecret || !this.config.userEmail) {
+                this.log.error("API secret and user email must be configured – open adapter settings");
+                this.setState("info.connection", false, true);
+                return;
+            }
+        }
+        else if (authMode === "oauth") {
+            if (!this.config.clientId || !this.config.clientSecret) {
+                this.log.error("OAuth Client ID and Client Secret must be configured – open adapter settings");
+                this.setState("info.connection", false, true);
+                return;
+            }
+            if (!this.config.accessToken) {
+                this.log.warn("Not authenticated yet – click 'Login with Ultrahuman' in adapter settings");
+                this.setState("info.connection", false, true);
+                return;
+            }
+        }
+        const intervalMin = Math.max(this.config.pollingInterval || 30, 5);
+        await this.poll();
+        this.pollingTimer = this.setInterval(() => {
+            void this.poll();
+        }, intervalMin * 60 * 1000);
+        this.log.info(`Polling every ${intervalMin} minutes`);
+    }
+    async onMessage(obj) {
+        if (!obj?.command)
+            return;
+        if (obj.command === "startOAuth") {
+            await this.handleStartOAuth(obj);
+        }
+    }
+    async handleStartOAuth(obj) {
+        const { clientId, clientSecret } = this.config;
+        if (!clientId || !clientSecret) {
+            this.sendTo(obj.from, obj.command, {
+                error: "Client ID and Client Secret must be configured first",
+            }, obj.callback);
+            return;
+        }
+        const port = this.config.oauthCallbackPort || DEFAULT_CALLBACK_PORT;
+        const redirectUri = `http://localhost:${port}/callback`;
+        const state = crypto.randomBytes(16).toString("hex");
+        const authUrl = (0, oauth_1.buildAuthorizationUrl)(clientId, redirectUri, state);
+        this.log.info(`OAuth: Waiting for callback on port ${port}...`);
+        this.sendTo(obj.from, obj.command, { authUrl }, obj.callback);
+        try {
+            const { code, server } = await (0, oauth_1.startCallbackServer)(port, state);
+            server.close();
+            this.log.info("OAuth: Authorization code received, exchanging for tokens...");
+            const tokens = await (0, oauth_1.exchangeCodeForTokens)(code, clientId, clientSecret, redirectUri);
+            const instanceObj = `system.adapter.${this.namespace}`;
+            await this.extendForeignObjectAsync(instanceObj, {
+                native: {
+                    accessToken: tokens.accessToken,
+                    refreshToken: tokens.refreshToken,
+                    tokenExpiry: tokens.tokenExpiry,
+                },
+            });
+            this.log.info("OAuth: Successfully authenticated with Ultrahuman!");
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            this.log.error(`OAuth flow failed: ${msg}`);
+        }
+    }
+    onUnload(callback) {
+        try {
+            if (this.pollingTimer !== undefined) {
+                this.clearInterval(this.pollingTimer);
+                this.pollingTimer = undefined;
+            }
+            this.setState("info.connection", false, true);
+        }
+        finally {
+            callback();
+        }
+    }
+    // ------------------------------------------------------------------
+    // Auth helpers
+    // ------------------------------------------------------------------
+    async getAuthConfig() {
+        const authMode = this.config.authMode || "apikey";
+        if (authMode === "apikey") {
+            return {
+                mode: "apikey",
+                apiSecret: this.config.apiSecret,
+                userEmail: this.config.userEmail,
+            };
+        }
+        let { accessToken, refreshToken, tokenExpiry } = this.config;
+        if ((0, oauth_1.isTokenExpired)(tokenExpiry)) {
+            this.log.info("OAuth: Access token expired, refreshing...");
+            try {
+                const tokens = await (0, oauth_1.refreshAccessToken)(refreshToken, this.config.clientId, this.config.clientSecret);
+                accessToken = tokens.accessToken;
+                refreshToken = tokens.refreshToken;
+                tokenExpiry = tokens.tokenExpiry;
+                const instanceObj = `system.adapter.${this.namespace}`;
+                await this.extendForeignObjectAsync(instanceObj, {
+                    native: {
+                        accessToken: tokens.accessToken,
+                        refreshToken: tokens.refreshToken,
+                        tokenExpiry: tokens.tokenExpiry,
+                    },
+                });
+                this.log.info("OAuth: Token refreshed successfully");
+            }
+            catch (err) {
+                const msg = err instanceof Error ? err.message : String(err);
+                this.log.error(`OAuth: Token refresh failed: ${msg}`);
+                return null;
+            }
+        }
+        return { mode: "oauth", accessToken };
+    }
+    // ------------------------------------------------------------------
+    // Object tree
+    // ------------------------------------------------------------------
+    async createObjectTree() {
+        const channels = [
+            { id: "sleep", name: "Sleep data" },
+            { id: "heart", name: "Heart rate" },
+            { id: "hrv", name: "Heart rate variability" },
+            { id: "spo2", name: "Blood oxygen (SpO2)" },
+            { id: "temperature", name: "Skin temperature" },
+            { id: "activity", name: "Activity metrics" },
+        ];
+        for (const ch of channels) {
+            await this.setObjectNotExistsAsync(ch.id, {
+                type: "channel",
+                common: { name: ch.name },
+                native: {},
+            });
+        }
+        const states = [
+            { id: "sleep.bedtimeStart", name: "Bedtime start", type: "string", role: "date" },
+            { id: "sleep.bedtimeEnd", name: "Bedtime end", type: "string", role: "date" },
+            { id: "sleep.timeInBed", name: "Time in bed", type: "number", role: "value", unit: "min" },
+            { id: "sleep.timeAsleep", name: "Time asleep", type: "number", role: "value", unit: "min" },
+            { id: "sleep.timeToFallAsleep", name: "Time to fall asleep", type: "number", role: "value", unit: "min" },
+            { id: "sleep.sleepEfficiency", name: "Sleep efficiency", type: "number", role: "value", unit: "%" },
+            { id: "sleep.sleepScore", name: "Sleep score", type: "number", role: "value" },
+            { id: "sleep.sleepQuality", name: "Sleep quality", type: "string", role: "text" },
+            { id: "sleep.remSleep", name: "REM sleep", type: "number", role: "value", unit: "min" },
+            { id: "sleep.deepSleep", name: "Deep sleep", type: "number", role: "value", unit: "min" },
+            { id: "sleep.lightSleep", name: "Light sleep", type: "number", role: "value", unit: "min" },
+            { id: "sleep.restorativeSleep", name: "Restorative sleep (REM + deep)", type: "number", role: "value", unit: "%" },
+            { id: "sleep.sleepCycles", name: "Full sleep cycles", type: "number", role: "value" },
+            { id: "sleep.tossesAndTurns", name: "Tosses and turns", type: "number", role: "value" },
+            { id: "heart.restingHR", name: "Resting heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
+            { id: "heart.nightRHR", name: "Night resting heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
+            { id: "heart.lastReading", name: "Last HR reading", type: "number", role: "value.heartrate", unit: "bpm" },
+            { id: "heart.avg", name: "Average heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
+            { id: "heart.min", name: "Minimum heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
+            { id: "heart.max", name: "Maximum heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
+            { id: "heart.trend", name: "Heart rate trend", type: "string", role: "text" },
+            { id: "hrv.average", name: "Average HRV", type: "number", role: "value", unit: "ms" },
+            { id: "hrv.sleepHRV", name: "Average sleep HRV", type: "number", role: "value", unit: "ms" },
+            { id: "hrv.min", name: "Minimum HRV", type: "number", role: "value", unit: "ms" },
+            { id: "hrv.max", name: "Maximum HRV", type: "number", role: "value", unit: "ms" },
+            { id: "hrv.trend", name: "HRV trend", type: "string", role: "text" },
+            { id: "spo2.avg", name: "Average SpO2", type: "number", role: "value", unit: "%" },
+            { id: "spo2.min", name: "Minimum SpO2", type: "number", role: "value", unit: "%" },
+            { id: "spo2.max", name: "Maximum SpO2", type: "number", role: "value", unit: "%" },
+            { id: "spo2.latest", name: "Latest SpO2 reading", type: "number", role: "value", unit: "%" },
+            { id: "temperature.lastReading", name: "Last temperature reading", type: "number", role: "value.temperature", unit: "°C" },
+            { id: "temperature.avg", name: "Average temperature", type: "number", role: "value.temperature", unit: "°C" },
+            { id: "temperature.min", name: "Minimum temperature", type: "number", role: "value.temperature", unit: "°C" },
+            { id: "temperature.max", name: "Maximum temperature", type: "number", role: "value.temperature", unit: "°C" },
+            { id: "activity.steps", name: "Total steps", type: "number", role: "value", unit: "steps" },
+            { id: "activity.stepsAvg", name: "Average steps", type: "number", role: "value", unit: "steps" },
+            { id: "activity.activeMinutes", name: "Active minutes", type: "number", role: "value", unit: "min" },
+            { id: "activity.movementIndex", name: "Movement index", type: "number", role: "value" },
+            { id: "activity.recoveryIndex", name: "Recovery index", type: "number", role: "value" },
+            { id: "activity.vo2Max", name: "VO2 max", type: "number", role: "value", unit: "ml/kg/min" },
+            { id: "activity.activityLevel", name: "Activity level", type: "string", role: "text" },
+        ];
+        await this.setObjectNotExistsAsync("info.lastUpdate", {
+            type: "state",
+            common: { name: "Last successful update", type: "string", role: "date", read: true, write: false, def: "" },
+            native: {},
+        });
+        for (const s of states) {
+            await this.setObjectNotExistsAsync(s.id, {
+                type: "state",
+                common: { name: s.name, type: s.type, role: s.role, unit: s.unit, read: true, write: false, def: s.type === "number" ? 0 : "" },
+                native: {},
+            });
+        }
+    }
+    // ------------------------------------------------------------------
+    // Polling & data update
+    // ------------------------------------------------------------------
+    async poll() {
+        const auth = await this.getAuthConfig();
+        if (!auth) {
+            this.setState("info.connection", false, true);
+            return;
+        }
+        const today = new Date();
+        this.log.debug("Fetching metrics from Ultrahuman API...");
+        let metrics;
+        try {
+            metrics = await (0, ultrahuman_api_1.fetchMetrics)(auth, today);
+        }
+        catch (err) {
+            if (auth.mode === "oauth" &&
+                err instanceof ultrahuman_api_1.UltrahumanApiError &&
+                err.statusCode === 401) {
+                this.log.warn("OAuth: Token rejected (401), attempting refresh...");
+                const refreshedAuth = await this.forceTokenRefresh();
+                if (refreshedAuth) {
+                    try {
+                        metrics = await (0, ultrahuman_api_1.fetchMetrics)(refreshedAuth, today);
+                    }
+                    catch (retryErr) {
+                        await this.handleApiError(retryErr);
+                        return;
+                    }
+                }
+                else {
+                    await this.handleApiError(err);
+                    return;
+                }
+            }
+            else {
+                await this.handleApiError(err);
+                return;
+            }
+        }
+        this.setState("info.connection", true, true);
+        await this.updateStates(metrics);
+        this.setState("info.lastUpdate", new Date().toISOString(), true);
+        this.log.debug("States updated successfully");
+    }
+    async forceTokenRefresh() {
+        try {
+            const tokens = await (0, oauth_1.refreshAccessToken)(this.config.refreshToken, this.config.clientId, this.config.clientSecret);
+            await this.extendForeignObjectAsync(`system.adapter.${this.namespace}`, {
+                native: {
+                    accessToken: tokens.accessToken,
+                    refreshToken: tokens.refreshToken,
+                    tokenExpiry: tokens.tokenExpiry,
+                },
+            });
+            return { mode: "oauth", accessToken: tokens.accessToken };
+        }
+        catch (_err) {
+            this.log.error("OAuth: Token refresh failed – re-authentication required");
+            return null;
+        }
+    }
+    async updateStates(metrics) {
+        const sleep = (0, ultrahuman_api_1.parseSleepData)(metrics);
+        if (sleep) {
+            await this.setStateAsync("sleep.bedtimeStart", sleep.bedtimeStart, true);
+            await this.setStateAsync("sleep.bedtimeEnd", sleep.bedtimeEnd, true);
+            await this.setStateAsync("sleep.timeInBed", sleep.timeInBedMinutes, true);
+            await this.setStateAsync("sleep.timeAsleep", sleep.timeAsleepMinutes, true);
+            await this.setStateAsync("sleep.timeToFallAsleep", sleep.timeToFallAsleepMinutes, true);
+            await this.setStateAsync("sleep.sleepEfficiency", sleep.sleepEfficiency, true);
+            if (sleep.sleepScore != null)
+                await this.setStateAsync("sleep.sleepScore", sleep.sleepScore, true);
+            if (sleep.sleepQuality != null)
+                await this.setStateAsync("sleep.sleepQuality", sleep.sleepQuality, true);
+            await this.setStateAsync("sleep.remSleep", sleep.remSleepMinutes, true);
+            await this.setStateAsync("sleep.deepSleep", sleep.deepSleepMinutes, true);
+            await this.setStateAsync("sleep.lightSleep", sleep.lightSleepMinutes, true);
+            if (sleep.restorativeSleepPercent != null)
+                await this.setStateAsync("sleep.restorativeSleep", sleep.restorativeSleepPercent, true);
+            if (sleep.sleepCycles != null)
+                await this.setStateAsync("sleep.sleepCycles", sleep.sleepCycles, true);
+            if (sleep.tossesAndTurns != null)
+                await this.setStateAsync("sleep.tossesAndTurns", sleep.tossesAndTurns, true);
+        }
+        if (metrics.hr) {
+            await this.setStateAsync("heart.lastReading", metrics.hr.last_reading, true);
+            const hrStats = (0, ultrahuman_api_1.computeTimeSeriesStats)(metrics.hr.values);
+            if (hrStats) {
+                await this.setStateAsync("heart.avg", hrStats.avg, true);
+                await this.setStateAsync("heart.min", hrStats.min, true);
+                await this.setStateAsync("heart.max", hrStats.max, true);
+                await this.setStateAsync("heart.trend", hrStats.trend, true);
+            }
+        }
+        if (metrics.night_rhr)
+            await this.setStateAsync("heart.nightRHR", metrics.night_rhr.avg, true);
+        if (metrics.sleep_rhr?.value != null)
+            await this.setStateAsync("heart.restingHR", metrics.sleep_rhr.value, true);
+        if (metrics.hrv) {
+            await this.setStateAsync("hrv.average", metrics.hrv.avg, true);
+            const hrvStats = (0, ultrahuman_api_1.computeTimeSeriesStats)(metrics.hrv.values);
+            if (hrvStats) {
+                await this.setStateAsync("hrv.min", hrvStats.min, true);
+                await this.setStateAsync("hrv.max", hrvStats.max, true);
+                await this.setStateAsync("hrv.trend", hrvStats.trend, true);
+            }
+        }
+        if (metrics.avg_sleep_hrv)
+            await this.setStateAsync("hrv.sleepHRV", metrics.avg_sleep_hrv.value, true);
+        if (metrics.spo2) {
+            const spo2Stats = (0, ultrahuman_api_1.computeTimeSeriesStats)(metrics.spo2.values);
+            if (spo2Stats) {
+                await this.setStateAsync("spo2.avg", spo2Stats.avg, true);
+                await this.setStateAsync("spo2.min", spo2Stats.min, true);
+                await this.setStateAsync("spo2.max", spo2Stats.max, true);
+                await this.setStateAsync("spo2.latest", spo2Stats.latest ?? spo2Stats.avg, true);
+            }
+            else if (metrics.spo2.avg != null) {
+                await this.setStateAsync("spo2.avg", metrics.spo2.avg, true);
+                if (metrics.spo2.min != null)
+                    await this.setStateAsync("spo2.min", metrics.spo2.min, true);
+                if (metrics.spo2.max != null)
+                    await this.setStateAsync("spo2.max", metrics.spo2.max, true);
+            }
+        }
+        if (metrics.temp) {
+            await this.setStateAsync("temperature.lastReading", metrics.temp.last_reading, true);
+            const tempStats = (0, ultrahuman_api_1.computeTimeSeriesStats)(metrics.temp.values);
+            if (tempStats) {
+                await this.setStateAsync("temperature.avg", tempStats.avg, true);
+                await this.setStateAsync("temperature.min", tempStats.min, true);
+                await this.setStateAsync("temperature.max", tempStats.max, true);
+            }
+        }
+        if (metrics.steps) {
+            await this.setStateAsync("activity.steps", metrics.steps.total, true);
+            await this.setStateAsync("activity.stepsAvg", metrics.steps.avg, true);
+            await this.setStateAsync("activity.activityLevel", classifyActivityLevel(metrics.steps.total), true);
+        }
+        if (metrics.active_minutes?.value != null)
+            await this.setStateAsync("activity.activeMinutes", metrics.active_minutes.value, true);
+        if (metrics.movement_index?.value != null)
+            await this.setStateAsync("activity.movementIndex", metrics.movement_index.value, true);
+        if (metrics.recovery_index?.value != null)
+            await this.setStateAsync("activity.recoveryIndex", metrics.recovery_index.value, true);
+        if (metrics.vo2_max?.value != null)
+            await this.setStateAsync("activity.vo2Max", metrics.vo2_max.value, true);
+    }
+    // ------------------------------------------------------------------
+    // Error handling
+    // ------------------------------------------------------------------
+    async handleApiError(err) {
+        this.setState("info.connection", false, true);
+        if (err instanceof ultrahuman_api_1.UltrahumanApiError) {
+            if (err.statusCode === 401 || err.statusCode === 403) {
+                this.log.error(err.message);
+                return;
+            }
+            if (err.statusCode === 429) {
+                this.log.warn(err.message);
+                return;
+            }
+            this.log.error(`Ultrahuman API error: ${err.message}`);
+            return;
+        }
+        if (err instanceof Error) {
+            if (err.message.includes("ECONNREFUSED") || err.message.includes("ETIMEDOUT")) {
+                this.log.warn(`Network error – will retry on next poll: ${err.message}`);
+                return;
+            }
+            this.log.error(`Unexpected error: ${err.message}`);
+            return;
+        }
+        this.log.error(`Unknown error: ${String(err)}`);
+    }
+}
+function classifyActivityLevel(totalSteps) {
+    if (totalSteps >= 12000)
+        return "very_active";
+    if (totalSteps >= 8000)
+        return "active";
+    if (totalSteps >= 5000)
+        return "moderate";
+    return "sedentary";
+}
+if (require.main !== module) {
+    module.exports = (options) => new Ultrahuman(options);
+}
+else {
+    (() => new Ultrahuman())();
+}
+//# sourceMappingURL=main.js.map
