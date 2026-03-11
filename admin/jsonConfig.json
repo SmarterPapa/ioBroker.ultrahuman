@@ -1,0 +1,80 @@
+{
+  "i18n": true,
+  "type": "panel",
+  "items": {
+    "_header": {
+      "type": "header",
+      "text": {
+        "en": "Ultrahuman Partner API Credentials",
+        "de": "Ultrahuman Partner API Zugangsdaten"
+      },
+      "size": 4,
+      "newLine": true
+    },
+    "apiSecret": {
+      "type": "text",
+      "label": {
+        "en": "API Key",
+        "de": "API-Schlüssel"
+      },
+      "sm": 12,
+      "md": 6,
+      "newLine": true,
+      "placeholder": {
+        "en": "Your Ultrahuman API Key (ULTRAHUMAN_API_KEY)",
+        "de": "Dein Ultrahuman API-Schlüssel (ULTRAHUMAN_API_KEY)"
+      },
+      "help": {
+        "en": "The authorization key for the Ultrahuman Partner API. This is the same key you use as ULTRAHUMAN_API_KEY in the dashboard.",
+        "de": "Der Autorisierungsschlüssel für die Ultrahuman Partner API. Das ist der gleiche Schlüssel wie ULTRAHUMAN_API_KEY im Dashboard."
+      }
+    },
+    "userEmail": {
+      "type": "text",
+      "label": {
+        "en": "Ultrahuman Email",
+        "de": "Ultrahuman E-Mail"
+      },
+      "sm": 12,
+      "md": 6,
+      "placeholder": "user@example.com",
+      "help": {
+        "en": "Your Ultrahuman account email (ULTRAHUMAN_EMAIL)",
+        "de": "Deine Ultrahuman-Konto E-Mail-Adresse (ULTRAHUMAN_EMAIL)"
+      }
+    },
+    "_divider1": {
+      "type": "divider",
+      "newLine": true
+    },
+    "pollingInterval": {
+      "type": "number",
+      "label": {
+        "en": "Polling Interval (minutes)",
+        "de": "Abfrageintervall (Minuten)"
+      },
+      "sm": 12,
+      "md": 6,
+      "newLine": true,
+      "min": 5,
+      "max": 1440,
+      "default": 30,
+      "help": {
+        "en": "How often to fetch new data from the API. Since ring data syncs periodically, 30 minutes is recommended.",
+        "de": "Wie oft neue Daten von der API abgerufen werden. Da der Ring periodisch synchronisiert, werden 30 Minuten empfohlen."
+      }
+    },
+    "_divider2": {
+      "type": "divider",
+      "newLine": true
+    },
+    "_accessCodeInfo": {
+      "type": "staticText",
+      "newLine": true,
+      "text": {
+        "en": "**Important:** Make sure you have entered the Ultrahuman Access Code in your Ultrahuman app under Profile → Settings → Partner ID. Without this, the API cannot access your data.",
+        "de": "**Wichtig:** Stelle sicher, dass du den Ultrahuman Access Code in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben hast. Ohne diesen kann die API nicht auf deine Daten zugreifen."
+      }
+    }
+  }
+}

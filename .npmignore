@@ -1,0 +1,10 @@
+.github/
+.idea/
+.vscode/
+src/
+test/
+.eslintrc.json
+.gitignore
+tsconfig.json
+tsconfig.build.json
+.DS_Store

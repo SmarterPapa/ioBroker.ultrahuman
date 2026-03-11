@@ -1,0 +1,110 @@
+{
+  "common": {
+    "name": "ultrahuman",
+    "version": "0.1.0",
+    "news": {
+      "0.1.0": {
+        "en": "Initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Первый выпуск",
+        "pt": "Versão inicial",
+        "nl": "Eerste versie",
+        "fr": "Version initiale",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Перший випуск",
+        "zh-cn": "初始版本"
+      }
+    },
+    "titleLang": {
+      "en": "Ultrahuman Ring",
+      "de": "Ultrahuman Ring",
+      "ru": "Ultrahuman Ring",
+      "pt": "Ultrahuman Ring",
+      "nl": "Ultrahuman Ring",
+      "fr": "Ultrahuman Ring",
+      "it": "Ultrahuman Ring",
+      "es": "Ultrahuman Ring",
+      "pl": "Ultrahuman Ring",
+      "uk": "Ultrahuman Ring",
+      "zh-cn": "Ultrahuman Ring"
+    },
+    "desc": {
+      "en": "Reads health metrics from Ultrahuman Ring via the Partner API",
+      "de": "Liest Gesundheitsdaten vom Ultrahuman Ring über die Partner API",
+      "ru": "Считывает данные о здоровье с Ultrahuman Ring через Partner API",
+      "pt": "Lê métricas de saúde do Ultrahuman Ring via Partner API",
+      "nl": "Leest gezondheidsgegevens van Ultrahuman Ring via de Partner API",
+      "fr": "Lit les métriques de santé de l'Ultrahuman Ring via l'API Partner",
+      "it": "Legge le metriche sanitarie dall'Ultrahuman Ring tramite la Partner API",
+      "es": "Lee métricas de salud del Ultrahuman Ring a través de la Partner API",
+      "pl": "Odczytuje dane zdrowotne z Ultrahuman Ring przez Partner API",
+      "uk": "Зчитує дані про здоров'я з Ultrahuman Ring через Partner API",
+      "zh-cn": "通过 Partner API 从 Ultrahuman Ring 读取健康指标"
+    },
+    "authors": ["Tobias"],
+    "keywords": ["ultrahuman", "health", "sleep", "heart rate", "hrv", "ring", "wearable", "ioBroker"],
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "platform": "Javascript/Node.js",
+    "main": "build/main.js",
+    "icon": "ultrahuman.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/SmarterPapa/ioBroker.ultrahuman/main/admin/ultrahuman.png",
+    "readme": "https://github.com/SmarterPapa/ioBroker.ultrahuman/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "mode": "daemon",
+    "type": "health",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
+    ],
+    "encryptedNative": ["apiSecret"],
+    "protectedNative": ["apiSecret"]
+  },
+  "native": {
+    "apiSecret": "",
+    "userEmail": "",
+    "pollingInterval": 30
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "API connection status",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
+}
