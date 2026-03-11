@@ -273,6 +273,12 @@
         "de": "Über"
       },
       "items": {
+        "_logoContainer": {
+          "type": "staticImage",
+          "src": "smarterpapa-logo.png",
+          "newLine": true,
+          "style": { "width": "120px", "height": "120px", "marginBottom": "16px" }
+        },
         "_aboutHeader": {
           "type": "header",
           "text": {
@@ -286,9 +292,85 @@
           "type": "staticText",
           "newLine": true,
           "text": {
-            "en": "**ioBroker.ultrahuman** reads health metrics from your Ultrahuman Ring and makes them available as ioBroker objects.\n\n**Available data:**\n- Sleep (efficiency, duration, stages, score, cycles)\n- Heart rate (resting, night, average, min/max, trend)\n- HRV (average, sleep, min/max, trend)\n- SpO2 (if supported by your ring)\n- Skin temperature\n- Activity (steps, active minutes, movement/recovery index, VO2 max)\n\n**Links:**\n- [GitHub Repository](https://github.com/SmarterPapa/ioBroker.ultrahuman)\n- [Ultrahuman Dashboard (API reference)](https://github.com/mt-krainski/ultrahuman-dashboard)\n- [Report an issue](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)\n\n**License:** MIT\n**Author:** SmarterPapa",
-            "de": "**ioBroker.ultrahuman** liest Gesundheitsdaten von deinem Ultrahuman Ring und stellt sie als ioBroker-Objekte zur Verfügung.\n\n**Verfügbare Daten:**\n- Schlaf (Effizienz, Dauer, Phasen, Score, Zyklen)\n- Herzfrequenz (Ruhe, Nacht, Durchschnitt, Min/Max, Trend)\n- HRV (Durchschnitt, Schlaf, Min/Max, Trend)\n- SpO2 (falls vom Ring unterstützt)\n- Hauttemperatur\n- Aktivität (Schritte, aktive Minuten, Bewegungs-/Recovery-Index, VO2 max)\n\n**Links:**\n- [GitHub Repository](https://github.com/SmarterPapa/ioBroker.ultrahuman)\n- [Ultrahuman Dashboard (API-Referenz)](https://github.com/mt-krainski/ultrahuman-dashboard)\n- [Problem melden](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)\n\n**Lizenz:** MIT\n**Autor:** SmarterPapa"
+            "en": "**ioBroker.ultrahuman** reads health metrics from your Ultrahuman Ring and makes them available as ioBroker objects.\n\n**Available data:**\n- Sleep (efficiency, duration, stages, score, cycles)\n- Heart rate (resting, night, average, min/max, trend)\n- HRV (average, sleep, min/max, trend)\n- SpO2 (if supported by your ring)\n- Skin temperature\n- Activity (steps, active minutes, movement/recovery index, VO2 max)",
+            "de": "**ioBroker.ultrahuman** liest Gesundheitsdaten von deinem Ultrahuman Ring und stellt sie als ioBroker-Objekte zur Verfügung.\n\n**Verfügbare Daten:**\n- Schlaf (Effizienz, Dauer, Phasen, Score, Zyklen)\n- Herzfrequenz (Ruhe, Nacht, Durchschnitt, Min/Max, Trend)\n- HRV (Durchschnitt, Schlaf, Min/Max, Trend)\n- SpO2 (falls vom Ring unterstützt)\n- Hauttemperatur\n- Aktivität (Schritte, aktive Minuten, Bewegungs-/Recovery-Index, VO2 max)"
           }
+        },
+        "_dividerAbout": {
+          "type": "divider",
+          "newLine": true,
+          "style": { "marginTop": "16px", "marginBottom": "16px" }
+        },
+        "_linksHeader": {
+          "type": "header",
+          "text": {
+            "en": "Links",
+            "de": "Links"
+          },
+          "size": 5,
+          "newLine": true
+        },
+        "_linksText": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "- [GitHub Repository](https://github.com/SmarterPapa/ioBroker.ultrahuman)\n- [Ultrahuman Dashboard (API reference)](https://github.com/mt-krainski/ultrahuman-dashboard)\n- [Report an issue](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)",
+            "de": "- [GitHub Repository](https://github.com/SmarterPapa/ioBroker.ultrahuman)\n- [Ultrahuman Dashboard (API-Referenz)](https://github.com/mt-krainski/ultrahuman-dashboard)\n- [Problem melden](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)"
+          }
+        },
+        "_dividerAuthor": {
+          "type": "divider",
+          "newLine": true,
+          "style": { "marginTop": "16px", "marginBottom": "16px" }
+        },
+        "_authorHeader": {
+          "type": "header",
+          "text": {
+            "en": "Author",
+            "de": "Autor"
+          },
+          "size": 5,
+          "newLine": true
+        },
+        "_authorText": {
+          "type": "staticText",
+          "newLine": true,
+          "text": {
+            "en": "**SmarterPapa** – Smart Home Tips & Inspirations\n\n[smarterpapa.de](https://smarterpapa.de)\n\n**License:** MIT",
+            "de": "**SmarterPapa** – Smart Home Tipps & Inspirationen\n\n[smarterpapa.de](https://smarterpapa.de)\n\n**Lizenz:** MIT"
+          }
+        },
+        "_supportHeader": {
+          "type": "header",
+          "text": {
+            "en": "Support this project",
+            "de": "Unterstütze dieses Projekt"
+          },
+          "size": 5,
+          "newLine": true,
+          "style": { "marginTop": "16px" }
+        },
+        "_supportText": {
+          "type": "staticText",
+          "newLine": true,
+          "style": { "marginBottom": "8px" },
+          "text": {
+            "en": "If you find this adapter useful, consider buying me a coffee!",
+            "de": "Wenn dir dieser Adapter gefällt, kannst du mich gerne auf einen Kaffee einladen!"
+          }
+        },
+        "_kofiLink": {
+          "type": "staticLink",
+          "label": {
+            "en": "Support on Ko-fi",
+            "de": "Unterstützen auf Ko-fi"
+          },
+          "href": "https://ko-fi.com/smarterpapa",
+          "newLine": true,
+          "button": true,
+          "variant": "contained",
+          "color": "primary",
+          "icon": "favorite"
         }
       }
     }
