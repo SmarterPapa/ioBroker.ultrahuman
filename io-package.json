@@ -43,7 +43,7 @@
       "uk": "Зчитує дані про здоров'я з Ultrahuman Ring через Partner API",
       "zh-cn": "通过 Partner API 从 Ultrahuman Ring 读取健康指标"
     },
-    "authors": ["Tobias"],
+    "authors": ["SmarterPapa"],
     "keywords": ["ultrahuman", "health", "sleep", "heart rate", "hrv", "ring", "wearable", "ioBroker"],
     "licenseInformation": {
       "license": "MIT",
@@ -75,12 +75,20 @@
         "admin": ">=7.6.17"
       }
     ],
-    "encryptedNative": ["apiSecret"],
-    "protectedNative": ["apiSecret"]
+    "messagebox": true,
+    "encryptedNative": ["apiSecret", "clientSecret", "accessToken", "refreshToken"],
+    "protectedNative": ["apiSecret", "clientSecret", "accessToken", "refreshToken"]
   },
   "native": {
+    "authMode": "apikey",
     "apiSecret": "",
     "userEmail": "",
+    "clientId": "",
+    "clientSecret": "",
+    "oauthCallbackPort": 8890,
+    "accessToken": "",
+    "refreshToken": "",
+    "tokenExpiry": 0,
     "pollingInterval": 30
   },
   "objects": [],

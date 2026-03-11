@@ -1,79 +1,194 @@
 {
   "i18n": true,
-  "type": "panel",
+  "type": "tabs",
   "items": {
-    "_header": {
-      "type": "header",
-      "text": {
-        "en": "Ultrahuman Partner API Credentials",
-        "de": "Ultrahuman Partner API Zugangsdaten"
-      },
-      "size": 4,
-      "newLine": true
-    },
-    "apiSecret": {
-      "type": "text",
+    "_generalTab": {
+      "type": "panel",
       "label": {
-        "en": "API Key",
-        "de": "API-Schlüssel"
+        "en": "Authentication",
+        "de": "Authentifizierung"
       },
-      "sm": 12,
-      "md": 6,
-      "newLine": true,
-      "placeholder": {
-        "en": "Your Ultrahuman API Key (ULTRAHUMAN_API_KEY)",
-        "de": "Dein Ultrahuman API-Schlüssel (ULTRAHUMAN_API_KEY)"
-      },
-      "help": {
-        "en": "The authorization key for the Ultrahuman Partner API. This is the same key you use as ULTRAHUMAN_API_KEY in the dashboard.",
-        "de": "Der Autorisierungsschlüssel für die Ultrahuman Partner API. Das ist der gleiche Schlüssel wie ULTRAHUMAN_API_KEY im Dashboard."
+      "items": {
+        "authMode": {
+          "type": "select",
+          "label": {
+            "en": "Authentication mode",
+            "de": "Authentifizierungsmodus"
+          },
+          "sm": 12,
+          "md": 6,
+          "newLine": true,
+          "options": [
+            { "label": { "en": "API Key (current)", "de": "API-Schlüssel (aktuell)" }, "value": "apikey" },
+            { "label": { "en": "OAuth 2.0 (recommended for sharing)", "de": "OAuth 2.0 (empfohlen zum Teilen)" }, "value": "oauth" }
+          ],
+          "default": "apikey",
+          "help": {
+            "en": "API Key works with your existing partner credentials. OAuth 2.0 lets each user login with their own Ultrahuman account.",
+            "de": "API-Schlüssel funktioniert mit deinen bestehenden Partner-Zugangsdaten. OAuth 2.0 ermöglicht jedem Nutzer sich mit seinem eigenen Ultrahuman-Konto anzumelden."
+          }
+        },
+        "_divider0": {
+          "type": "divider",
+          "newLine": true
+        },
+        "_apikeyPanel": {
+          "type": "panel",
+          "label": {
+            "en": "API Key Settings",
+            "de": "API-Schlüssel Einstellungen"
+          },
+          "hidden": "data.authMode === 'oauth'",
+          "items": {
+            "apiSecret": {
+              "type": "text",
+              "label": {
+                "en": "API Key",
+                "de": "API-Schlüssel"
+              },
+              "sm": 12,
+              "md": 6,
+              "newLine": true,
+              "placeholder": {
+                "en": "Your Ultrahuman API Key",
+                "de": "Dein Ultrahuman API-Schlüssel"
+              },
+              "help": {
+                "en": "The authorization key for the Ultrahuman Partner API (ULTRAHUMAN_API_KEY)",
+                "de": "Der Autorisierungsschlüssel für die Ultrahuman Partner API (ULTRAHUMAN_API_KEY)"
+              }
+            },
+            "userEmail": {
+              "type": "text",
+              "label": {
+                "en": "Ultrahuman Email",
+                "de": "Ultrahuman E-Mail"
+              },
+              "sm": 12,
+              "md": 6,
+              "placeholder": "user@example.com",
+              "help": {
+                "en": "Your Ultrahuman account email (ULTRAHUMAN_EMAIL)",
+                "de": "Deine Ultrahuman-Konto E-Mail (ULTRAHUMAN_EMAIL)"
+              }
+            },
+            "_accessCodeHint": {
+              "type": "staticText",
+              "newLine": true,
+              "text": {
+                "en": "**Important:** Make sure you have entered the Ultrahuman Access Code in your Ultrahuman app under Profile → Settings → Partner ID.",
+                "de": "**Wichtig:** Stelle sicher, dass du den Ultrahuman Access Code in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben hast."
+              }
+            }
+          }
+        },
+        "_oauthPanel": {
+          "type": "panel",
+          "label": {
+            "en": "OAuth 2.0 Settings",
+            "de": "OAuth 2.0 Einstellungen"
+          },
+          "hidden": "data.authMode !== 'oauth'",
+          "items": {
+            "clientId": {
+              "type": "text",
+              "label": {
+                "en": "Client ID",
+                "de": "Client ID"
+              },
+              "sm": 12,
+              "md": 6,
+              "newLine": true,
+              "help": {
+                "en": "OAuth Client ID from Ultrahuman partner onboarding",
+                "de": "OAuth Client ID aus dem Ultrahuman Partner-Onboarding"
+              }
+            },
+            "clientSecret": {
+              "type": "text",
+              "label": {
+                "en": "Client Secret",
+                "de": "Client Secret"
+              },
+              "sm": 12,
+              "md": 6,
+              "help": {
+                "en": "OAuth Client Secret from Ultrahuman partner onboarding",
+                "de": "OAuth Client Secret aus dem Ultrahuman Partner-Onboarding"
+              }
+            },
+            "oauthCallbackPort": {
+              "type": "number",
+              "label": {
+                "en": "Callback Port",
+                "de": "Callback Port"
+              },
+              "sm": 12,
+              "md": 3,
+              "newLine": true,
+              "min": 1024,
+              "max": 65535,
+              "default": 8890,
+              "help": {
+                "en": "Local port for the OAuth callback server (default: 8890)",
+                "de": "Lokaler Port für den OAuth-Callback-Server (Standard: 8890)"
+              }
+            },
+            "_loginButton": {
+              "type": "sendTo",
+              "label": {
+                "en": "Login with Ultrahuman",
+                "de": "Mit Ultrahuman anmelden"
+              },
+              "sm": 12,
+              "md": 4,
+              "newLine": true,
+              "command": "startOAuth",
+              "variant": "contained",
+              "color": "primary",
+              "data": {},
+              "openUrl": true,
+              "jsonData": "{}",
+              "help": {
+                "en": "Click to open the Ultrahuman login page in your browser. After authorization, you will be redirected back automatically.",
+                "de": "Klicke hier um die Ultrahuman-Anmeldeseite im Browser zu öffnen. Nach der Autorisierung wirst du automatisch weitergeleitet."
+              }
+            },
+            "_tokenStatus": {
+              "type": "staticText",
+              "newLine": true,
+              "text": {
+                "en": "Token status: Check the adapter log for authentication status.",
+                "de": "Token-Status: Prüfe das Adapter-Log für den Authentifizierungsstatus."
+              }
+            }
+          }
+        }
       }
     },
-    "userEmail": {
-      "type": "text",
+    "_settingsTab": {
+      "type": "panel",
       "label": {
-        "en": "Ultrahuman Email",
-        "de": "Ultrahuman E-Mail"
+        "en": "Settings",
+        "de": "Einstellungen"
       },
-      "sm": 12,
-      "md": 6,
-      "placeholder": "user@example.com",
-      "help": {
-        "en": "Your Ultrahuman account email (ULTRAHUMAN_EMAIL)",
-        "de": "Deine Ultrahuman-Konto E-Mail-Adresse (ULTRAHUMAN_EMAIL)"
-      }
-    },
-    "_divider1": {
-      "type": "divider",
-      "newLine": true
-    },
-    "pollingInterval": {
-      "type": "number",
-      "label": {
-        "en": "Polling Interval (minutes)",
-        "de": "Abfrageintervall (Minuten)"
-      },
-      "sm": 12,
-      "md": 6,
-      "newLine": true,
-      "min": 5,
-      "max": 1440,
-      "default": 30,
-      "help": {
-        "en": "How often to fetch new data from the API. Since ring data syncs periodically, 30 minutes is recommended.",
-        "de": "Wie oft neue Daten von der API abgerufen werden. Da der Ring periodisch synchronisiert, werden 30 Minuten empfohlen."
-      }
-    },
-    "_divider2": {
-      "type": "divider",
-      "newLine": true
-    },
-    "_accessCodeInfo": {
-      "type": "staticText",
-      "newLine": true,
-      "text": {
-        "en": "**Important:** Make sure you have entered the Ultrahuman Access Code in your Ultrahuman app under Profile → Settings → Partner ID. Without this, the API cannot access your data.",
-        "de": "**Wichtig:** Stelle sicher, dass du den Ultrahuman Access Code in deiner Ultrahuman-App unter Profil → Einstellungen → Partner ID eingegeben hast. Ohne diesen kann die API nicht auf deine Daten zugreifen."
+      "items": {
+        "pollingInterval": {
+          "type": "number",
+          "label": {
+            "en": "Polling Interval (minutes)",
+            "de": "Abfrageintervall (Minuten)"
+          },
+          "sm": 12,
+          "md": 6,
+          "min": 5,
+          "max": 1440,
+          "default": 30,
+          "help": {
+            "en": "How often to fetch new data. Ring data syncs periodically, so 30 minutes is recommended.",
+            "de": "Wie oft neue Daten abgerufen werden. Da der Ring periodisch synchronisiert, werden 30 Minuten empfohlen."
+          }
+        }
       }
     }
   }

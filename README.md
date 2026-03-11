@@ -59,4 +59,4 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 MIT License — see [LICENSE](LICENSE) for details.
 
-Copyright (c) 2026 Tobias
+Copyright (c) 2026 SmarterPapa

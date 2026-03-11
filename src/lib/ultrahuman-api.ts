@@ -48,21 +48,38 @@ export function transformMetricData(raw: UltrahumanApiResponse): MetricData {
     return result;
 }
 
+export interface ApiKeyAuth {
+    mode: "apikey";
+    apiSecret: string;
+    userEmail: string;
+}
+
+export interface OAuthAuth {
+    mode: "oauth";
+    accessToken: string;
+}
+
+export type AuthConfig = ApiKeyAuth | OAuthAuth;
+
 export async function fetchMetrics(
-    apiSecret: string,
-    userEmail: string,
+    auth: AuthConfig,
     date: Date,
 ): Promise<MetricData> {
+    const headers: Record<string, string> =
+        auth.mode === "oauth"
+            ? { Authorization: `Bearer ${auth.accessToken}` }
+            : { Authorization: auth.apiSecret };
+
+    const params: Record<string, string> = { date: formatDate(date) };
+    if (auth.mode === "apikey") {
+        params.email = auth.userEmail;
+    }
+
     let response;
     try {
         response = await axios.get<UltrahumanApiResponse>(ULTRAHUMAN_PARTNER_API, {
-            params: {
-                date: formatDate(date),
-                email: userEmail,
-            },
-            headers: {
-                Authorization: apiSecret,
-            },
+            params,
+            headers,
             timeout: REQUEST_TIMEOUT_MS,
         });
     } catch (err) {
@@ -70,7 +87,9 @@ export async function fetchMetrics(
             const status = err.response?.status;
             if (status === 401 || status === 403) {
                 throw new UltrahumanApiError(
-                    "Authentication failed – check your API secret and email",
+                    auth.mode === "oauth"
+                        ? "OAuth token invalid or expired"
+                        : "Authentication failed – check your API secret and email",
                     status,
                 );
             }
