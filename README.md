@@ -37,9 +37,10 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 You need access to the **Ultrahuman Partner API**:
 
-1. Obtain an API authorization key from Ultrahuman.
-2. In the Ultrahuman app, go to **Profile > Settings > Partner ID** and enter the data-sharing code provided with your API key.
-3. Configure the API key and your account email in the adapter settings.
+1. Send an email to **feedback@ultrahuman.com** and request API access for personal use.
+2. You will receive an **API Key** and an **Access Code**.
+3. In the Ultrahuman app, go to **Profile > Settings > Partner ID** and enter the **Access Code**.
+4. Configure the **API Key** and your account email in the adapter settings.
 
 ### Configuration
 

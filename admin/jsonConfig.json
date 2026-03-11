@@ -68,8 +68,8 @@
               "newLine": true,
               "style": { "marginBottom": "16px" },
               "text": {
-                "en": "**How to get your credentials:**\n\n1. Set up the [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) project (e.g. via Docker)\n2. From your `.env` file, copy `ULTRAHUMAN_API_KEY` and `ULTRAHUMAN_EMAIL`\n3. Make sure you have entered the **Access Code** in your Ultrahuman app (Profile → Settings → Partner ID)\n\nAlternatively, you can request API access directly from [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/).",
-                "de": "**So erhältst du deine Zugangsdaten:**\n\n1. Richte das [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) Projekt ein (z.B. via Docker)\n2. Kopiere aus deiner `.env` Datei `ULTRAHUMAN_API_KEY` und `ULTRAHUMAN_EMAIL`\n3. Stelle sicher, dass du den **Access Code** in deiner Ultrahuman-App eingegeben hast (Profil → Einstellungen → Partner ID)\n\nAlternativ kannst du API-Zugang direkt bei [Ultrahuman Partnerships](https://partnerships.ultrahuman.com/) beantragen."
+                "en": "**How to get your credentials:**\n\n1. Send an email to **feedback@ultrahuman.com** and request API access for personal use\n2. You will receive an **API Key** and an **Access Code**\n3. Enter the **Access Code** in your Ultrahuman app (Profile → Settings → Partner ID)\n4. Enter the **API Key** and your **Ultrahuman email** below",
+                "de": "**So erhältst du deine Zugangsdaten:**\n\n1. Schreibe eine E-Mail an **feedback@ultrahuman.com** und frage nach API-Zugang für persönliche Nutzung\n2. Du erhältst einen **API-Schlüssel** und einen **Access Code**\n3. Gib den **Access Code** in deiner Ultrahuman-App ein (Profil → Einstellungen → Partner ID)\n4. Trage den **API-Schlüssel** und deine **Ultrahuman E-Mail** unten ein"
               }
             },
             "apiSecret": {
