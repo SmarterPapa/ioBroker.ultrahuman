@@ -91,6 +91,24 @@ If you find this adapter useful, consider supporting the development:
 
 API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) by Matt Krainski (MIT License).
 
+## Changelog
+
+### 0.1.1 (2026-03-11)
+* Fixed responsive design for Admin UI
+* Added i18n translation files
+* Updated dependencies (@iobroker/adapter-core, @iobroker/testing)
+* Fixed io-package.json schema (encryptedNative/protectedNative)
+* Minimum Node.js version set to 20
+
+### 0.1.0 (2026-03-08)
+* Initial release
+* Sleep data (efficiency, duration, stages, score, cycles)
+* Heart rate metrics (resting, night, average, min/max, trend)
+* HRV data (average, sleep, min/max, trend)
+* SpO2 monitoring (if supported by ring)
+* Skin temperature
+* Activity tracking (steps, active minutes, movement/recovery index, VO2 max)
+
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.

@@ -13,6 +13,7 @@
           "type": "staticLink",
           "href": "https://smarterpapa.de",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "display": "block", "textAlign": "center", "marginBottom": "16px" },
           "label": ""
         },
@@ -21,6 +22,7 @@
           "src": "smarterpapa-logo.png",
           "href": "https://smarterpapa.de",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_introHeader": {
@@ -30,11 +32,13 @@
             "de": "Verbinde deinen Ultrahuman Ring"
           },
           "size": 4,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_introText": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginBottom": "16px" },
           "text": {
             "en": "This adapter reads health data from your Ultrahuman Ring via the Partner API. You need API credentials directly from Ultrahuman.",
@@ -42,135 +46,142 @@
           }
         },
         "_howToHeader": {
-              "type": "header",
-              "text": {
-                "en": "How to get your credentials",
-                "de": "So erhältst du deine Zugangsdaten"
-              },
-              "size": 6,
-              "newLine": true,
-              "style": { "marginTop": "8px" }
-            },
-            "_step1": {
-              "type": "staticText",
-              "newLine": true,
-              "text": {
-                "en": "1. Send an email to feedback@ultrahuman.com requesting API access",
-                "de": "1. Schreibe eine E-Mail an feedback@ultrahuman.com und frage nach API-Zugang"
-              }
-            },
-            "_step2": {
-              "type": "staticText",
-              "newLine": true,
-              "text": {
-                "en": "2. You will receive an API Key and an Access Code",
-                "de": "2. Du erhältst einen API-Schlüssel und einen Access Code"
-              }
-            },
-            "_step3": {
-              "type": "staticText",
-              "newLine": true,
-              "text": {
-                "en": "3. Enter the Access Code in your Ultrahuman app (Profile → Settings → Partner ID)",
-                "de": "3. Gib den Access Code in deiner Ultrahuman-App ein (Profil → Einstellungen → Partner ID)"
-              }
-            },
-            "_step4": {
-              "type": "staticText",
-              "newLine": true,
-              "text": {
-                "en": "4. Enter the API Key and your Ultrahuman email below",
-                "de": "4. Trage den API-Schlüssel und deine Ultrahuman E-Mail unten ein"
-              }
-            },
-            "_emailTemplateHeader": {
-              "type": "header",
-              "text": {
-                "en": "Email template (copy and send to feedback@ultrahuman.com)",
-                "de": "E-Mail Vorlage (kopieren und an feedback@ultrahuman.com senden)"
-              },
-              "size": 6,
-              "newLine": true,
-              "style": { "marginTop": "16px" }
-            },
-            "_emailBox": {
-              "type": "staticText",
-              "newLine": true,
-              "sm": 12,
-              "md": 10,
-              "style": { 
-                "padding": "16px", 
-                "backgroundColor": "#f5f5f5", 
-                "borderRadius": "8px", 
-                "border": "1px solid #ddd",
-                "fontFamily": "monospace",
-                "fontSize": "13px",
-                "whiteSpace": "pre-wrap",
-                "lineHeight": "1.6"
-              },
-              "text": {
-                "en": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n• API Token\n• Access Code\n\nReason: I want to use the ioBroker adapter\nhttps://github.com/SmarterPapa/ioBroker.ultrahuman\nto integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards",
-                "de": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n• API Token\n• Access Code\n\nReason: I want to use the ioBroker adapter\nhttps://github.com/SmarterPapa/ioBroker.ultrahuman\nto integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards"
-              }
-            },
-            "_emailHint": {
-              "type": "staticText",
-              "newLine": true,
-              "style": { "marginTop": "8px", "fontStyle": "italic", "color": "#666" },
-              "text": {
-                "en": "Select the text above, copy it (Ctrl+C / Cmd+C) and paste it into your email.",
-                "de": "Markiere den Text oben, kopiere ihn (Strg+C / Cmd+C) und füge ihn in deine E-Mail ein."
-              }
-            },
-            "_dividerFields": {
-              "type": "divider",
-              "newLine": true,
-              "style": { "marginTop": "16px", "marginBottom": "16px" }
-            },
-            "_fieldsHeader": {
-              "type": "header",
-              "text": {
-                "en": "Your credentials",
-                "de": "Deine Zugangsdaten"
-              },
-              "size": 6,
-              "newLine": true
-            },
-            "apiSecret": {
-              "type": "text",
-              "label": {
-                "en": "API Key",
-                "de": "API-Schlüssel"
-              },
-              "sm": 12,
-              "md": 6,
-              "newLine": true,
-              "placeholder": {
-                "en": "Paste your API key here",
-                "de": "Füge deinen API-Schlüssel hier ein"
-              },
-              "help": {
-                "en": "The API key you received from Ultrahuman",
-                "de": "Der API-Schlüssel, den du von Ultrahuman erhalten hast"
-              }
-            },
-            "userEmail": {
-              "type": "text",
-              "label": {
-                "en": "Ultrahuman Email",
-                "de": "Ultrahuman E-Mail"
-              },
-              "sm": 12,
-              "md": 6,
-              "placeholder": "your-email@example.com",
-              "help": {
-                "en": "The email address linked to your Ultrahuman account. If you signed up with Apple Privacy Relay, the address ends with @privaterelay.appleid.com. You can find it in the app under Profile → Settings (gear icon) → Account (at the top).",
-                "de": "Die E-Mail-Adresse, die mit deinem Ultrahuman-Konto verknüpft ist. Wenn du dich mit Apple Privacy Relay angemeldet hast, endet diese auf @privaterelay.appleid.com. Du findest sie in der App unter Profil → Einstellungen (Zahnrad) → Konto (ganz oben)."
-              }
-            },
+          "type": "header",
+          "text": {
+            "en": "How to get your credentials",
+            "de": "So erhältst du deine Zugangsdaten"
+          },
+          "size": 6,
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "style": { "marginTop": "8px" }
+        },
+        "_step1": {
+          "type": "staticText",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "text": {
+            "en": "1. Send an email to feedback@ultrahuman.com requesting API access",
+            "de": "1. Schreibe eine E-Mail an feedback@ultrahuman.com und frage nach API-Zugang"
+          }
+        },
+        "_step2": {
+          "type": "staticText",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "text": {
+            "en": "2. You will receive an API Key and an Access Code",
+            "de": "2. Du erhältst einen API-Schlüssel und einen Access Code"
+          }
+        },
+        "_step3": {
+          "type": "staticText",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "text": {
+            "en": "3. Enter the Access Code in your Ultrahuman app (Profile → Settings → Partner ID)",
+            "de": "3. Gib den Access Code in deiner Ultrahuman-App ein (Profil → Einstellungen → Partner ID)"
+          }
+        },
+        "_step4": {
+          "type": "staticText",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "text": {
+            "en": "4. Enter the API Key and your Ultrahuman email below",
+            "de": "4. Trage den API-Schlüssel und deine Ultrahuman E-Mail unten ein"
+          }
+        },
+        "_emailTemplateHeader": {
+          "type": "header",
+          "text": {
+            "en": "Email template (copy and send to feedback@ultrahuman.com)",
+            "de": "E-Mail Vorlage (kopieren und an feedback@ultrahuman.com senden)"
+          },
+          "size": 6,
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "style": { "marginTop": "16px" }
+        },
+        "_emailBox": {
+          "type": "staticText",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 10, "lg": 10, "xl": 10,
+          "style": { 
+            "padding": "16px", 
+            "backgroundColor": "#f5f5f5", 
+            "borderRadius": "8px", 
+            "border": "1px solid #ddd",
+            "fontFamily": "monospace",
+            "fontSize": "13px",
+            "whiteSpace": "pre-wrap",
+            "lineHeight": "1.6"
+          },
+          "text": {
+            "en": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n• API Token\n• Access Code\n\nReason: I want to use the ioBroker adapter\nhttps://github.com/SmarterPapa/ioBroker.ultrahuman\nto integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards",
+            "de": "Hello Ultrahuman Team,\n\nI would like to request API access for my Ultrahuman Ring account.\n\nMy email address: [YOUR EMAIL HERE]\n\nI need:\n• API Token\n• Access Code\n\nReason: I want to use the ioBroker adapter\nhttps://github.com/SmarterPapa/ioBroker.ultrahuman\nto integrate my ring data into my smart home.\n\nThank you in advance!\n\nBest regards"
+          }
+        },
+        "_emailHint": {
+          "type": "staticText",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "style": { "marginTop": "8px", "fontStyle": "italic", "color": "#666" },
+          "text": {
+            "en": "Select the text above, copy it (Ctrl+C / Cmd+C) and paste it into your email.",
+            "de": "Markiere den Text oben, kopiere ihn (Strg+C / Cmd+C) und füge ihn in deine E-Mail ein."
+          }
+        },
+        "_dividerFields": {
+          "type": "divider",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
+          "style": { "marginTop": "16px", "marginBottom": "16px" }
+        },
+        "_fieldsHeader": {
+          "type": "header",
+          "text": {
+            "en": "Your credentials",
+            "de": "Deine Zugangsdaten"
+          },
+          "size": 6,
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+        },
+        "apiSecret": {
+          "type": "text",
+          "label": {
+            "en": "API Key",
+            "de": "API-Schlüssel"
+          },
+          "xs": 12, "sm": 12, "md": 6, "lg": 6, "xl": 6,
+          "newLine": true,
+          "placeholder": {
+            "en": "Paste your API key here",
+            "de": "Füge deinen API-Schlüssel hier ein"
+          },
+          "help": {
+            "en": "The API key you received from Ultrahuman",
+            "de": "Der API-Schlüssel, den du von Ultrahuman erhalten hast"
+          }
+        },
+        "userEmail": {
+          "type": "text",
+          "label": {
+            "en": "Ultrahuman Email",
+            "de": "Ultrahuman E-Mail"
+          },
+          "xs": 12, "sm": 12, "md": 6, "lg": 6, "xl": 6,
+          "placeholder": "your-email@example.com",
+          "help": {
+            "en": "The email address linked to your Ultrahuman account. If you signed up with Apple Privacy Relay, the address ends with @privaterelay.appleid.com. You can find it in the app under Profile → Settings (gear icon) → Account (at the top).",
+            "de": "Die E-Mail-Adresse, die mit deinem Ultrahuman-Konto verknüpft ist. Wenn du dich mit Apple Privacy Relay angemeldet hast, endet diese auf @privaterelay.appleid.com. Du findest sie in der App unter Profil → Einstellungen (Zahnrad) → Konto (ganz oben)."
+          }
+        },
         "_accessCodeHint": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px", "padding": "12px", "backgroundColor": "rgba(255, 193, 7, 0.1)", "borderRadius": "8px", "borderLeft": "4px solid #ffc107" },
           "text": {
             "en": "Important: The Access Code must be entered in your Ultrahuman app under Profile → Settings → Partner ID. Without this, the API cannot access your data.",
@@ -180,6 +191,7 @@
         "_dividerSupport1": {
           "type": "divider",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
         "_kofiButton1": {
@@ -190,7 +202,7 @@
             "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
           },
           "newLine": true,
-          "sm": 12,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "button": true,
           "variant": "contained",
           "icon": "kofi-logo.png"
@@ -209,6 +221,7 @@
           "src": "smarterpapa-logo.png",
           "href": "https://smarterpapa.de",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_settingsHeader": {
@@ -218,11 +231,13 @@
             "de": "Abfrage-Einstellungen"
           },
           "size": 5,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_settingsExplanation": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginBottom": "16px" },
           "text": {
             "en": "The Ultrahuman Ring syncs data periodically to the cloud (not in real-time). Polling too frequently wastes resources and may trigger rate limits.",
@@ -235,8 +250,7 @@
             "en": "Polling Interval (minutes)",
             "de": "Abfrageintervall (Minuten)"
           },
-          "sm": 12,
-          "md": 4,
+          "xs": 12, "sm": 12, "md": 4, "lg": 4, "xl": 4,
           "min": 5,
           "max": 1440,
           "default": 30,
@@ -248,6 +262,7 @@
         "_intervalHint": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "8px" },
           "text": {
             "en": "Recommended: 30 min | Minimum: 5 min | Maximum: 1440 min (24h)",
@@ -257,6 +272,7 @@
         "_dividerSupport2": {
           "type": "divider",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
         "_kofiButton2": {
@@ -267,7 +283,7 @@
             "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
           },
           "newLine": true,
-          "sm": 12,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "button": true,
           "variant": "contained",
           "icon": "kofi-logo.png"
@@ -286,6 +302,7 @@
           "src": "smarterpapa-logo.png",
           "href": "https://smarterpapa.de",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_ideasHeader": {
@@ -295,11 +312,13 @@
             "de": "Ideen zur Nutzung deiner Gesundheitsdaten"
           },
           "size": 4,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_ideasIntro": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginBottom": "16px" },
           "text": {
             "en": "Here are some ideas for what you can do with your Ultrahuman data in ioBroker:",
@@ -313,11 +332,13 @@
             "de": "Visualisierungen"
           },
           "size": 5,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_vis1": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Display sleep score and efficiency on a dashboard (VIS, Jarvis, iQontrol)",
             "de": "• Schlaf-Score und Effizienz auf einem Dashboard anzeigen (VIS, Jarvis, iQontrol)"
@@ -326,6 +347,7 @@
         "_vis2": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Create charts showing HRV and heart rate trends over time",
             "de": "• Diagramme mit HRV- und Herzfrequenz-Trends über die Zeit erstellen"
@@ -334,6 +356,7 @@
         "_vis3": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Show sleep stages (REM, deep, light) as a pie chart",
             "de": "• Schlafphasen (REM, Tief, Leicht) als Tortendiagramm anzeigen"
@@ -342,6 +365,7 @@
         "_vis4": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Display daily step count with progress bar towards your goal",
             "de": "• Tägliche Schritte mit Fortschrittsbalken zum Ziel anzeigen"
@@ -355,11 +379,13 @@
           },
           "size": 5,
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px" }
         },
         "_auto1": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Gentle wake-up light when sleep efficiency was low",
             "de": "• Sanftes Aufwachlicht wenn die Schlafeffizienz niedrig war"
@@ -368,6 +394,7 @@
         "_auto2": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Reminder to go to bed earlier if sleep score drops below threshold",
             "de": "• Erinnerung früher ins Bett zu gehen wenn der Schlaf-Score unter einen Schwellwert fällt"
@@ -376,6 +403,7 @@
         "_auto3": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Adjust room temperature based on skin temperature trends",
             "de": "• Raumtemperatur basierend auf Hauttemperatur-Trends anpassen"
@@ -384,6 +412,7 @@
         "_auto4": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Morning briefing via Alexa/Google with last night's sleep summary",
             "de": "• Morgen-Briefing via Alexa/Google mit Zusammenfassung der letzten Nacht"
@@ -392,6 +421,7 @@
         "_auto5": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Activate relaxation mode (dim lights, calm music) when HRV is low",
             "de": "• Entspannungsmodus aktivieren (gedimmtes Licht, ruhige Musik) wenn HRV niedrig ist"
@@ -400,6 +430,7 @@
         "_auto6": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Send push notification when daily step goal is reached",
             "de": "• Push-Benachrichtigung senden wenn das tägliche Schrittziel erreicht ist"
@@ -413,11 +444,13 @@
           },
           "size": 5,
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px" }
         },
         "_notify1": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Log all health data to InfluxDB for long-term analysis",
             "de": "• Alle Gesundheitsdaten in InfluxDB für Langzeitanalyse protokollieren"
@@ -426,6 +459,7 @@
         "_notify2": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Weekly health report via Telegram or email",
             "de": "• Wöchentlicher Gesundheitsbericht via Telegram oder E-Mail"
@@ -434,6 +468,7 @@
         "_notify3": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Alert when resting heart rate is unusually high (possible illness)",
             "de": "• Warnung wenn Ruhepuls ungewöhnlich hoch ist (mögliche Erkrankung)"
@@ -442,6 +477,7 @@
         "_notify4": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "• Compare sleep data with weather or calendar events",
             "de": "• Schlafdaten mit Wetter oder Kalendereinträgen vergleichen"
@@ -450,6 +486,7 @@
         "_dividerSupport3": {
           "type": "divider",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
         "_kofiButton3": {
@@ -460,7 +497,7 @@
             "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
           },
           "newLine": true,
-          "sm": 12,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "button": true,
           "variant": "contained",
           "icon": "kofi-logo.png"
@@ -479,6 +516,7 @@
           "src": "smarterpapa-logo.png",
           "href": "https://smarterpapa.de",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_aboutHeader": {
@@ -488,11 +526,13 @@
             "de": "Über diesen Adapter"
           },
           "size": 5,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_aboutText": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "ioBroker.ultrahuman reads health metrics from your Ultrahuman Ring and makes them available as ioBroker objects.",
             "de": "ioBroker.ultrahuman liest Gesundheitsdaten von deinem Ultrahuman Ring und stellt sie als ioBroker-Objekte zur Verfügung."
@@ -506,11 +546,13 @@
           },
           "size": 6,
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px" }
         },
         "_dataSleep": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "Sleep – Efficiency, duration, stages (REM, deep, light), score, cycles",
             "de": "Schlaf – Effizienz, Dauer, Phasen (REM, Tief, Leicht), Score, Zyklen"
@@ -519,6 +561,7 @@
         "_dataHeart": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "Heart rate – Resting, night, average, min/max, trend",
             "de": "Herzfrequenz – Ruhe, Nacht, Durchschnitt, Min/Max, Trend"
@@ -527,6 +570,7 @@
         "_dataHrv": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "HRV – Average, sleep, min/max, trend",
             "de": "HRV – Durchschnitt, Schlaf, Min/Max, Trend"
@@ -535,6 +579,7 @@
         "_dataSpo2": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "SpO2 – If supported by your ring",
             "de": "SpO2 – Falls vom Ring unterstützt"
@@ -543,6 +588,7 @@
         "_dataTemp": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "Skin temperature",
             "de": "Hauttemperatur"
@@ -551,6 +597,7 @@
         "_dataActivity": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "Activity – Steps, active minutes, movement/recovery index, VO2 max",
             "de": "Aktivität – Schritte, aktive Minuten, Bewegungs-/Recovery-Index, VO2 max"
@@ -559,6 +606,7 @@
         "_dividerAbout": {
           "type": "divider",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px", "marginBottom": "16px" }
         },
         "_linksHeader": {
@@ -568,7 +616,8 @@
             "de": "Links"
           },
           "size": 5,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_linkGithub": {
           "type": "staticLink",
@@ -577,7 +626,8 @@
             "de": "GitHub Repository"
           },
           "href": "https://github.com/SmarterPapa/ioBroker.ultrahuman",
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_linkIssues": {
           "type": "staticLink",
@@ -586,11 +636,13 @@
             "de": "Problem melden"
           },
           "href": "https://github.com/SmarterPapa/ioBroker.ultrahuman/issues",
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_dividerAuthor": {
           "type": "divider",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px", "marginBottom": "16px" }
         },
         "_authorHeader": {
@@ -600,11 +652,13 @@
             "de": "Autor"
           },
           "size": 5,
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_authorText": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "text": {
             "en": "SmarterPapa – Smart Home Tips & Inspirations",
             "de": "SmarterPapa – Smart Home Tipps & Inspirationen"
@@ -614,11 +668,13 @@
           "type": "staticLink",
           "label": "smarterpapa.de",
           "href": "https://smarterpapa.de",
-          "newLine": true
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
         "_licenseText": {
           "type": "staticText",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "8px" },
           "text": {
             "en": "License: MIT",
@@ -628,6 +684,7 @@
         "_dividerSupport4": {
           "type": "divider",
           "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
         "_kofiButton4": {
@@ -638,7 +695,7 @@
             "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
           },
           "newLine": true,
-          "sm": 12,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "button": true,
           "variant": "contained",
           "icon": "kofi-logo.png"
