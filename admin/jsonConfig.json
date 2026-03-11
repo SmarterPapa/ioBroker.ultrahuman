@@ -9,6 +9,18 @@
         "de": "Authentifizierung"
       },
       "items": {
+        "_logoLink1": {
+          "type": "staticLink",
+          "href": "https://smarterpapa.de",
+          "newLine": true,
+          "style": { "display": "flex", "justifyContent": "center", "width": "100%", "marginBottom": "16px" }
+        },
+        "_logoContainer1": {
+          "type": "staticImage",
+          "src": "smarterpapa-logo.png",
+          "newLine": true,
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+        },
         "_introHeader": {
           "type": "header",
           "text": {
@@ -288,10 +300,10 @@
               "newLine": true,
               "command": "startOAuth",
               "variant": "contained",
-              "color": "primary",
               "data": {},
               "openUrl": true,
               "jsonData": "{}",
+              "style": { "backgroundColor": "#6D65FF" },
               "help": {
                 "en": "Opens the Ultrahuman login page",
                 "de": "Öffnet die Ultrahuman-Anmeldeseite"
@@ -313,18 +325,39 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiLink1": {
-          "type": "staticLink",
-          "label": {
-            "en": "☕ Support this free adapter – buy me a coffee!",
-            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
-          },
-          "href": "https://ko-fi.com/smarterpapa",
+        "_kofiButton1": {
+          "type": "panel",
           "newLine": true,
-          "button": true,
-          "variant": "contained",
-          "color": "primary",
-          "icon": "favorite"
+          "style": { 
+            "backgroundColor": "#6D65FF", 
+            "borderRadius": "8px", 
+            "padding": "12px 24px",
+            "textAlign": "center",
+            "cursor": "pointer"
+          },
+          "items": {
+            "_kofiInner1": {
+              "type": "staticLink",
+              "href": "https://ko-fi.com/smarterpapa",
+              "newLine": true,
+              "style": { "display": "flex", "alignItems": "center", "justifyContent": "center", "gap": "12px", "textDecoration": "none" },
+              "label": ""
+            },
+            "_kofiImg1": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "24px", "height": "24px", "display": "inline-block", "verticalAlign": "middle" }
+            },
+            "_kofiText1": {
+              "type": "staticLink",
+              "href": "https://ko-fi.com/smarterpapa",
+              "label": {
+                "en": "Support this free adapter – buy me a coffee!",
+                "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+              },
+              "style": { "color": "#ffffff", "fontWeight": "bold", "fontSize": "14px" }
+            }
+          }
         }
       }
     },
@@ -335,6 +368,12 @@
         "de": "Einstellungen"
       },
       "items": {
+        "_logoContainer2": {
+          "type": "staticImage",
+          "src": "smarterpapa-logo.png",
+          "newLine": true,
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+        },
         "_settingsHeader": {
           "type": "header",
           "text": {
@@ -383,18 +422,32 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiLink2": {
-          "type": "staticLink",
-          "label": {
-            "en": "☕ Support this free adapter – buy me a coffee!",
-            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
-          },
-          "href": "https://ko-fi.com/smarterpapa",
+        "_kofiButton2": {
+          "type": "panel",
           "newLine": true,
-          "button": true,
-          "variant": "contained",
-          "color": "primary",
-          "icon": "favorite"
+          "style": { 
+            "backgroundColor": "#6D65FF", 
+            "borderRadius": "8px", 
+            "padding": "12px 24px",
+            "textAlign": "center",
+            "cursor": "pointer"
+          },
+          "items": {
+            "_kofiImg2": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "24px", "height": "24px", "display": "inline-block", "verticalAlign": "middle" }
+            },
+            "_kofiText2": {
+              "type": "staticLink",
+              "href": "https://ko-fi.com/smarterpapa",
+              "label": {
+                "en": "Support this free adapter – buy me a coffee!",
+                "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+              },
+              "style": { "color": "#ffffff", "fontWeight": "bold", "fontSize": "14px" }
+            }
+          }
         }
       }
     },
@@ -405,6 +458,12 @@
         "de": "Ideen"
       },
       "items": {
+        "_logoContainer3": {
+          "type": "staticImage",
+          "src": "smarterpapa-logo.png",
+          "newLine": true,
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+        },
         "_ideasHeader": {
           "type": "header",
           "text": {
@@ -569,18 +628,32 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiLink3": {
-          "type": "staticLink",
-          "label": {
-            "en": "☕ Support this free adapter – buy me a coffee!",
-            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
-          },
-          "href": "https://ko-fi.com/smarterpapa",
+        "_kofiButton3": {
+          "type": "panel",
           "newLine": true,
-          "button": true,
-          "variant": "contained",
-          "color": "primary",
-          "icon": "favorite"
+          "style": { 
+            "backgroundColor": "#6D65FF", 
+            "borderRadius": "8px", 
+            "padding": "12px 24px",
+            "textAlign": "center",
+            "cursor": "pointer"
+          },
+          "items": {
+            "_kofiImg3": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "24px", "height": "24px", "display": "inline-block", "verticalAlign": "middle" }
+            },
+            "_kofiText3": {
+              "type": "staticLink",
+              "href": "https://ko-fi.com/smarterpapa",
+              "label": {
+                "en": "Support this free adapter – buy me a coffee!",
+                "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+              },
+              "style": { "color": "#ffffff", "fontWeight": "bold", "fontSize": "14px" }
+            }
+          }
         }
       }
     },
@@ -591,11 +664,11 @@
         "de": "Über"
       },
       "items": {
-        "_logoContainer": {
+        "_logoContainer4": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
           "newLine": true,
-          "style": { "width": "120px", "height": "120px", "marginBottom": "16px" }
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
         },
         "_aboutHeader": {
           "type": "header",
@@ -746,18 +819,32 @@
           "newLine": true,
           "style": { "marginTop": "24px", "marginBottom": "16px" }
         },
-        "_kofiLink4": {
-          "type": "staticLink",
-          "label": {
-            "en": "☕ Support this free adapter – buy me a coffee!",
-            "de": "☕ Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
-          },
-          "href": "https://ko-fi.com/smarterpapa",
+        "_kofiButton4": {
+          "type": "panel",
           "newLine": true,
-          "button": true,
-          "variant": "contained",
-          "color": "primary",
-          "icon": "favorite"
+          "style": { 
+            "backgroundColor": "#6D65FF", 
+            "borderRadius": "8px", 
+            "padding": "12px 24px",
+            "textAlign": "center",
+            "cursor": "pointer"
+          },
+          "items": {
+            "_kofiImg4": {
+              "type": "staticImage",
+              "src": "kofi-logo.png",
+              "style": { "width": "24px", "height": "24px", "display": "inline-block", "verticalAlign": "middle" }
+            },
+            "_kofiText4": {
+              "type": "staticLink",
+              "href": "https://ko-fi.com/smarterpapa",
+              "label": {
+                "en": "Support this free adapter – buy me a coffee!",
+                "de": "Unterstütze den kostenlosen Adapter – lade mich auf einen Kaffee ein!"
+              },
+              "style": { "color": "#ffffff", "fontWeight": "bold", "fontSize": "14px" }
+            }
+          }
         }
       }
     }
