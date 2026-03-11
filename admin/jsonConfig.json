@@ -9,11 +9,19 @@
         "de": "Authentifizierung"
       },
       "items": {
+        "_logoLink1": {
+          "type": "staticLink",
+          "href": "https://smarterpapa.de",
+          "newLine": true,
+          "style": { "display": "block", "textAlign": "center", "marginBottom": "16px" },
+          "label": ""
+        },
         "_logoContainer1": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
+          "href": "https://smarterpapa.de",
           "newLine": true,
-          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_introHeader": {
           "type": "header",
@@ -192,8 +200,8 @@
               "md": 6,
               "placeholder": "your-email@example.com",
               "help": {
-                "en": "The email address linked to your Ultrahuman account",
-                "de": "Die E-Mail-Adresse, die mit deinem Ultrahuman-Konto verknüpft ist"
+                "en": "The email address linked to your Ultrahuman account. If you signed up with Apple Privacy Relay, the address ends with @privaterelay.appleid.com. You can find it in the app under Profile → Settings (gear icon) → Account (at the top).",
+                "de": "Die E-Mail-Adresse, die mit deinem Ultrahuman-Konto verknüpft ist. Wenn du dich mit Apple Privacy Relay angemeldet hast, endet diese auf @privaterelay.appleid.com. Du findest sie in der App unter Profil → Einstellungen (Zahnrad) → Konto (ganz oben)."
               }
             },
             "_accessCodeHint": {
@@ -344,8 +352,9 @@
         "_logoContainer2": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
+          "href": "https://smarterpapa.de",
           "newLine": true,
-          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_settingsHeader": {
           "type": "header",
@@ -420,8 +429,9 @@
         "_logoContainer3": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
+          "href": "https://smarterpapa.de",
           "newLine": true,
-          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_ideasHeader": {
           "type": "header",
@@ -612,8 +622,9 @@
         "_logoContainer4": {
           "type": "staticImage",
           "src": "smarterpapa-logo.png",
+          "href": "https://smarterpapa.de",
           "newLine": true,
-          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto" }
+          "style": { "width": "100px", "height": "100px", "display": "block", "margin": "0 auto 16px auto", "cursor": "pointer" }
         },
         "_aboutHeader": {
           "type": "header",
