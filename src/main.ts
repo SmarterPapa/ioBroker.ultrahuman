@@ -29,17 +29,19 @@ class Ultrahuman extends utils.Adapter {
     }
 
     private async onReady(): Promise<void> {
+        await this.createObjectTree();
+
         const authMode = this.config.authMode || "apikey";
 
         if (authMode === "apikey") {
             if (!this.config.apiSecret || !this.config.userEmail) {
-                this.log.error("API secret and user email must be configured");
+                this.log.error("API secret and user email must be configured – open adapter settings");
                 this.setState("info.connection", false, true);
                 return;
             }
         } else if (authMode === "oauth") {
             if (!this.config.clientId || !this.config.clientSecret) {
-                this.log.error("OAuth Client ID and Client Secret must be configured");
+                this.log.error("OAuth Client ID and Client Secret must be configured – open adapter settings");
                 this.setState("info.connection", false, true);
                 return;
             }
@@ -54,7 +56,6 @@ class Ultrahuman extends utils.Adapter {
 
         const intervalMin = Math.max(this.config.pollingInterval || 30, 5);
 
-        await this.createObjectTree();
         await this.poll();
 
         this.pollingTimer = this.setInterval(() => {
