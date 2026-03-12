@@ -48,6 +48,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
+          # Skip integration tests as they require real API credentials
+          integration-tests: false
 
   # Deploys the final package to NPM
   deploy:
