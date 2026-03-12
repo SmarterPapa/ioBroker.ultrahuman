@@ -10,6 +10,14 @@
 
 # ioBroker.ultrahuman
 
+[![NPM version](https://img.shields.io/npm/v/iobroker.ultrahuman.svg)](https://www.npmjs.com/package/iobroker.ultrahuman)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.ultrahuman.svg)](https://www.npmjs.com/package/iobroker.ultrahuman)
+![Number of Installations](https://iobroker.live/badges/ultrahuman-installed.svg)
+![Current version in stable repository](https://iobroker.live/badges/ultrahuman-stable.svg)
+
+[![NPM](https://nodei.co/npm/iobroker.ultrahuman.png?downloads=true)](https://nodei.co/npm/iobroker.ultrahuman/)
+
+![Test and Release](https://github.com/SmarterPapa/ioBroker.ultrahuman/actions/workflows/test-and-release.yml/badge.svg)
 [![License](https://img.shields.io/github/license/SmarterPapa/ioBroker.ultrahuman)](https://github.com/SmarterPapa/ioBroker.ultrahuman/blob/main/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/SmarterPapa/ioBroker.ultrahuman)](https://github.com/SmarterPapa/ioBroker.ultrahuman/issues)
 
