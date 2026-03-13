@@ -230,6 +230,84 @@ describe("parseSleepData", () => {
         const result = parseSleepData(metrics)!;
         expect(result.tossesAndTurns).to.equal(15);
     });
+
+    it("should return null when bedtime_start is undefined", () => {
+        const metrics: MetricData = {
+            sleep: {
+                bedtime_start: undefined as unknown as number,
+                bedtime_end: 1700028800,
+                quick_metrics: [],
+                quick_metrics_tiled: [],
+                sleep_stages: [],
+                sleep_graph: { data: [] },
+                movement_graph: {},
+                hr_graph: {},
+                hrv_graph: {},
+                temp_graph: {},
+                summary: [],
+                sleep_inertia_trend: {},
+                sleep_inertia_interpretation: {},
+                score_trend: {},
+                index_tracking_params: [],
+                toss_turn: {},
+                sleep_cycles: {},
+            },
+        };
+        const result = parseSleepData(metrics);
+        expect(result).to.be.null;
+    });
+
+    it("should return null when bedtime_end is 0", () => {
+        const metrics: MetricData = {
+            sleep: {
+                bedtime_start: 1700000000,
+                bedtime_end: 0,
+                quick_metrics: [],
+                quick_metrics_tiled: [],
+                sleep_stages: [],
+                sleep_graph: { data: [] },
+                movement_graph: {},
+                hr_graph: {},
+                hrv_graph: {},
+                temp_graph: {},
+                summary: [],
+                sleep_inertia_trend: {},
+                sleep_inertia_interpretation: {},
+                score_trend: {},
+                index_tracking_params: [],
+                toss_turn: {},
+                sleep_cycles: {},
+            },
+        };
+        const result = parseSleepData(metrics);
+        expect(result).to.be.null;
+    });
+
+    it("should return null when bedtime timestamps are NaN", () => {
+        const metrics: MetricData = {
+            sleep: {
+                bedtime_start: NaN,
+                bedtime_end: NaN,
+                quick_metrics: [],
+                quick_metrics_tiled: [],
+                sleep_stages: [],
+                sleep_graph: { data: [] },
+                movement_graph: {},
+                hr_graph: {},
+                hrv_graph: {},
+                temp_graph: {},
+                summary: [],
+                sleep_inertia_trend: {},
+                sleep_inertia_interpretation: {},
+                score_trend: {},
+                index_tracking_params: [],
+                toss_turn: {},
+                sleep_cycles: {},
+            },
+        };
+        const result = parseSleepData(metrics);
+        expect(result).to.be.null;
+    });
 });
 
 describe("computeTimeSeriesStats", () => {

@@ -101,6 +101,11 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ## Changelog
 
+### 0.1.3 (2026-03-13)
+* Fixed crash when sleep data contains invalid or missing timestamps
+* Added defensive validation for all date/time conversions
+* Improved error handling in data processing
+
 ### 0.1.2 (2026-03-11)
 * Cleaned up devDependencies (removed packages included in @iobroker/testing)
 * Added "ioBroker" keyword to package.json

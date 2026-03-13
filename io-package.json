@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "news": {
+      "0.1.3": {
+        "en": "Fixed crash when sleep data contains invalid timestamps",
+        "de": "Absturz bei ungültigen Zeitstempeln in Schlafdaten behoben",
+        "ru": "Исправлен сбой при недействительных метках времени в данных сна",
+        "pt": "Corrigido crash quando dados de sono contêm timestamps inválidos",
+        "nl": "Crash opgelost bij ongeldige timestamps in slaapgegevens",
+        "fr": "Correction du crash avec des timestamps invalides dans les données de sommeil",
+        "it": "Risolto crash con timestamp non validi nei dati del sonno",
+        "es": "Corregido crash cuando los datos de sueño contienen timestamps inválidos",
+        "pl": "Naprawiono awarię przy nieprawidłowych znacznikach czasu w danych snu",
+        "uk": "Виправлено збій при невірних мітках часу в даних сну",
+        "zh-cn": "修复睡眠数据包含无效时间戳时的崩溃"
+      },
       "0.1.2": {
         "en": "Cleaned up devDependencies, added ioBroker keyword",
         "de": "DevDependencies aufgeräumt, ioBroker Keyword hinzugefügt",

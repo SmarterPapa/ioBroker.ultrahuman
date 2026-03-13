@@ -245,12 +245,42 @@ function extractTossesAndTurns(sleep: SleepObject): number | null {
     return null;
 }
 
+function safeTimestampToISO(timestampSeconds: number | undefined | null): string | null {
+    if (timestampSeconds == null || !Number.isFinite(timestampSeconds) || timestampSeconds <= 0) {
+        return null;
+    }
+    try {
+        const date = new Date(timestampSeconds * 1000);
+        if (isNaN(date.getTime())) {
+            return null;
+        }
+        return date.toISOString();
+    } catch {
+        return null;
+    }
+}
+
 export function parseSleepData(metrics: MetricData): ParsedSleepData | null {
     const sleep = metrics.sleep;
     if (!sleep) return null;
 
     const bedtimeStartTs = sleep.bedtime_start;
     const bedtimeEndTs = getCorrectedBedtimeEnd(sleep);
+
+    // Validate timestamps before processing
+    if (bedtimeStartTs == null || bedtimeEndTs == null ||
+        !Number.isFinite(bedtimeStartTs) || !Number.isFinite(bedtimeEndTs) ||
+        bedtimeStartTs <= 0 || bedtimeEndTs <= 0) {
+        return null;
+    }
+
+    const bedtimeStartISO = safeTimestampToISO(bedtimeStartTs);
+    const bedtimeEndISO = safeTimestampToISO(bedtimeEndTs);
+
+    // If we can't convert timestamps to valid dates, skip this sleep data
+    if (!bedtimeStartISO || !bedtimeEndISO) {
+        return null;
+    }
 
     const timeInBedSec = bedtimeEndTs - bedtimeStartTs;
     const timeAsleepSec = getTimeAsleepSeconds(sleep);
@@ -272,8 +302,8 @@ export function parseSleepData(metrics: MetricData): ParsedSleepData | null {
     const sleepCycles = countSleepCycles(sleep);
 
     return {
-        bedtimeStart: new Date(bedtimeStartTs * 1000).toISOString(),
-        bedtimeEnd: new Date(bedtimeEndTs * 1000).toISOString(),
+        bedtimeStart: bedtimeStartISO,
+        bedtimeEnd: bedtimeEndISO,
         timeInBedMinutes: Math.round(timeInBedSec / 60),
         timeAsleepMinutes: totalAsleepMin,
         timeToFallAsleepMinutes: Math.round(timeToFallAsleepSec / 60),

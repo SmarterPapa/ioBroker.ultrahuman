@@ -155,9 +155,15 @@ class Ultrahuman extends utils.Adapter {
         }
 
         this.setState("info.connection", true, true);
-        await this.updateStates(metrics);
-        this.setState("info.lastUpdate", new Date().toISOString(), true);
-        this.log.debug("States updated successfully");
+
+        try {
+            await this.updateStates(metrics);
+            this.setState("info.lastUpdate", new Date().toISOString(), true);
+            this.log.debug("States updated successfully");
+        } catch (err) {
+            const message = err instanceof Error ? err.message : String(err);
+            this.log.error(`Error processing metrics data: ${message}`);
+        }
     }
 
     private async updateStates(metrics: MetricData): Promise<void> {
