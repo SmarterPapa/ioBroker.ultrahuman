@@ -1,7 +1,7 @@
 declare namespace ioBroker {
-    interface AdapterConfig {
-        apiSecret: string;
-        userEmail: string;
-        pollingInterval: number;
-    }
+  interface AdapterConfig {
+    apiSecret: string;
+    userEmail: string;
+    pollingInterval: number;
+  }
 }

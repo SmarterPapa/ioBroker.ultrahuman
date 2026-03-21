@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "news": {
+      "0.1.5": {
+        "en": "Added @iobroker/eslint-config, switched to weekly Dependabot schedule",
+        "de": "@iobroker/eslint-config hinzugefügt, Dependabot auf wöchentlich umgestellt",
+        "ru": "Добавлен @iobroker/eslint-config, Dependabot переключен на еженедельное расписание",
+        "pt": "Adicionado @iobroker/eslint-config, Dependabot alterado para semanal",
+        "nl": "@iobroker/eslint-config toegevoegd, Dependabot naar wekelijks gewijzigd",
+        "fr": "Ajout de @iobroker/eslint-config, Dependabot passé en hebdomadaire",
+        "it": "Aggiunto @iobroker/eslint-config, Dependabot impostato su settimanale",
+        "es": "Añadido @iobroker/eslint-config, Dependabot cambiado a semanal",
+        "pl": "Dodano @iobroker/eslint-config, Dependabot zmieniony na tygodniowy",
+        "uk": "Додано @iobroker/eslint-config, Dependabot переключено на щотижневий розклад",
+        "zh-cn": "添加@iobroker/eslint-config，Dependabot改为每周"
+      },
       "0.1.4": {
         "en": "Removed GitHub installation instructions, enabled trusted publishing",
         "de": "GitHub-Installationsanleitung entfernt, Trusted Publishing aktiviert",

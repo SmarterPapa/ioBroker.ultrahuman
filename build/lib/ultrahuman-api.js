@@ -69,7 +69,6 @@ function transformMetricData(raw) {
     for (const item of items) {
         if (item.type && item.object != null) {
             const key = item.type.toLowerCase();
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             result[key] = item.object;
         }
     }
@@ -109,8 +108,9 @@ async function fetchMetrics(apiSecret, userEmail, date) {
 // ---------------------------------------------------------------------------
 function computeTimeSeriesStats(values) {
     const valid = values.filter((v) => v.value != null);
-    if (valid.length === 0)
+    if (valid.length === 0) {
         return null;
+    }
     const nums = valid.map((v) => v.value);
     const sum = nums.reduce((a, b) => a + b, 0);
     const avg = sum / nums.length;
@@ -123,10 +123,12 @@ function computeTimeSeriesStats(values) {
     let trend = "stable";
     if (firstThirdAvg > 0) {
         const change = (lastThirdAvg - firstThirdAvg) / firstThirdAvg;
-        if (change > 0.05)
+        if (change > 0.05) {
             trend = "rising";
-        else if (change < -0.05)
+        }
+        else if (change < -0.05) {
             trend = "falling";
+        }
     }
     return {
         count: valid.length,
@@ -194,10 +196,12 @@ function countSleepCycles(sleep) {
     let hadDeep = false;
     let hadRem = false;
     for (const seg of segments) {
-        if (seg.type === "deep")
+        if (seg.type === "deep") {
             hadDeep = true;
-        if (seg.type === "rem")
+        }
+        if (seg.type === "rem") {
             hadRem = true;
+        }
         if (hadDeep && hadRem) {
             cycles++;
             hadDeep = false;
@@ -207,24 +211,28 @@ function countSleepCycles(sleep) {
     return cycles;
 }
 function classifySleepQuality(score) {
-    if (score == null)
+    if (score == null) {
         return null;
-    if (score >= 85)
+    }
+    if (score >= 85) {
         return "excellent";
-    if (score >= 70)
+    }
+    if (score >= 70) {
         return "good";
-    if (score >= 50)
+    }
+    if (score >= 50) {
         return "fair";
+    }
     return "poor";
 }
 function extractSleepScore(sleep) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const scoreTrend = sleep.score_trend;
-    if (scoreTrend?.value != null)
+    if (scoreTrend?.value != null) {
         return scoreTrend.value;
-    if (scoreTrend?.score != null)
+    }
+    if (scoreTrend?.score != null) {
         return scoreTrend.score;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }
     const qm = sleep.quick_metrics;
     if (Array.isArray(qm)) {
         for (const m of qm) {
@@ -237,14 +245,16 @@ function extractSleepScore(sleep) {
     return null;
 }
 function extractTossesAndTurns(sleep) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tt = sleep.toss_turn;
-    if (tt?.count != null)
+    if (tt?.count != null) {
         return tt.count;
-    if (tt?.value != null)
+    }
+    if (tt?.value != null) {
         return tt.value;
-    if (tt?.total != null)
+    }
+    if (tt?.total != null) {
         return tt.total;
+    }
     return null;
 }
 function safeTimestampToISO(timestampSeconds) {
@@ -264,8 +274,9 @@ function safeTimestampToISO(timestampSeconds) {
 }
 function parseSleepData(metrics) {
     const sleep = metrics.sleep;
-    if (!sleep)
+    if (!sleep) {
         return null;
+    }
     const bedtimeStartTs = sleep.bedtime_start;
     const bedtimeEndTs = getCorrectedBedtimeEnd(sleep);
     // Validate timestamps before processing

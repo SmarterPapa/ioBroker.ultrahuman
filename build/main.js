@@ -177,19 +177,24 @@ class Ultrahuman extends utils.Adapter {
             await this.setStateAsync("sleep.timeAsleep", sleep.timeAsleepMinutes, true);
             await this.setStateAsync("sleep.timeToFallAsleep", sleep.timeToFallAsleepMinutes, true);
             await this.setStateAsync("sleep.sleepEfficiency", sleep.sleepEfficiency, true);
-            if (sleep.sleepScore != null)
+            if (sleep.sleepScore != null) {
                 await this.setStateAsync("sleep.sleepScore", sleep.sleepScore, true);
-            if (sleep.sleepQuality != null)
+            }
+            if (sleep.sleepQuality != null) {
                 await this.setStateAsync("sleep.sleepQuality", sleep.sleepQuality, true);
+            }
             await this.setStateAsync("sleep.remSleep", sleep.remSleepMinutes, true);
             await this.setStateAsync("sleep.deepSleep", sleep.deepSleepMinutes, true);
             await this.setStateAsync("sleep.lightSleep", sleep.lightSleepMinutes, true);
-            if (sleep.restorativeSleepPercent != null)
+            if (sleep.restorativeSleepPercent != null) {
                 await this.setStateAsync("sleep.restorativeSleep", sleep.restorativeSleepPercent, true);
-            if (sleep.sleepCycles != null)
+            }
+            if (sleep.sleepCycles != null) {
                 await this.setStateAsync("sleep.sleepCycles", sleep.sleepCycles, true);
-            if (sleep.tossesAndTurns != null)
+            }
+            if (sleep.tossesAndTurns != null) {
                 await this.setStateAsync("sleep.tossesAndTurns", sleep.tossesAndTurns, true);
+            }
         }
         if (metrics.hr) {
             await this.setStateAsync("heart.lastReading", metrics.hr.last_reading, true);
@@ -201,10 +206,12 @@ class Ultrahuman extends utils.Adapter {
                 await this.setStateAsync("heart.trend", hrStats.trend, true);
             }
         }
-        if (metrics.night_rhr)
+        if (metrics.night_rhr) {
             await this.setStateAsync("heart.nightRHR", metrics.night_rhr.avg, true);
-        if (metrics.sleep_rhr?.value != null)
+        }
+        if (metrics.sleep_rhr?.value != null) {
             await this.setStateAsync("heart.restingHR", metrics.sleep_rhr.value, true);
+        }
         if (metrics.hrv) {
             await this.setStateAsync("hrv.average", metrics.hrv.avg, true);
             const hrvStats = (0, ultrahuman_api_1.computeTimeSeriesStats)(metrics.hrv.values);
@@ -214,8 +221,9 @@ class Ultrahuman extends utils.Adapter {
                 await this.setStateAsync("hrv.trend", hrvStats.trend, true);
             }
         }
-        if (metrics.avg_sleep_hrv)
+        if (metrics.avg_sleep_hrv) {
             await this.setStateAsync("hrv.sleepHRV", metrics.avg_sleep_hrv.value, true);
+        }
         if (metrics.spo2) {
             const spo2Stats = (0, ultrahuman_api_1.computeTimeSeriesStats)(metrics.spo2.values);
             if (spo2Stats) {
@@ -226,10 +234,12 @@ class Ultrahuman extends utils.Adapter {
             }
             else if (metrics.spo2.avg != null) {
                 await this.setStateAsync("spo2.avg", metrics.spo2.avg, true);
-                if (metrics.spo2.min != null)
+                if (metrics.spo2.min != null) {
                     await this.setStateAsync("spo2.min", metrics.spo2.min, true);
-                if (metrics.spo2.max != null)
+                }
+                if (metrics.spo2.max != null) {
                     await this.setStateAsync("spo2.max", metrics.spo2.max, true);
+                }
             }
         }
         if (metrics.temp) {
@@ -246,14 +256,18 @@ class Ultrahuman extends utils.Adapter {
             await this.setStateAsync("activity.stepsAvg", metrics.steps.avg, true);
             await this.setStateAsync("activity.activityLevel", classifyActivityLevel(metrics.steps.total), true);
         }
-        if (metrics.active_minutes?.value != null)
+        if (metrics.active_minutes?.value != null) {
             await this.setStateAsync("activity.activeMinutes", metrics.active_minutes.value, true);
-        if (metrics.movement_index?.value != null)
+        }
+        if (metrics.movement_index?.value != null) {
             await this.setStateAsync("activity.movementIndex", metrics.movement_index.value, true);
-        if (metrics.recovery_index?.value != null)
+        }
+        if (metrics.recovery_index?.value != null) {
             await this.setStateAsync("activity.recoveryIndex", metrics.recovery_index.value, true);
-        if (metrics.vo2_max?.value != null)
+        }
+        if (metrics.vo2_max?.value != null) {
             await this.setStateAsync("activity.vo2Max", metrics.vo2_max.value, true);
+        }
     }
     // ------------------------------------------------------------------
     // Error handling
@@ -284,12 +298,15 @@ class Ultrahuman extends utils.Adapter {
     }
 }
 function classifyActivityLevel(totalSteps) {
-    if (totalSteps >= 12000)
+    if (totalSteps >= 12000) {
         return "very_active";
-    if (totalSteps >= 8000)
+    }
+    if (totalSteps >= 8000) {
         return "active";
-    if (totalSteps >= 5000)
+    }
+    if (totalSteps >= 5000) {
         return "moderate";
+    }
     return "sedentary";
 }
 if (require.main !== module) {

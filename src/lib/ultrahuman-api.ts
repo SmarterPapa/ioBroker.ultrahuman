@@ -41,7 +41,7 @@ export function transformMetricData(raw: UltrahumanApiResponse): MetricData {
     for (const item of items) {
         if (item.type && item.object != null) {
             const key = item.type.toLowerCase() as keyof MetricData;
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             
             (result as any)[key] = item.object;
         }
     }
@@ -97,7 +97,9 @@ export async function fetchMetrics(
 
 export function computeTimeSeriesStats(values: ValueTimestamp[]): TimeSeriesStats | null {
     const valid = values.filter((v) => v.value != null);
-    if (valid.length === 0) return null;
+    if (valid.length === 0) {
+return null;
+}
 
     const nums = valid.map((v) => v.value as number);
     const sum = nums.reduce((a, b) => a + b, 0);
@@ -115,8 +117,11 @@ export function computeTimeSeriesStats(values: ValueTimestamp[]): TimeSeriesStat
     let trend: "rising" | "falling" | "stable" = "stable";
     if (firstThirdAvg > 0) {
         const change = (lastThirdAvg - firstThirdAvg) / firstThirdAvg;
-        if (change > 0.05) trend = "rising";
-        else if (change < -0.05) trend = "falling";
+        if (change > 0.05) {
+trend = "rising";
+} else if (change < -0.05) {
+trend = "falling";
+}
     }
 
     return {
@@ -194,8 +199,12 @@ function countSleepCycles(sleep: SleepObject): number {
     let hadDeep = false;
     let hadRem = false;
     for (const seg of segments) {
-        if (seg.type === "deep") hadDeep = true;
-        if (seg.type === "rem") hadRem = true;
+        if (seg.type === "deep") {
+hadDeep = true;
+}
+        if (seg.type === "rem") {
+hadRem = true;
+}
         if (hadDeep && hadRem) {
             cycles++;
             hadDeep = false;
@@ -208,20 +217,32 @@ function countSleepCycles(sleep: SleepObject): number {
 function classifySleepQuality(
     score: number | null,
 ): "excellent" | "good" | "fair" | "poor" | null {
-    if (score == null) return null;
-    if (score >= 85) return "excellent";
-    if (score >= 70) return "good";
-    if (score >= 50) return "fair";
+    if (score == null) {
+return null;
+}
+    if (score >= 85) {
+return "excellent";
+}
+    if (score >= 70) {
+return "good";
+}
+    if (score >= 50) {
+return "fair";
+}
     return "poor";
 }
 
 function extractSleepScore(sleep: SleepObject): number | null {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const scoreTrend = sleep.score_trend as any;
-    if (scoreTrend?.value != null) return scoreTrend.value;
-    if (scoreTrend?.score != null) return scoreTrend.score;
+    if (scoreTrend?.value != null) {
+return scoreTrend.value;
+}
+    if (scoreTrend?.score != null) {
+return scoreTrend.score;
+}
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const qm = sleep.quick_metrics as any[];
     if (Array.isArray(qm)) {
         for (const m of qm) {
@@ -237,11 +258,17 @@ function extractSleepScore(sleep: SleepObject): number | null {
 }
 
 function extractTossesAndTurns(sleep: SleepObject): number | null {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const tt = sleep.toss_turn as any;
-    if (tt?.count != null) return tt.count;
-    if (tt?.value != null) return tt.value;
-    if (tt?.total != null) return tt.total;
+    if (tt?.count != null) {
+return tt.count;
+}
+    if (tt?.value != null) {
+return tt.value;
+}
+    if (tt?.total != null) {
+return tt.total;
+}
     return null;
 }
 
@@ -262,7 +289,9 @@ function safeTimestampToISO(timestampSeconds: number | undefined | null): string
 
 export function parseSleepData(metrics: MetricData): ParsedSleepData | null {
     const sleep = metrics.sleep;
-    if (!sleep) return null;
+    if (!sleep) {
+return null;
+}
 
     const bedtimeStartTs = sleep.bedtime_start;
     const bedtimeEndTs = getCorrectedBedtimeEnd(sleep);

@@ -102,6 +102,11 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ## Changelog
 
+### 0.1.5 (2026-03-21)
+* Added @iobroker/eslint-config for consistent code style
+* Switched Dependabot from monthly to weekly schedule
+* Code style improvements
+
 ### 0.1.4 (2026-03-21)
 * Removed GitHub installation instructions (per ioBroker repository requirements)
 * Enabled trusted publishing for npm releases
