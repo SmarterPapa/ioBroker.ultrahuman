@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "news": {
+      "0.1.4": {
+        "en": "Removed GitHub installation instructions, enabled trusted publishing",
+        "de": "GitHub-Installationsanleitung entfernt, Trusted Publishing aktiviert",
+        "ru": "Удалены инструкции по установке с GitHub, включена доверенная публикация",
+        "pt": "Removidas instruções de instalação do GitHub, publicação confiável ativada",
+        "nl": "GitHub-installatie-instructies verwijderd, trusted publishing ingeschakeld",
+        "fr": "Instructions d'installation GitHub supprimées, publication de confiance activée",
+        "it": "Rimosse istruzioni di installazione da GitHub, pubblicazione attendibile abilitata",
+        "es": "Eliminadas instrucciones de instalación de GitHub, publicación confiable habilitada",
+        "pl": "Usunięto instrukcje instalacji z GitHub, włączono zaufane publikowanie",
+        "uk": "Видалено інструкції з встановлення з GitHub, увімкнено довірену публікацію",
+        "zh-cn": "删除GitHub安装说明，启用可信发布"
+      },
       "0.1.3": {
         "en": "Fixed crash when sleep data contains invalid timestamps",
         "de": "Absturz bei ungültigen Zeitstempeln in Schlafdaten behoben",

@@ -27,10 +27,11 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 ### Installation
 
-**From GitHub (recommended for now):**
-```
-iobroker url https://github.com/SmarterPapa/ioBroker.ultrahuman
-```
+Install the adapter via the ioBroker Admin interface:
+
+1. Open **Adapters** in ioBroker Admin
+2. Search for **ultrahuman**
+3. Click **Install**
 
 ### Available metrics
 
@@ -100,6 +101,10 @@ If you find this adapter useful, consider supporting the development:
 API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) by Matt Krainski (MIT License).
 
 ## Changelog
+
+### 0.1.4 (2026-03-21)
+* Removed GitHub installation instructions (per ioBroker repository requirements)
+* Enabled trusted publishing for npm releases
 
 ### 0.1.3 (2026-03-13)
 * Fixed crash when sleep data contains invalid or missing timestamps
