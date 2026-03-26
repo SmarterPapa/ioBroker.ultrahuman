@@ -1,12 +1,12 @@
 {
   "name": "iobroker.ultrahuman",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "ioBroker adapter for Ultrahuman Ring health metrics",
   "author": {
     "name": "SmarterPapa",
     "email": "email@smarterpapa.de"
   },
-  "homepage": "https://github.com/SmarterPapa/ioBroker.ultrahuman",
+  "homepage": "https://smarterpapa.de/ultrahuman-ring-iobroker-adapter-gesundheitsdaten-smart-home/",
   "license": "MIT",
   "keywords": [
     "ioBroker",

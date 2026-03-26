@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "news": {
+      "0.1.7": {
+        "en": "Linked SmarterPapa blog guide as package homepage; About tab link to detailed tutorial",
+        "de": "SmarterPapa-Blog-Anleitung als Homepage verknüpft; Link im Über-Tab",
+        "ru": "Ссылка на подробное руководство в блоге SmarterPapa как homepage; ссылка в админке",
+        "pt": "Guia no blog SmarterPapa como homepage; link no separador Sobre",
+        "nl": "SmarterPapa-bloggids als homepage; link in Over-tab",
+        "fr": "Guide blog SmarterPapa en page d'accueil du paquet; lien dans l'onglet À propos",
+        "it": "Guida blog SmarterPapa come homepage; link nella scheda Informazioni",
+        "es": "Guía del blog SmarterPapa como página principal; enlace en pestaña Acerca de",
+        "pl": "Poradnik na blogu SmarterPapa jako strona główna; link w zakładce O",
+        "uk": "Посібник у блозі SmarterPapa як homepage; посилання у вкладці «Про»",
+        "zh-cn": "SmarterPapa 博客教程设为首页；关于页添加链接"
+      },
       "0.1.6": {
         "en": "State roles aligned with ioBroker docs; admin i18n fixes; npm deploy via NPM_TOKEN",
         "de": "State-Roles an ioBroker-Dokumentation angepasst; Admin-i18n korrigiert; npm-Deploy über NPM_TOKEN",

@@ -25,6 +25,10 @@
 
 This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahuman Partner API](https://blog.ultrahuman.com/blog/accessing-the-ultrahuman-partnership-api/) and creates ioBroker objects you can use in visualizations, scripts, and automations.
 
+**Detailed guide (German):** [Ultrahuman Ring im ioBroker – Schlaf, HRV & Gesundheitsdaten](https://smarterpapa.de/ultrahuman-ring-iobroker-adapter-gesundheitsdaten-smart-home/) (SmarterPapa.de) — installation, all data points, automation examples, FAQ.
+
+Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
+
 ### Installation
 
 Install the adapter via the ioBroker Admin interface:
@@ -101,6 +105,10 @@ If you find this adapter useful, consider supporting the development:
 API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) by Matt Krainski (MIT License).
 
 ## Changelog
+
+### 0.1.7 (2026-03-26)
+* Package `homepage` (npm) points to the [detailed German blog guide](https://smarterpapa.de/ultrahuman-ring-iobroker-adapter-gesundheitsdaten-smart-home/) on SmarterPapa.de
+* README and ioBroker Admin (About tab) link to the same article; GitHub remains the `repository` URL
 
 ### 0.1.6 (2026-03-26)
 * State roles aligned with [ioBroker state roles documentation](https://github.com/ioBroker/ioBroker.docs/blob/master/docs/en/dev/stateroles.md) (e.g. `value.health.bpm`, `time.interval` for HRV in ms)

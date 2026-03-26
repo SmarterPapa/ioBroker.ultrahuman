@@ -619,6 +619,16 @@
           "newLine": true,
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
+        "_linkBlogGuide": {
+          "type": "staticLink",
+          "label": {
+            "en": "Detailed guide (blog, DE) – installation & automations",
+            "de": "Ausführliche Anleitung (Blog) – Installation & Automationen"
+          },
+          "href": "https://smarterpapa.de/ultrahuman-ring-iobroker-adapter-gesundheitsdaten-smart-home/",
+          "newLine": true,
+          "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
+        },
         "_linkGithub": {
           "type": "staticLink",
           "label": {
