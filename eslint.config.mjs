@@ -2,7 +2,7 @@ import config from "@iobroker/eslint-config";
 
 export default [
     {
-        ignores: ["build/**", "node_modules/**", "test/**", "eslint.config.mjs"],
+        ignores: ["build/**", "node_modules/**", "test/**", "scripts/**", "eslint.config.mjs"],
     },
     ...config,
     {

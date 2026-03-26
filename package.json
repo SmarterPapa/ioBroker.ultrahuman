@@ -1,6 +1,6 @@
 {
   "name": "iobroker.ultrahuman",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "ioBroker adapter for Ultrahuman Ring health metrics",
   "author": {
     "name": "SmarterPapa",
@@ -61,7 +61,8 @@
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:unit",
     "lint": "eslint",
-    "translate": "echo 'no translate script'",
+    "translate": "translate-adapter translate",
+    "i18n:admin": "node scripts/fill-admin-i18n.mjs",
     "release": "release-script"
   }
 }

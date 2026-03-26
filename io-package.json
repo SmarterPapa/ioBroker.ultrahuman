@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "news": {
+      "0.1.6": {
+        "en": "State roles aligned with ioBroker docs; admin i18n fixes; npm deploy via NPM_TOKEN",
+        "de": "State-Roles an ioBroker-Dokumentation angepasst; Admin-i18n korrigiert; npm-Deploy über NPM_TOKEN",
+        "ru": "Роли состояний по документации ioBroker; исправления i18n админки; публикация npm через NPM_TOKEN",
+        "pt": "Roles de estado conforme documentação ioBroker; correções i18n admin; deploy npm via NPM_TOKEN",
+        "nl": "State roles volgens ioBroker-docs; admin i18n-fixes; npm-deploy via NPM_TOKEN",
+        "fr": "Rôles d'état selon la doc ioBroker; corrections i18n admin; déploiement npm via NPM_TOKEN",
+        "it": "Ruoli stato secondo documentazione ioBroker; correzioni i18n admin; deploy npm tramite NPM_TOKEN",
+        "es": "Roles de estado según documentación ioBroker; correcciones i18n admin; despliegue npm vía NPM_TOKEN",
+        "pl": "Role stanów zgodnie z dokumentacją ioBroker; poprawki i18n admina; publikacja npm przez NPM_TOKEN",
+        "uk": "Ролі станів за документацією ioBroker; виправлення i18n адмінки; npm через NPM_TOKEN",
+        "zh-cn": "状态角色符合 ioBroker 文档；管理端 i18n 修正；通过 NPM_TOKEN 发布 npm"
+      },
       "0.1.5": {
         "en": "Added @iobroker/eslint-config, switched to weekly Dependabot schedule",
         "de": "@iobroker/eslint-config hinzugefügt, Dependabot auf wöchentlich umgestellt",
@@ -108,8 +121,18 @@
       "uk": "Зчитує дані про здоров'я з Ultrahuman Ring через Partner API",
       "zh-cn": "通过 Partner API 从 Ultrahuman Ring 读取健康指标"
     },
-    "authors": ["SmarterPapa"],
-    "keywords": ["ultrahuman", "health", "sleep", "heart rate", "hrv", "ring", "wearable"],
+    "authors": [
+      "SmarterPapa"
+    ],
+    "keywords": [
+      "ultrahuman",
+      "health",
+      "sleep",
+      "heart rate",
+      "hrv",
+      "ring",
+      "wearable"
+    ],
     "licenseInformation": {
       "license": "MIT",
       "type": "free"
@@ -146,8 +169,12 @@
     "userEmail": "",
     "pollingInterval": 30
   },
-  "encryptedNative": ["apiSecret"],
-  "protectedNative": ["apiSecret"],
+  "encryptedNative": [
+    "apiSecret"
+  ],
+  "protectedNative": [
+    "apiSecret"
+  ],
   "objects": [],
   "instanceObjects": [
     {
@@ -162,7 +189,7 @@
       "_id": "info.connection",
       "type": "state",
       "common": {
-        "role": "indicator.connected",
+        "role": "indicator.reachable",
         "name": "API connection status",
         "type": "boolean",
         "read": true,

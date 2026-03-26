@@ -102,6 +102,12 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ## Changelog
 
+### 0.1.6 (2026-03-26)
+* State roles aligned with [ioBroker state roles documentation](https://github.com/ioBroker/ioBroker.docs/blob/master/docs/en/dev/stateroles.md) (e.g. `value.health.bpm`, `time.interval` for HRV in ms)
+* `info.connection` uses `indicator.reachable`; existing instances get roles updated on adapter start
+* Admin UI translations completed for fr, es, it, nl, pl, pt, ru, uk, zh-cn (`npm run i18n:admin` to regenerate from `scripts/`)
+* GitHub Actions release: `NPM_TOKEN` secret required for npm publish (until Trusted Publishing is configured on npmjs.com)
+
 ### 0.1.5 (2026-03-21)
 * Added @iobroker/eslint-config for consistent code style
 * Switched Dependabot from monthly to weekly schedule

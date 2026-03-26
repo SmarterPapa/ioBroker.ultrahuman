@@ -35,6 +35,49 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils = __importStar(require("@iobroker/adapter-core"));
 const ultrahuman_api_1 = require("./lib/ultrahuman-api");
+const ULTRAHUMAN_STATE_DEFS = [
+    { id: "sleep.bedtimeStart", name: "Bedtime start", type: "string", role: "date" },
+    { id: "sleep.bedtimeEnd", name: "Bedtime end", type: "string", role: "date" },
+    { id: "sleep.timeInBed", name: "Time in bed", type: "number", role: "value", unit: "min" },
+    { id: "sleep.timeAsleep", name: "Time asleep", type: "number", role: "value", unit: "min" },
+    { id: "sleep.timeToFallAsleep", name: "Time to fall asleep", type: "number", role: "value", unit: "min" },
+    { id: "sleep.sleepEfficiency", name: "Sleep efficiency", type: "number", role: "value", unit: "%" },
+    { id: "sleep.sleepScore", name: "Sleep score", type: "number", role: "value" },
+    { id: "sleep.sleepQuality", name: "Sleep quality", type: "string", role: "text" },
+    { id: "sleep.remSleep", name: "REM sleep", type: "number", role: "value", unit: "min" },
+    { id: "sleep.deepSleep", name: "Deep sleep", type: "number", role: "value", unit: "min" },
+    { id: "sleep.lightSleep", name: "Light sleep", type: "number", role: "value", unit: "min" },
+    { id: "sleep.restorativeSleep", name: "Restorative sleep (REM + deep)", type: "number", role: "value", unit: "%" },
+    { id: "sleep.sleepCycles", name: "Full sleep cycles", type: "number", role: "value" },
+    { id: "sleep.tossesAndTurns", name: "Tosses and turns", type: "number", role: "value" },
+    { id: "heart.restingHR", name: "Resting heart rate", type: "number", role: "value", unit: "bpm" },
+    { id: "heart.nightRHR", name: "Night resting heart rate", type: "number", role: "value", unit: "bpm" },
+    { id: "heart.lastReading", name: "Last HR reading", type: "number", role: "value.health.bpm", unit: "bpm" },
+    { id: "heart.avg", name: "Average heart rate", type: "number", role: "value", unit: "bpm" },
+    { id: "heart.min", name: "Minimum heart rate", type: "number", role: "value.min", unit: "bpm" },
+    { id: "heart.max", name: "Maximum heart rate", type: "number", role: "value.max", unit: "bpm" },
+    { id: "heart.trend", name: "Heart rate trend", type: "string", role: "text" },
+    { id: "hrv.average", name: "Average HRV", type: "number", role: "time.interval", unit: "ms" },
+    { id: "hrv.sleepHRV", name: "Average sleep HRV", type: "number", role: "time.interval", unit: "ms" },
+    { id: "hrv.min", name: "Minimum HRV", type: "number", role: "value.min", unit: "ms" },
+    { id: "hrv.max", name: "Maximum HRV", type: "number", role: "value.max", unit: "ms" },
+    { id: "hrv.trend", name: "HRV trend", type: "string", role: "text" },
+    { id: "spo2.avg", name: "Average SpO2", type: "number", role: "value", unit: "%" },
+    { id: "spo2.min", name: "Minimum SpO2", type: "number", role: "value.min", unit: "%" },
+    { id: "spo2.max", name: "Maximum SpO2", type: "number", role: "value.max", unit: "%" },
+    { id: "spo2.latest", name: "Latest SpO2 reading", type: "number", role: "value", unit: "%" },
+    { id: "temperature.lastReading", name: "Last temperature reading", type: "number", role: "value.temperature", unit: "°C" },
+    { id: "temperature.avg", name: "Average temperature", type: "number", role: "value", unit: "°C" },
+    { id: "temperature.min", name: "Minimum temperature", type: "number", role: "value.temperature.min", unit: "°C" },
+    { id: "temperature.max", name: "Maximum temperature", type: "number", role: "value.temperature.max", unit: "°C" },
+    { id: "activity.steps", name: "Total steps", type: "number", role: "value.health.steps", unit: "steps" },
+    { id: "activity.stepsAvg", name: "Average steps", type: "number", role: "value", unit: "steps" },
+    { id: "activity.activeMinutes", name: "Active minutes", type: "number", role: "value", unit: "min" },
+    { id: "activity.movementIndex", name: "Movement index", type: "number", role: "value" },
+    { id: "activity.recoveryIndex", name: "Recovery index", type: "number", role: "value" },
+    { id: "activity.vo2Max", name: "VO2 max", type: "number", role: "value", unit: "ml/kg/min" },
+    { id: "activity.activityLevel", name: "Activity level", type: "string", role: "text" },
+];
 class Ultrahuman extends utils.Adapter {
     pollingTimer = undefined;
     constructor(options = {}) {
@@ -44,6 +87,7 @@ class Ultrahuman extends utils.Adapter {
     }
     async onReady() {
         await this.createObjectTree();
+        await this.syncStateCommonMetadata();
         if (!this.config.apiSecret || !this.config.userEmail) {
             this.log.error("API secret and user email must be configured – open adapter settings");
             this.setState("info.connection", false, true);
@@ -87,61 +131,54 @@ class Ultrahuman extends utils.Adapter {
                 native: {},
             });
         }
-        const states = [
-            { id: "sleep.bedtimeStart", name: "Bedtime start", type: "string", role: "date" },
-            { id: "sleep.bedtimeEnd", name: "Bedtime end", type: "string", role: "date" },
-            { id: "sleep.timeInBed", name: "Time in bed", type: "number", role: "value", unit: "min" },
-            { id: "sleep.timeAsleep", name: "Time asleep", type: "number", role: "value", unit: "min" },
-            { id: "sleep.timeToFallAsleep", name: "Time to fall asleep", type: "number", role: "value", unit: "min" },
-            { id: "sleep.sleepEfficiency", name: "Sleep efficiency", type: "number", role: "value", unit: "%" },
-            { id: "sleep.sleepScore", name: "Sleep score", type: "number", role: "value" },
-            { id: "sleep.sleepQuality", name: "Sleep quality", type: "string", role: "text" },
-            { id: "sleep.remSleep", name: "REM sleep", type: "number", role: "value", unit: "min" },
-            { id: "sleep.deepSleep", name: "Deep sleep", type: "number", role: "value", unit: "min" },
-            { id: "sleep.lightSleep", name: "Light sleep", type: "number", role: "value", unit: "min" },
-            { id: "sleep.restorativeSleep", name: "Restorative sleep (REM + deep)", type: "number", role: "value", unit: "%" },
-            { id: "sleep.sleepCycles", name: "Full sleep cycles", type: "number", role: "value" },
-            { id: "sleep.tossesAndTurns", name: "Tosses and turns", type: "number", role: "value" },
-            { id: "heart.restingHR", name: "Resting heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
-            { id: "heart.nightRHR", name: "Night resting heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
-            { id: "heart.lastReading", name: "Last HR reading", type: "number", role: "value.heartrate", unit: "bpm" },
-            { id: "heart.avg", name: "Average heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
-            { id: "heart.min", name: "Minimum heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
-            { id: "heart.max", name: "Maximum heart rate", type: "number", role: "value.heartrate", unit: "bpm" },
-            { id: "heart.trend", name: "Heart rate trend", type: "string", role: "text" },
-            { id: "hrv.average", name: "Average HRV", type: "number", role: "value", unit: "ms" },
-            { id: "hrv.sleepHRV", name: "Average sleep HRV", type: "number", role: "value", unit: "ms" },
-            { id: "hrv.min", name: "Minimum HRV", type: "number", role: "value", unit: "ms" },
-            { id: "hrv.max", name: "Maximum HRV", type: "number", role: "value", unit: "ms" },
-            { id: "hrv.trend", name: "HRV trend", type: "string", role: "text" },
-            { id: "spo2.avg", name: "Average SpO2", type: "number", role: "value", unit: "%" },
-            { id: "spo2.min", name: "Minimum SpO2", type: "number", role: "value", unit: "%" },
-            { id: "spo2.max", name: "Maximum SpO2", type: "number", role: "value", unit: "%" },
-            { id: "spo2.latest", name: "Latest SpO2 reading", type: "number", role: "value", unit: "%" },
-            { id: "temperature.lastReading", name: "Last temperature reading", type: "number", role: "value.temperature", unit: "°C" },
-            { id: "temperature.avg", name: "Average temperature", type: "number", role: "value.temperature", unit: "°C" },
-            { id: "temperature.min", name: "Minimum temperature", type: "number", role: "value.temperature", unit: "°C" },
-            { id: "temperature.max", name: "Maximum temperature", type: "number", role: "value.temperature", unit: "°C" },
-            { id: "activity.steps", name: "Total steps", type: "number", role: "value", unit: "steps" },
-            { id: "activity.stepsAvg", name: "Average steps", type: "number", role: "value", unit: "steps" },
-            { id: "activity.activeMinutes", name: "Active minutes", type: "number", role: "value", unit: "min" },
-            { id: "activity.movementIndex", name: "Movement index", type: "number", role: "value" },
-            { id: "activity.recoveryIndex", name: "Recovery index", type: "number", role: "value" },
-            { id: "activity.vo2Max", name: "VO2 max", type: "number", role: "value", unit: "ml/kg/min" },
-            { id: "activity.activityLevel", name: "Activity level", type: "string", role: "text" },
-        ];
         await this.setObjectNotExistsAsync("info.lastUpdate", {
             type: "state",
             common: { name: "Last successful update", type: "string", role: "date", read: true, write: false, def: "" },
             native: {},
         });
-        for (const s of states) {
+        for (const s of ULTRAHUMAN_STATE_DEFS) {
             await this.setObjectNotExistsAsync(s.id, {
                 type: "state",
-                common: { name: s.name, type: s.type, role: s.role, unit: s.unit, read: true, write: false, def: s.type === "number" ? 0 : "" },
+                common: {
+                    name: s.name,
+                    type: s.type,
+                    role: s.role,
+                    ...(s.unit !== undefined ? { unit: s.unit } : {}),
+                    read: true,
+                    write: false,
+                    def: s.type === "number" ? 0 : "",
+                },
                 native: {},
             });
         }
+    }
+    /** Align roles/units with ioBroker docs; updates existing installations after adapter upgrade. */
+    async syncStateCommonMetadata() {
+        for (const s of ULTRAHUMAN_STATE_DEFS) {
+            await this.extendObjectAsync(s.id, {
+                type: "state",
+                common: {
+                    name: s.name,
+                    type: s.type,
+                    role: s.role,
+                    ...(s.unit !== undefined ? { unit: s.unit } : {}),
+                    read: true,
+                    write: false,
+                },
+            });
+        }
+        await this.extendObjectAsync("info.lastUpdate", {
+            common: { role: "date", read: true, write: false },
+        });
+        await this.extendObjectAsync("info.connection", {
+            common: {
+                role: "indicator.reachable",
+                name: "API connection status",
+                type: "boolean",
+                read: true,
+                write: false,
+            },
+        });
     }
     // ------------------------------------------------------------------
     // Polling & data update
