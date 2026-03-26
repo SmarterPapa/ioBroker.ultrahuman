@@ -106,7 +106,7 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 * State roles aligned with [ioBroker state roles documentation](https://github.com/ioBroker/ioBroker.docs/blob/master/docs/en/dev/stateroles.md) (e.g. `value.health.bpm`, `time.interval` for HRV in ms)
 * `info.connection` uses `indicator.reachable`; existing instances get roles updated on adapter start
 * Admin UI translations completed for fr, es, it, nl, pl, pt, ru, uk, zh-cn (`npm run i18n:admin` to regenerate from `scripts/`)
-* GitHub Actions release: `NPM_TOKEN` secret required for npm publish (until Trusted Publishing is configured on npmjs.com)
+* GitHub Actions release: uses **npm Trusted Publishing** (OIDC) when configured on [npm package settings](https://www.npmjs.com/package/iobroker.ultrahuman/access); optional fallback: `NPM_TOKEN` repo secret + `npm-token` in workflow
 
 ### 0.1.5 (2026-03-21)
 * Added @iobroker/eslint-config for consistent code style
