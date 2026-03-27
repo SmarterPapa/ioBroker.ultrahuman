@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "news": {
+      "0.1.8": {
+        "en": "Trimmed common.news to 7 entries (ioBroker repo builder W1032)",
+        "de": "common.news auf 7 Einträge gekürzt (ioBroker-Repository-Builder W1032)",
+        "ru": "common.news сокращён до 7 записей (сборщик репозитория ioBroker W1032)",
+        "pt": "common.news reduzido a 7 entradas (construtor do repositório ioBroker W1032)",
+        "nl": "common.news ingekort tot 7 items (ioBroker repository builder W1032)",
+        "fr": "common.news réduit à 7 entrées (constructeur dépôt ioBroker W1032)",
+        "it": "common.news ridotto a 7 voci (builder repository ioBroker W1032)",
+        "es": "common.news recortado a 7 entradas (constructor del repositorio ioBroker W1032)",
+        "pl": "common.news skrócone do 7 wpisów (builder repozytorium ioBroker W1032)",
+        "uk": "common.news скорочено до 7 записів (збірник репозиторію ioBroker W1032)",
+        "zh-cn": "将 common.news 裁减为 7 条（ioBroker 仓库构建 W1032）"
+      },
       "0.1.7": {
         "en": "Linked SmarterPapa blog guide as package homepage; About tab link to detailed tutorial",
         "de": "SmarterPapa-Blog-Anleitung als Homepage verknüpft; Link im Über-Tab",
@@ -80,32 +93,6 @@
         "pl": "Wyczyszczono devDependencies, dodano słowo kluczowe ioBroker",
         "uk": "Очищено devDependencies, додано ключове слово ioBroker",
         "zh-cn": "清理devDependencies，添加ioBroker关键字"
-      },
-      "0.1.1": {
-        "en": "Fixed responsive design, added i18n, updated dependencies",
-        "de": "Responsive Design korrigiert, i18n hinzugefügt, Abhängigkeiten aktualisiert",
-        "ru": "Исправлен адаптивный дизайн, добавлен i18n, обновлены зависимости",
-        "pt": "Design responsivo corrigido, i18n adicionado, dependências atualizadas",
-        "nl": "Responsive design gerepareerd, i18n toegevoegd, afhankelijkheden bijgewerkt",
-        "fr": "Design responsive corrigé, i18n ajouté, dépendances mises à jour",
-        "it": "Design responsive corretto, i18n aggiunto, dipendenze aggiornate",
-        "es": "Diseño responsivo corregido, i18n añadido, dependencias actualizadas",
-        "pl": "Naprawiono responsywny design, dodano i18n, zaktualizowano zależności",
-        "uk": "Виправлено адаптивний дизайн, додано i18n, оновлено залежності",
-        "zh-cn": "修复响应式设计，添加i18n，更新依赖"
-      },
-      "0.1.0": {
-        "en": "Initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Первый выпуск",
-        "pt": "Versão inicial",
-        "nl": "Eerste versie",
-        "fr": "Version initiale",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Перший випуск",
-        "zh-cn": "初始版本"
       }
     },
     "titleLang": {

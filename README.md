@@ -106,6 +106,9 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ## Changelog
 
+### 0.1.8 (2026-03-27)
+* `io-package.json` `common.news` reduced to 7 entries (ioBroker repository checker [W1032](https://github.com/ioBroker/ioBroker.repochecker))
+
 ### 0.1.7 (2026-03-26)
 * Package `homepage` (npm) points to the [detailed German blog guide](https://smarterpapa.de/ultrahuman-ring-iobroker-adapter-gesundheitsdaten-smart-home/) on SmarterPapa.de
 * README and ioBroker Admin (About tab) link to the same article; GitHub remains the `repository` URL
