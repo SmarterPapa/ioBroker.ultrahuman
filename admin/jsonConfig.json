@@ -51,7 +51,7 @@
             "en": "How to get your credentials",
             "de": "So erhältst du deine Zugangsdaten"
           },
-          "size": 6,
+          "size": 5,
           "newLine": true,
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "8px" }
@@ -98,7 +98,7 @@
             "en": "Email template (copy and send to feedback@ultrahuman.com)",
             "de": "E-Mail Vorlage (kopieren und an feedback@ultrahuman.com senden)"
           },
-          "size": 6,
+          "size": 5,
           "newLine": true,
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px" }
@@ -144,7 +144,7 @@
             "en": "Your credentials",
             "de": "Deine Zugangsdaten"
           },
-          "size": 6,
+          "size": 5,
           "newLine": true,
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12
         },
@@ -156,10 +156,7 @@
           },
           "xs": 12, "sm": 12, "md": 6, "lg": 6, "xl": 6,
           "newLine": true,
-          "placeholder": {
-            "en": "Paste your API key here",
-            "de": "Füge deinen API-Schlüssel hier ein"
-          },
+          "placeholder": "Paste your API key here",
           "help": {
             "en": "The API key you received from Ultrahuman",
             "de": "Der API-Schlüssel, den du von Ultrahuman erhalten hast"
@@ -544,7 +541,7 @@
             "en": "Available data",
             "de": "Verfügbare Daten"
           },
-          "size": 6,
+          "size": 5,
           "newLine": true,
           "xs": 12, "sm": 12, "md": 12, "lg": 12, "xl": 12,
           "style": { "marginTop": "16px" }
