@@ -90,7 +90,7 @@ class Ultrahuman extends utils.Adapter {
         await this.syncStateCommonMetadata();
         if (!this.config.apiSecret || !this.config.userEmail) {
             this.log.error("API secret and user email must be configured – open adapter settings");
-            this.setState("info.connection", false, true);
+            await this.setState("info.connection", false, true);
             return;
         }
         const intervalMin = Math.max(this.config.pollingInterval || 30, 5);
@@ -106,7 +106,7 @@ class Ultrahuman extends utils.Adapter {
                 this.clearInterval(this.pollingTimer);
                 this.pollingTimer = undefined;
             }
-            this.setState("info.connection", false, true);
+            void this.setState("info.connection", false, true);
         }
         finally {
             callback();
@@ -194,10 +194,10 @@ class Ultrahuman extends utils.Adapter {
             await this.handleApiError(err);
             return;
         }
-        this.setState("info.connection", true, true);
+        await this.setState("info.connection", true, true);
         try {
             await this.updateStates(metrics);
-            this.setState("info.lastUpdate", new Date().toISOString(), true);
+            await this.setState("info.lastUpdate", new Date().toISOString(), true);
             this.log.debug("States updated successfully");
         }
         catch (err) {
@@ -310,7 +310,7 @@ class Ultrahuman extends utils.Adapter {
     // Error handling
     // ------------------------------------------------------------------
     async handleApiError(err) {
-        this.setState("info.connection", false, true);
+        await this.setState("info.connection", false, true);
         if (err instanceof ultrahuman_api_1.UltrahumanApiError) {
             if (err.statusCode === 401 || err.statusCode === 403) {
                 this.log.error(err.message);
@@ -348,6 +348,10 @@ function classifyActivityLevel(totalSteps) {
 }
 if (require.main !== module) {
     module.exports = (options) => new Ultrahuman(options);
+}
+else if (process.argv.includes("--install")) {
+    // js-controller runs `node main.js --install` during `iobroker add` / install; must exit.
+    process.exit(0);
 }
 else {
     (() => new Ultrahuman())();

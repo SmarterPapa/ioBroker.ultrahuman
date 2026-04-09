@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "news": {
+      "0.1.10": {
+        "en": "Fix integration/CLI hang on install (install:false, --install exits); await setState for ESLint",
+        "de": "Behoben: Hänger bei Integration/CLI-Install (install:false, --install beendet sofort); await setState für ESLint",
+        "ru": "Исправлено зависание install в CI/CLI (install:false, --install сразу выходит); await setState для ESLint",
+        "pt": "Corrigido bloqueio no install da integração/CLI (install:false, --install sai já); await setState para ESLint",
+        "nl": "Integratie/CLI-install hang opgelost (install:false, --install stopt direct); await setState voor ESLint",
+        "fr": "Correction blocage install intégration/CLI (install:false, --install quitte tout de suite) ; await setState pour ESLint",
+        "it": "Risolto blocco install in integrazione/CLI (install:false, --install esce subito); await setState per ESLint",
+        "es": "Corregido cuelgue en install de integración/CLI (install:false, --install sale al instante); await setState para ESLint",
+        "pl": "Naprawiono zawieszanie install w integracji/CLI (install:false, --install kończy od razu); await setState pod ESLint",
+        "uk": "Виправлено зависання install у CI/CLI (install:false, --install одразу виходить); await setState для ESLint",
+        "zh-cn": "修复集成/CLI 安装卡死（install:false，--install 立即退出）；setState 加 await 满足 ESLint"
+      },
       "0.1.9": {
         "en": "CI: standard integration tests (adapter startup with js-controller); TypeScript build in test matrix",
         "de": "CI: Standard-Integrationstests (Adapter-Start mit js-controller); TypeScript-Build in der Test-Matrix",
@@ -80,19 +93,6 @@
         "pl": "Usunięto instrukcje instalacji z GitHub, włączono zaufane publikowanie",
         "uk": "Видалено інструкції з встановлення з GitHub, увімкнено довірену публікацію",
         "zh-cn": "删除GitHub安装说明，启用可信发布"
-      },
-      "0.1.3": {
-        "en": "Fixed crash when sleep data contains invalid timestamps",
-        "de": "Absturz bei ungültigen Zeitstempeln in Schlafdaten behoben",
-        "ru": "Исправлен сбой при недействительных метках времени в данных сна",
-        "pt": "Corrigido crash quando dados de sono contêm timestamps inválidos",
-        "nl": "Crash opgelost bij ongeldige timestamps in slaapgegevens",
-        "fr": "Correction du crash avec des timestamps invalides dans les données de sommeil",
-        "it": "Risolto crash con timestamp non validi nei dati del sonno",
-        "es": "Corregido crash cuando los datos de sueño contienen timestamps inválidos",
-        "pl": "Naprawiono awarię przy nieprawidłowych znacznikach czasu w danych snu",
-        "uk": "Виправлено збій при невірних мітках часу в даних сну",
-        "zh-cn": "修复睡眠数据包含无效时间戳时的崩溃"
       }
     },
     "titleLang": {
@@ -140,7 +140,7 @@
     "platform": "Javascript/Node.js",
     "icon": "ultrahuman.png",
     "enabled": true,
-    "install": true,
+    "install": false,
     "extIcon": "https://raw.githubusercontent.com/SmarterPapa/ioBroker.ultrahuman/main/admin/ultrahuman.png",
     "readme": "https://github.com/SmarterPapa/ioBroker.ultrahuman/blob/main/README.md",
     "loglevel": "info",
