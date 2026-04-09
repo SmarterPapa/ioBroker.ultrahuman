@@ -68,7 +68,29 @@ jobs:
       id-token: write
 
     steps:
-      - uses: ioBroker/testing-action-deploy@v1
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: npm
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      # Avoid ioBroker/testing-action-deploy: it runs `npm install -g npm@latest`, which can break the runner (MODULE_NOT_FOUND / promise-retry).
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public --provenance
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          generate_release_notes: true

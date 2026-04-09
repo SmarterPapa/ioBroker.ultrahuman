@@ -1,6 +1,6 @@
 {
   "name": "iobroker.ultrahuman",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "ioBroker adapter for Ultrahuman Ring health metrics",
   "author": {
     "name": "SmarterPapa",

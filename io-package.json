@@ -1,33 +1,20 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "news": {
-      "0.1.10": {
-        "en": "Fix integration/CLI hang on install (install:false, --install exits); await setState for ESLint",
-        "de": "Behoben: Hänger bei Integration/CLI-Install (install:false, --install beendet sofort); await setState für ESLint",
-        "ru": "Исправлено зависание install в CI/CLI (install:false, --install сразу выходит); await setState для ESLint",
-        "pt": "Corrigido bloqueio no install da integração/CLI (install:false, --install sai já); await setState para ESLint",
-        "nl": "Integratie/CLI-install hang opgelost (install:false, --install stopt direct); await setState voor ESLint",
-        "fr": "Correction blocage install intégration/CLI (install:false, --install quitte tout de suite) ; await setState pour ESLint",
-        "it": "Risolto blocco install in integrazione/CLI (install:false, --install esce subito); await setState per ESLint",
-        "es": "Corregido cuelgue en install de integración/CLI (install:false, --install sale al instante); await setState para ESLint",
-        "pl": "Naprawiono zawieszanie install w integracji/CLI (install:false, --install kończy od razu); await setState pod ESLint",
-        "uk": "Виправлено зависання install у CI/CLI (install:false, --install одразу виходить); await setState для ESLint",
-        "zh-cn": "修复集成/CLI 安装卡死（install:false，--install 立即退出）；setState 加 await 满足 ESLint"
-      },
-      "0.1.9": {
-        "en": "CI: standard integration tests (adapter startup with js-controller); TypeScript build in test matrix",
-        "de": "CI: Standard-Integrationstests (Adapter-Start mit js-controller); TypeScript-Build in der Test-Matrix",
-        "ru": "CI: стандартные интеграционные тесты (запуск адаптера с js-controller); сборка TypeScript в матрице тестов",
-        "pt": "CI: testes de integração padrão (arranque do adaptador com js-controller); build TypeScript na matriz de testes",
-        "nl": "CI: standaard integratietests (adapterstart met js-controller); TypeScript-build in testmatrix",
-        "fr": "CI : tests d'intégration standard (démarrage de l'adaptateur avec js-controller) ; build TypeScript dans la matrice de tests",
-        "it": "CI: test di integrazione standard (avvio adapter con js-controller); build TypeScript nella matrice di test",
-        "es": "CI: pruebas de integración estándar (arranque del adaptador con js-controller); compilación TypeScript en la matriz de pruebas",
-        "pl": "CI: standardowe testy integracyjne (start adaptera z js-controller); build TypeScript w macierzy testów",
-        "uk": "CI: стандартні інтеграційні тести (запуск адаптера з js-controller); збірка TypeScript у матриці тестів",
-        "zh-cn": "CI：标准集成测试（使用 js-controller 启动适配器）；测试矩阵中的 TypeScript 构建"
+      "0.1.11": {
+        "en": "npm publish: custom deploy (avoid broken global npm upgrade); README version; Dependabot cooldown 7d; includes 0.1.9–0.1.10 fixes",
+        "de": "npm publish: eigener Deploy (kein kaputtes globales npm-Upgrade); README-Version; Dependabot-Cooldown 7 Tage; inkl. Fixes aus 0.1.9–0.1.10",
+        "ru": "npm publish: свой deploy (без глобального обновления npm); версия в README; cooldown Dependabot 7 дн.; правки 0.1.9–0.1.10",
+        "pt": "npm publish: deploy próprio (evita npm global quebrado); versão no README; cooldown Dependabot 7d; inclui correções 0.1.9–0.1.10",
+        "nl": "npm publish: eigen deploy (geen kapotte globale npm-upgrade); README-versie; Dependabot-cooldown 7 dagen; incl. fixes 0.1.9–0.1.10",
+        "fr": "npm publish : déploiement maison (évite npm global cassé) ; version README ; cooldown Dependabot 7 j ; inclut correctifs 0.1.9–0.1.10",
+        "it": "npm publish: deploy dedicato (evita upgrade npm globale rotto); versione README; cooldown Dependabot 7g; include fix 0.1.9–0.1.10",
+        "es": "npm publish: deploy propio (evita npm global roto); versión en README; cooldown Dependabot 7d; incluye arreglos 0.1.9–0.1.10",
+        "pl": "npm publish: własny deploy (bez zepsutej globalnej aktualizacji npm); wersja w README; cooldown Dependabot 7 dni; poprawki 0.1.9–0.1.10",
+        "uk": "npm publish: власний deploy (без зламаного глобального npm); версія в README; cooldown Dependabot 7 дн.; виправлення 0.1.9–0.1.10",
+        "zh-cn": "npm 发布：自建部署（避免全局 npm 升级损坏）；README 注明版本；Dependabot 冷却 7 天；含 0.1.9–0.1.10 修复"
       },
       "0.1.8": {
         "en": "Trimmed common.news to 7 entries (ioBroker repo builder W1032)",
@@ -93,6 +80,19 @@
         "pl": "Usunięto instrukcje instalacji z GitHub, włączono zaufane publikowanie",
         "uk": "Видалено інструкції з встановлення з GitHub, увімкнено довірену публікацію",
         "zh-cn": "删除GitHub安装说明，启用可信发布"
+      },
+      "0.1.3": {
+        "en": "Fixed crash when sleep data contains invalid timestamps",
+        "de": "Absturz bei ungültigen Zeitstempeln in Schlafdaten behoben",
+        "ru": "Исправлен сбой при недействительных метках времени в данных сна",
+        "pt": "Corrigido crash quando dados de sono contêm timestamps inválidos",
+        "nl": "Crash opgelost bij ongeldige timestamps in slaapgegevens",
+        "fr": "Correction du crash avec des timestamps invalides dans les données de sommeil",
+        "it": "Risolto crash con timestamp non validi nei dati del sonno",
+        "es": "Corregido crash cuando los datos de sueño contienen timestamps inválidos",
+        "pl": "Naprawiono awarię przy nieprawidłowych znacznikach czasu w danych snu",
+        "uk": "Виправлено збій при невірних мітках часу в даних сну",
+        "zh-cn": "修复睡眠数据包含无效时间戳时的崩溃"
       }
     },
     "titleLang": {
