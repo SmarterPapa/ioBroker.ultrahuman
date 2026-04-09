@@ -31,7 +31,7 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
 
-**Maintainers:** GitHub Actions releases need the repository secret `NPM_TOKEN` (granular npm token with publish scope for `iobroker.ultrahuman`). This avoids a broken `npm install -g npm@latest` step used by the default OIDC publish path on hosted runners.
+**Maintainers:** Set the repository secret `NPM_TOKEN` (granular npm token with publish + **Bypass 2FA** for `iobroker.ultrahuman`). The workflow uses `ioBroker/testing-action-deploy@v1` with `npm-token`, so publish runs without upgrading npm globally on the runner.
 
 ### Installation
 
@@ -110,53 +110,22 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ## Changelog
 
+### 0.1.11 (2026-04-09)
+
+* GitHub Releases: `ioBroker/testing-action-deploy@v1` with granular `NPM_TOKEN` (Bypass 2FA)
+* Changelog lists **0.1.11** here; older releases in [CHANGELOG_OLD.md](CHANGELOG_OLD.md)
+* Dependabot default cooldown 7 days; includes **0.1.9**–**0.1.10** fixes (integration tests, Admin `jsonConfig`)
+
 ### 0.1.8 (2026-03-27)
+
 * `io-package.json` `common.news` reduced to 7 entries (ioBroker repository checker [W1032](https://github.com/ioBroker/ioBroker.repochecker))
 
 ### 0.1.7 (2026-03-26)
+
 * Package `homepage` (npm) points to the [detailed German blog guide](https://smarterpapa.de/ultrahuman-ring-iobroker-adapter-gesundheitsdaten-smart-home/) on SmarterPapa.de
 * README and ioBroker Admin (About tab) link to the same article; GitHub remains the `repository` URL
 
-### 0.1.6 (2026-03-26)
-* State roles aligned with [ioBroker state roles documentation](https://github.com/ioBroker/ioBroker.docs/blob/master/docs/en/dev/stateroles.md) (e.g. `value.health.bpm`, `time.interval` for HRV in ms)
-* `info.connection` uses `indicator.reachable`; existing instances get roles updated on adapter start
-* Admin UI translations completed for fr, es, it, nl, pl, pt, ru, uk, zh-cn (`npm run i18n:admin` to regenerate from `scripts/`)
-* GitHub Actions release: uses **npm Trusted Publishing** (OIDC) when configured on [npm package settings](https://www.npmjs.com/package/iobroker.ultrahuman/access); optional fallback: `NPM_TOKEN` repo secret + `npm-token` in workflow
-
-### 0.1.5 (2026-03-21)
-* Added @iobroker/eslint-config for consistent code style
-* Switched Dependabot from monthly to weekly schedule
-* Code style improvements
-
-### 0.1.4 (2026-03-21)
-* Removed GitHub installation instructions (per ioBroker repository requirements)
-* Enabled trusted publishing for npm releases
-
-### 0.1.3 (2026-03-13)
-* Fixed crash when sleep data contains invalid or missing timestamps
-* Added defensive validation for all date/time conversions
-* Improved error handling in data processing
-
-### 0.1.2 (2026-03-11)
-* Cleaned up devDependencies (removed packages included in @iobroker/testing)
-* Added "ioBroker" keyword to package.json
-* Added .commitinfo to .gitignore
-
-### 0.1.1 (2026-03-11)
-* Fixed responsive design for Admin UI
-* Added i18n translation files
-* Updated dependencies (@iobroker/adapter-core, @iobroker/testing)
-* Fixed io-package.json schema (encryptedNative/protectedNative)
-* Minimum Node.js version set to 20
-
-### 0.1.0 (2026-03-08)
-* Initial release
-* Sleep data (efficiency, duration, stages, score, cycles)
-* Heart rate metrics (resting, night, average, min/max, trend)
-* HRV data (average, sleep, min/max, trend)
-* SpO2 monitoring (if supported by ring)
-* Skin temperature
-* Activity tracking (steps, active minutes, movement/recovery index, VO2 max)
+Older versions: [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
 ## License
 
