@@ -10,7 +10,7 @@
 
 # ioBroker.ultrahuman
 
-**Current adapter version:** 0.1.11
+**Current adapter version:** 0.1.12
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.ultrahuman.svg)](https://www.npmjs.com/package/iobroker.ultrahuman)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.ultrahuman.svg)](https://www.npmjs.com/package/iobroker.ultrahuman)
@@ -31,7 +31,7 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
 
-**Maintainers:** Set the repository secret `NPM_TOKEN` (granular npm token with publish + **Bypass 2FA** for `iobroker.ultrahuman`). The workflow uses `ioBroker/testing-action-deploy@v1` with `npm-token`, so publish runs without upgrading npm globally on the runner.
+**Maintainers:** Tag builds publish through **npm Trusted Publishing** ([configure Trusted Publishers](https://docs.npmjs.com/trusted-publishers) for `iobroker.ultrahuman` → GitHub Actions → this repository). The workflow uses `ioBroker/testing-action-deploy@v1` **without** `npm-token` so OIDC is used (required to avoid repochecker **W3019**). The job sets `permissions: id-token: write` for the OIDC exchange.
 
 ### Installation
 
@@ -109,6 +109,11 @@ If you find this adapter useful, consider supporting the development:
 API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) by Matt Krainski (MIT License).
 
 ## Changelog
+
+### 0.1.12 (2026-04-10)
+
+* **0.1.12:** npm publish uses **Trusted Publishing (OIDC)** only; removed `npm-token` from `testing-action-deploy` (clears repository checker **W3019**)
+* README and `common.news` updated; still seven `news` entries (W1032)
 
 ### 0.1.11 (2026-04-09)
 

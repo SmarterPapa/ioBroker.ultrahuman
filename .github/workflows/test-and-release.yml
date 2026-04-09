@@ -50,7 +50,7 @@ jobs:
           os: ${{ matrix.os }}
           build: true
 
-  # Deploys the final package to NPM
+  # Deploys to npm via Trusted Publishing (OIDC). Do not pass npm-token — it disables OIDC and triggers repochecker W3019.
   deploy:
     needs: [check-and-lint, adapter-tests]
 
@@ -68,18 +68,8 @@ jobs:
       id-token: write
 
     steps:
-      - name: Require NPM_TOKEN for npm publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [[ -z "${NPM_TOKEN:-}" ]]; then
-            echo '::error::Repository secret NPM_TOKEN is not set. Add a granular npm access token (publish + Bypass 2FA) at https://www.npmjs.com/settings/~/tokens'
-            exit 1
-          fi
-
       - uses: ioBroker/testing-action-deploy@v1
         with:
           node-version: '22.x'
           build: true
-          npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

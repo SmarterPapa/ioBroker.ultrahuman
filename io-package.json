@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "news": {
+      "0.1.12": {
+        "en": "npm releases use Trusted Publishing (OIDC) only; removed npm-token from workflow (repository checker W3019)",
+        "de": "npm-Releases nur per Trusted Publishing (OIDC); npm-token aus Workflow entfernt (Checker W3019)",
+        "ru": "Публикация в npm только через Trusted Publishing (OIDC); npm-token удалён из workflow (W3019)",
+        "pt": "Releases npm só com Trusted Publishing (OIDC); npm-token removido do workflow (W3019)",
+        "nl": "npm-releases alleen via Trusted Publishing (OIDC); npm-token uit workflow verwijderd (W3019)",
+        "fr": "Publication npm via Trusted Publishing (OIDC) uniquement ; npm-token retiré du workflow (W3019)",
+        "it": "Release npm solo con Trusted Publishing (OIDC); npm-token rimosso dal workflow (W3019)",
+        "es": "Publicaciones npm solo con Trusted Publishing (OIDC); npm-token eliminado del workflow (W3019)",
+        "pl": "Publikacja npm wyłącznie przez Trusted Publishing (OIDC); usunięto npm-token z workflow (W3019)",
+        "uk": "Публікація npm лише через Trusted Publishing (OIDC); npm-token прибрано з workflow (W3019)",
+        "zh-cn": "npm 发布仅使用 Trusted Publishing（OIDC）；从工作流移除 npm-token（W3019）"
+      },
       "0.1.11": {
         "en": "npm publish: custom deploy (avoid broken global npm upgrade); README version; Dependabot cooldown 7d; includes 0.1.9–0.1.10 fixes",
         "de": "npm publish: eigener Deploy (kein kaputtes globales npm-Upgrade); README-Version; Dependabot-Cooldown 7 Tage; inkl. Fixes aus 0.1.9–0.1.10",
@@ -80,19 +93,6 @@
         "pl": "Usunięto instrukcje instalacji z GitHub, włączono zaufane publikowanie",
         "uk": "Видалено інструкції з встановлення з GitHub, увімкнено довірену публікацію",
         "zh-cn": "删除GitHub安装说明，启用可信发布"
-      },
-      "0.1.3": {
-        "en": "Fixed crash when sleep data contains invalid timestamps",
-        "de": "Absturz bei ungültigen Zeitstempeln in Schlafdaten behoben",
-        "ru": "Исправлен сбой при недействительных метках времени в данных сна",
-        "pt": "Corrigido crash quando dados de sono contêm timestamps inválidos",
-        "nl": "Crash opgelost bij ongeldige timestamps in slaapgegevens",
-        "fr": "Correction du crash avec des timestamps invalides dans les données de sommeil",
-        "it": "Risolto crash con timestamp non validi nei dati del sonno",
-        "es": "Corregido crash cuando los datos de sueño contienen timestamps inválidos",
-        "pl": "Naprawiono awarię przy nieprawidłowych znacznikach czasu w danych snu",
-        "uk": "Виправлено збій при невірних мітках часу в даних сну",
-        "zh-cn": "修复睡眠数据包含无效时间戳时的崩溃"
       }
     },
     "titleLang": {
