@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "news": {
+      "0.1.9": {
+        "en": "CI: standard integration tests (adapter startup with js-controller); TypeScript build in test matrix",
+        "de": "CI: Standard-Integrationstests (Adapter-Start mit js-controller); TypeScript-Build in der Test-Matrix",
+        "ru": "CI: стандартные интеграционные тесты (запуск адаптера с js-controller); сборка TypeScript в матрице тестов",
+        "pt": "CI: testes de integração padrão (arranque do adaptador com js-controller); build TypeScript na matriz de testes",
+        "nl": "CI: standaard integratietests (adapterstart met js-controller); TypeScript-build in testmatrix",
+        "fr": "CI : tests d'intégration standard (démarrage de l'adaptateur avec js-controller) ; build TypeScript dans la matrice de tests",
+        "it": "CI: test di integrazione standard (avvio adapter con js-controller); build TypeScript nella matrice di test",
+        "es": "CI: pruebas de integración estándar (arranque del adaptador con js-controller); compilación TypeScript en la matriz de pruebas",
+        "pl": "CI: standardowe testy integracyjne (start adaptera z js-controller); build TypeScript w macierzy testów",
+        "uk": "CI: стандартні інтеграційні тести (запуск адаптера з js-controller); збірка TypeScript у матриці тестів",
+        "zh-cn": "CI：标准集成测试（使用 js-controller 启动适配器）；测试矩阵中的 TypeScript 构建"
+      },
       "0.1.8": {
         "en": "Trimmed common.news to 7 entries (ioBroker repo builder W1032)",
         "de": "common.news auf 7 Einträge gekürzt (ioBroker-Repository-Builder W1032)",
@@ -80,19 +93,6 @@
         "pl": "Naprawiono awarię przy nieprawidłowych znacznikach czasu w danych snu",
         "uk": "Виправлено збій при невірних мітках часу в даних сну",
         "zh-cn": "修复睡眠数据包含无效时间戳时的崩溃"
-      },
-      "0.1.2": {
-        "en": "Cleaned up devDependencies, added ioBroker keyword",
-        "de": "DevDependencies aufgeräumt, ioBroker Keyword hinzugefügt",
-        "ru": "Очищены devDependencies, добавлено ключевое слово ioBroker",
-        "pt": "DevDependencies limpos, palavra-chave ioBroker adicionada",
-        "nl": "DevDependencies opgeschoond, ioBroker keyword toegevoegd",
-        "fr": "DevDependencies nettoyées, mot-clé ioBroker ajouté",
-        "it": "DevDependencies pulite, keyword ioBroker aggiunta",
-        "es": "DevDependencies limpiadas, palabra clave ioBroker añadida",
-        "pl": "Wyczyszczono devDependencies, dodano słowo kluczowe ioBroker",
-        "uk": "Очищено devDependencies, додано ключове слово ioBroker",
-        "zh-cn": "清理devDependencies，添加ioBroker关键字"
       }
     },
     "titleLang": {

@@ -48,8 +48,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           os: ${{ matrix.os }}
-          # Skip integration tests as they require real API credentials
-          integration-test-command: "echo 'Skipping integration tests - requires API credentials'"
+          build: true
 
   # Deploys the final package to NPM
   deploy:
