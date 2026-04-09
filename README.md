@@ -31,7 +31,7 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
 
-**Maintainers:** Tag builds publish through **npm Trusted Publishing** ([configure Trusted Publishers](https://docs.npmjs.com/trusted-publishers) for `iobroker.ultrahuman` → GitHub Actions → this repository). The workflow uses `ioBroker/testing-action-deploy@v1` **without** `npm-token` so OIDC is used (required to avoid repochecker **W3019**). The job sets `permissions: id-token: write` for the OIDC exchange.
+**Maintainers:** Set repository secret **`NPM_TOKEN`** (granular access token: publish + **Bypass 2FA** for `iobroker.ultrahuman`). Releases use `ioBroker/testing-action-deploy@v1` with **`npm-token`**, which avoids the action’s Trusted-Publishing bootstrap (`npm install -g npm@latest`) — that step currently fails on GitHub-hosted runners (`MODULE_NOT_FOUND: promise-retry`). The repository checker may still report **W3019** (token vs. Trusted Publishing); keeping a working publish path takes priority until npm / the action fix that bootstrap.
 
 ### Installation
 
@@ -112,8 +112,8 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 ### 0.1.12 (2026-04-10)
 
-* **0.1.12:** npm publish uses **Trusted Publishing (OIDC)** only; removed `npm-token` from `testing-action-deploy` (clears repository checker **W3019**)
-* README and `common.news` updated; still seven `news` entries (W1032)
+* **0.1.12:** `testing-action-deploy@v1` with **`npm-token`** again (OIDC-only path breaks on `ubuntu-latest` during global npm upgrade); README documents **W3019** trade-off
+* `common.news` trimmed to seven entries (W1032); **0.1.3** moved to history only via [CHANGELOG_OLD.md](CHANGELOG_OLD.md)
 
 ### 0.1.11 (2026-04-09)
 

@@ -4,17 +4,17 @@
     "version": "0.1.12",
     "news": {
       "0.1.12": {
-        "en": "npm releases use Trusted Publishing (OIDC) only; removed npm-token from workflow (repository checker W3019)",
-        "de": "npm-Releases nur per Trusted Publishing (OIDC); npm-token aus Workflow entfernt (Checker W3019)",
-        "ru": "Публикация в npm только через Trusted Publishing (OIDC); npm-token удалён из workflow (W3019)",
-        "pt": "Releases npm só com Trusted Publishing (OIDC); npm-token removido do workflow (W3019)",
-        "nl": "npm-releases alleen via Trusted Publishing (OIDC); npm-token uit workflow verwijderd (W3019)",
-        "fr": "Publication npm via Trusted Publishing (OIDC) uniquement ; npm-token retiré du workflow (W3019)",
-        "it": "Release npm solo con Trusted Publishing (OIDC); npm-token rimosso dal workflow (W3019)",
-        "es": "Publicaciones npm solo con Trusted Publishing (OIDC); npm-token eliminado del workflow (W3019)",
-        "pl": "Publikacja npm wyłącznie przez Trusted Publishing (OIDC); usunięto npm-token z workflow (W3019)",
-        "uk": "Публікація npm лише через Trusted Publishing (OIDC); npm-token прибрано з workflow (W3019)",
-        "zh-cn": "npm 发布仅使用 Trusted Publishing（OIDC）；从工作流移除 npm-token（W3019）"
+        "en": "Release workflow: npm-token with testing-action-deploy (OIDC bootstrap fails on GitHub runners; W3019 advisory)",
+        "de": "Release-Workflow: npm-token mit testing-action-deploy (OIDC-Bootstrap scheitert auf GitHub-Runnern; Hinweis W3019)",
+        "ru": "Релиз: npm-token и testing-action-deploy (OIDC на раннерах GitHub не поднимается; предупреждение W3019)",
+        "pt": "Workflow de release: npm-token com testing-action-deploy (bootstrap OIDC falha nos runners GitHub; aviso W3019)",
+        "nl": "Release-workflow: npm-token met testing-action-deploy (OIDC-bootstrap faalt op GitHub-runners; waarschuwing W3019)",
+        "fr": "Workflow de release : npm-token avec testing-action-deploy (bootstrap OIDC en échec sur runners GitHub ; avis W3019)",
+        "it": "Workflow release: npm-token con testing-action-deploy (bootstrap OIDC fallisce sui runner GitHub; avviso W3019)",
+        "es": "Workflow de release: npm-token con testing-action-deploy (bootstrap OIDC falla en runners de GitHub; aviso W3019)",
+        "pl": "Workflow wydania: npm-token z testing-action-deploy (bootstrap OIDC na runnerach GitHub nie działa; W3019)",
+        "uk": "Реліз: npm-token і testing-action-deploy (OIDC на раннерах GitHub не стартує; попередження W3019)",
+        "zh-cn": "发布工作流：testing-action-deploy 使用 npm-token（GitHub Runner 上 OIDC 引导失败；W3019 提示）"
       },
       "0.1.11": {
         "en": "npm publish: custom deploy (avoid broken global npm upgrade); README version; Dependabot cooldown 7d; includes 0.1.9–0.1.10 fixes",
