@@ -68,11 +68,34 @@ jobs:
       id-token: write
 
     steps:
-      # With npm-token set, this skips `npm install -g npm@latest` (that step breaks the runner: MODULE_NOT_FOUND promise-retry).
-      # Add repository secret NPM_TOKEN (classic granular token with publish) if not using npm Trusted Publishing.
-      - uses: ioBroker/testing-action-deploy@v1
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          npm-token: ${{ secrets.NPM_TOKEN }}
-          build: true
+          cache: npm
+
+      - name: Install, build, publish to npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${NPM_TOKEN:-}" ]]; then
+            echo '::error::Repository secret NPM_TOKEN is not set. Add a granular npm access token (publish) at https://www.npmjs.com/settings/~/tokens — the ioBroker deploy action uses npm install -g npm@latest for OIDC, which currently breaks on GitHub runners (MODULE_NOT_FOUND: promise-retry).'
+            exit 1
+          fi
+          npm ci
+          npm run build
+          npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
+          npm whoami
+          npm publish --access public
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          generate_release_notes: true

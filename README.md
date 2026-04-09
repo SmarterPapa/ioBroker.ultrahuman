@@ -31,6 +31,8 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
 
+**Maintainers:** GitHub Actions releases need the repository secret `NPM_TOKEN` (granular npm token with publish scope for `iobroker.ultrahuman`). This avoids a broken `npm install -g npm@latest` step used by the default OIDC publish path on hosted runners.
+
 ### Installation
 
 Install the adapter via the ioBroker Admin interface:
