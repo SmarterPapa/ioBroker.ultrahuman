@@ -31,7 +31,7 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
 
-**Maintainers:** Set repository secret **`NPM_TOKEN`** (granular access token: publish + **Bypass 2FA** for `iobroker.ultrahuman`). Releases use `ioBroker/testing-action-deploy@v1` with **`npm-token`**, which avoids the action’s Trusted-Publishing bootstrap (`npm install -g npm@latest`) — that step currently fails on GitHub-hosted runners (`MODULE_NOT_FOUND: promise-retry`). The repository checker may still report **W3019** (token vs. Trusted Publishing); keeping a working publish path takes priority until npm / the action fix that bootstrap.
+**Maintainers:** Set repository secret **`NPM_TOKEN`** (granular access token: publish + **Bypass 2FA** for `iobroker.ultrahuman`). Releases use `ioBroker/testing-action-deploy@v1` with **`npm-token`**, which avoids the action’s Trusted-Publishing bootstrap (`npm install -g npm@latest`) — that step currently fails on GitHub-hosted runners (`MODULE_NOT_FOUND: promise-retry`). The repository checker may still report **W3019** (token vs. Trusted Publishing); keeping a working publish path takes priority until npm / the action fix that bootstrap. **Tracking:** [ioBroker/testing-action-deploy#19](https://github.com/ioBroker/testing-action-deploy/issues/19) (also related: [npm/cli#9151](https://github.com/npm/cli/issues/9151)).
 
 ### Installation
 
