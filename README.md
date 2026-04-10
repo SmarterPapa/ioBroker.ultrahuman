@@ -10,7 +10,7 @@
 
 # ioBroker.ultrahuman
 
-**Current adapter version:** 0.1.12
+**Current adapter version:** 0.1.13
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.ultrahuman.svg)](https://www.npmjs.com/package/iobroker.ultrahuman)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.ultrahuman.svg)](https://www.npmjs.com/package/iobroker.ultrahuman)
@@ -31,7 +31,7 @@ This adapter reads health metrics from your **Ultrahuman Ring** via the [Ultrahu
 
 Source code: [GitHub](https://github.com/SmarterPapa/ioBroker.ultrahuman)
 
-**Maintainers:** Set repository secret **`NPM_TOKEN`** (granular access token: publish + **Bypass 2FA** for `iobroker.ultrahuman`). Releases use `ioBroker/testing-action-deploy@v1` with **`npm-token`**, which avoids the action’s Trusted-Publishing bootstrap (`npm install -g npm@latest`) — that step currently fails on GitHub-hosted runners (`MODULE_NOT_FOUND: promise-retry`). The repository checker may still report **W3019** (token vs. Trusted Publishing); keeping a working publish path takes priority until npm / the action fix that bootstrap. **Tracking:** [ioBroker/testing-action-deploy#19](https://github.com/ioBroker/testing-action-deploy/issues/19) (also related: [npm/cli#9151](https://github.com/npm/cli/issues/9151)).
+**Maintainers:** Enable [Trusted Publishers](https://docs.npmjs.com/trusted-publishers) for `iobroker.ultrahuman` (this GitHub repo). Releases use `ioBroker/testing-action-deploy@v1` on **Node.js 24** with OIDC only (no `npm-token`). See [testing-action-deploy#19](https://github.com/ioBroker/testing-action-deploy/issues/19).
 
 ### Installation
 
@@ -109,6 +109,10 @@ If you find this adapter useful, consider supporting the development:
 API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/ultrahuman-dashboard) by Matt Krainski (MIT License).
 
 ## Changelog
+
+### 0.1.13 (2026-04-11)
+
+* Deploy uses **Node.js 24** with `testing-action-deploy@v1`; **Trusted Publishing** only (no `npm-token`), per maintainer note on [testing-action-deploy#19](https://github.com/ioBroker/testing-action-deploy/issues/19)
 
 ### 0.1.12 (2026-04-10)
 

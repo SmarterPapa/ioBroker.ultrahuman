@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# Daily watch: when ioBroker/testing-action-deploy#19 is closed, optionally switch deploy to
-# Trusted Publishing only (remove npm-token) and remove this job from crontab.
+# Optional helper: poll ioBroker/testing-action-deploy#19; with --apply, rewrite deploy workflow
+# to OIDC-only (must match repo template). Adapter now uses Node 24 + Trusted Publishing on main —
+# if you still have this cron, run:  ./scripts/trusted-publishing-watch.sh --uninstall-cron
 #
-# Install (once):  ./scripts/trusted-publishing-watch.sh --install-cron
-# Manual check:    ./scripts/trusted-publishing-watch.sh
-# Apply + cleanup: ./scripts/trusted-publishing-watch.sh --apply
-#
-# Crontab line contains marker: IOBROKER_ULTRAHUMAN_TP_WATCH
+# Install:   ./scripts/trusted-publishing-watch.sh --install-cron
+# Uninstall: ./scripts/trusted-publishing-watch.sh --uninstall-cron
 
 set -euo pipefail
 # Cron has no login shell — ensure Homebrew / common paths for `gh` and `git`.
@@ -96,7 +94,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Performs quick checks before the expensive test runs
   check-and-lint:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
 
@@ -105,10 +102,9 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           lint: true
 
-  # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
     needs: [check-and-lint]
 
@@ -127,7 +123,6 @@ jobs:
           os: ${{ matrix.os }}
           build: true
 
-  # Deploy: Trusted Publishing (OIDC) via testing-action-deploy — npm-token removed after upstream fix (see testing-action-deploy#19).
   deploy:
     needs: [check-and-lint, adapter-tests]
 
@@ -145,7 +140,7 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           build: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
 YAML

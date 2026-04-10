@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "ultrahuman",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "news": {
+      "0.1.13": {
+        "en": "CI deploy uses Node.js 24; npm publish without npm-token (Trusted Publishing)",
+        "de": "CI-Deploy mit Node.js 24; npm-Publish ohne npm-token (Trusted Publishing)",
+        "ru": "CI: Node.js 24 для деплоя; публикация в npm без npm-token (Trusted Publishing)",
+        "pt": "CI deploy com Node.js 24; npm publish sem npm-token (Trusted Publishing)",
+        "nl": "CI-deploy met Node.js 24; npm publish zonder npm-token (Trusted Publishing)",
+        "fr": "CI déploiement avec Node.js 24 ; publication npm sans npm-token (Trusted Publishing)",
+        "it": "CI deploy con Node.js 24; publish npm senza npm-token (Trusted Publishing)",
+        "es": "CI deploy con Node.js 24; npm publish sin npm-token (Trusted Publishing)",
+        "pl": "CI deploy na Node.js 24; npm publish bez npm-token (Trusted Publishing)",
+        "uk": "CI: Node.js 24 для деплою; npm без npm-token (Trusted Publishing)",
+        "zh-cn": "CI 部署使用 Node.js 24；npm 发布不使用 npm-token（可信发布）"
+      },
       "0.1.12": {
         "en": "Release workflow: npm-token with testing-action-deploy (OIDC bootstrap fails on GitHub runners; W3019 advisory)",
         "de": "Release-Workflow: npm-token mit testing-action-deploy (OIDC-Bootstrap scheitert auf GitHub-Runnern; Hinweis W3019)",
@@ -80,19 +93,6 @@
         "pl": "Dodano @iobroker/eslint-config, Dependabot zmieniony na tygodniowy",
         "uk": "Додано @iobroker/eslint-config, Dependabot переключено на щотижневий розклад",
         "zh-cn": "添加@iobroker/eslint-config，Dependabot改为每周"
-      },
-      "0.1.4": {
-        "en": "Removed GitHub installation instructions, enabled trusted publishing",
-        "de": "GitHub-Installationsanleitung entfernt, Trusted Publishing aktiviert",
-        "ru": "Удалены инструкции по установке с GitHub, включена доверенная публикация",
-        "pt": "Removidas instruções de instalação do GitHub, publicação confiável ativada",
-        "nl": "GitHub-installatie-instructies verwijderd, trusted publishing ingeschakeld",
-        "fr": "Instructions d'installation GitHub supprimées, publication de confiance activée",
-        "it": "Rimosse istruzioni di installazione da GitHub, pubblicazione attendibile abilitata",
-        "es": "Eliminadas instrucciones de instalación de GitHub, publicación confiable habilitada",
-        "pl": "Usunięto instrukcje instalacji z GitHub, włączono zaufane publikowanie",
-        "uk": "Видалено інструкції з встановлення з GitHub, увімкнено довірену публікацію",
-        "zh-cn": "删除GitHub安装说明，启用可信发布"
       }
     },
     "titleLang": {
