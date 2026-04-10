@@ -19,6 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Performs quick checks before the expensive test runs
   check-and-lint:
     if: contains(github.event.head_commit.message, '[skip ci]') == false
 
@@ -27,9 +28,10 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: '24.x'
+          node-version: '22.x'
           lint: true
 
+  # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
     needs: [check-and-lint]
 
@@ -48,9 +50,12 @@ jobs:
           os: ${{ matrix.os }}
           build: true
 
+  # Deploys via ioBroker/testing-action-deploy@v1. npm-token is required: the action's OIDC path runs `npm install -g npm@latest`,
+  # which fails on ubuntu-latest (npm MODULE_NOT_FOUND: promise-retry). npm-token skips that step. Repochecker may warn (W3019).
   deploy:
     needs: [check-and-lint, adapter-tests]
 
+    # Trigger this step only when a commit on any branch is tagged with a version number
     if: |
       contains(github.event.head_commit.message, '[skip ci]') == false &&
       github.event_name == 'push' &&
@@ -58,6 +63,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # Write permissions are required to create Github releases
     permissions:
       contents: write
       id-token: write
@@ -66,5 +72,7 @@ jobs:
       - uses: ioBroker/testing-action-deploy@v1
         with:
           node-version: '24.x'
+          # Uncomment the following line if your adapter cannot be installed using 'npm ci'
+          # install-command: 'npm install'
           build: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
