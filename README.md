@@ -136,6 +136,8 @@ API integration based on [ultrahuman-dashboard](https://github.com/mt-krainski/u
 
 Older versions: [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
